@@ -1,0 +1,64 @@
+/* fonts Inter & Forum */
+@import url('https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: inherit;
+    text-decoration: none;
+}
+
+/* Header styles start */
+.header {
+    width: 100%;
+    background: #0C0C0E;
+    box-sizing: border-box;
+    color: #ffffff;
+}
+
+.header__wrapper {
+    width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header__main-text {
+    font: 400 30px/50px 'Forum', sans-serif;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
+}
+
+.header__nav-and-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__nav {
+}
+
+.header__list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+}
+
+.header__item {
+    margin-right: 30px;
+    font: 400 20px/50px 'Inter', sans-serif;
+    line-height: 50px;
+}
+
+.header__profile-image {
+    margin-left: 11px;
+}
+/* Header styles end */
+
+/* Welcome styles start */
+/* Welcome styles end */
