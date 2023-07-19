@@ -1,44 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/favico/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favico/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favico/favicon-16x16.png">  
+  <link rel="icon" type="image/png" sizes="192x192" href="./img/favico/favicon-192x192.png">  
+  <link rel="icon" type="image/png" sizes="512x512" href="./img/favico/favicon-512x512.png">  
+  <title>Library</title>
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <!-- Header start -->
     <header class="header">
-        <div class="header__wrapper">
-            <h1 class="header__main-text">
-                Brooklyn public library
-            </h1>
-            <div class="header__nav-and-profile">
-                <nav class="header__nav">
-                    <ul class="header__list">
-                        <li class="header__item">About</li>
-                        <li class="header__item">Favorites</li>
-                        <li class="header__item">Coffee shop</li>
-                        <li class="header__item">Contacts</li>
-                        <li class="header__item">Library Card</li>
-                    </ul>
-                </nav>
-                    <img src="./img/svg/icon_profile.svg" alt="profile logo" class="header__profile-image">
-            </div>
+      <div class="header__wrapper">
+        <h1 class="header__main-text">Brooklyn public library</h1>
+        <div class="header__nav-and-profile">
+          <nav class="header__nav">
+            <ul class="header__list">
+              <li class="header__item">About</li>
+              <li class="header__item">Favorites</li>
+              <li class="header__item">Coffee shop</li>
+              <li class="header__item">Contacts</li>
+              <li class="header__item">Library Card</li>
+            </ul>
+          </nav>
+          <img src="./img/svg/icon_profile.svg" alt="profile logo" class="header__profile-image">
         </div>
+      </div>
     </header>
     <!-- Header end -->
     
     <!-- Main start -->
     <main class="main">
-        <section class="welcome">
-            <div class="welcome__overlay"></div>
-            <div class="welcome__wrapper">
-                <h2 class="welcome__content">Welcome<br>to the Brooklyn<br>Library</h2>
-            </div>
+      <section class="welcome">
+        <div class="welcome__overlay"></div>
+        <div class="welcome__wrapper">
+          <h2 class="welcome__content">Welcome<br>to the Brooklyn<br>Library</h2>
+        </div>
         </section>
         <div class="main__wrapper">
-
+          <section class="about">
+            <h2 class="about__heading section-heading">About</h2>
+            <div class="section-heading__underscore"></div>
+            <p>The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</p>
+            <div class="about__slider">
+              <img class="about__image" src="./img/slider/slide_1.jpg" alt="slide_1">
+              <img class="about__image" src="./img/slider/slide_2.jpg" alt="slide_2">
+              <img class="about__image" src="./img/slider/slide_3.jpg" alt="slide_3">
+            </div>
+            <div class="about__pagination">
+              <div class="about__pagination-button">
+                <div class="about__circle"></div>
+              </div>
+              <div class="about__pagination-button">
+                <div class="about__circle"></div>
+              </div>
+              <div class="about__pagination-button">
+                <div class="about__circle"></div>
+              </div>
+            </div>
+          </section>
+          <section class="favorites">
+            <h2 class="favorites__heading section-heading">Favorites</h2>
+            <div class="section-heading__underscore"></div>
+            <p>Pick favorites of season</p>
+            <div class="favorites__selector-area">
+              <div class="favorites__selector">
+                <input id="winter" type="radio" class="favorites-input" name="season" value="winter">Winter
+              </div>
+              <div class="favorites__selector">
+                <input id="spring" type="radio" class="favorites-input" name="season" value="spring">Spring
+              </div>
+              <div class="favorites__selector">
+                <input id="summer" type="radio" class="favorites-input" name="season" value="summer">Summer
+              </div>
+              <div class="favorites__selector">
+                <input id="autumn" type="radio" class="favorites-input" name="season" value="autumn">Autumn
+              </div>
+            </div>
+          </section>
         </div>
     </main>
     <!-- Main end -->
