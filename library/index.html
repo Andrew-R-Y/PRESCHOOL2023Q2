@@ -34,13 +34,18 @@
     
     <!-- Main start -->
     <main class="main">
+
+      <!-- Welcome start -->
       <section class="welcome">
         <div class="welcome__overlay"></div>
         <div class="welcome__wrapper">
           <h2 class="welcome__content">Welcome<br>to the Brooklyn<br>Library</h2>
         </div>
-        </section>
-        <div class="main__wrapper">
+      </section>
+      <!-- Welcome end -->
+      
+      <div class="main__wrapper">
+          <!-- About start -->
           <section class="about">
             <h2 class="about__heading section-heading">About</h2>
             <div class="section-heading__underscore"></div>
@@ -62,33 +67,85 @@
               </div>
             </div>
           </section>
+          <!-- About end -->
+
+          <!-- Favorites start -->
           <section class="favorites">
             <h2 class="favorites__heading section-heading">Favorites</h2>
             <div class="section-heading__underscore"></div>
-            <p>Pick favorites of season</p>
+            <p class="favorites__choose">Pick favorites of season</p>
             <div class="favorites__selector-area">
               <div class="favorites__selector">
-                <input id="winter" type="radio" class="favorites-input" name="season" value="winter">Winter
+                <input id="winter" type="radio" class="favorites__input" name="season" value="winter">
+                <label for="winter" class="favorites__label-input">
+                  <div class="favorites__push-area">
+                    <div class="favorites__circle">
+                      <div class="favorites__disk"></div>
+                    </div>
+                  </div>
+                </label>
+                <label for="winter" class="favorites__label">Winter</label>
               </div>
               <div class="favorites__selector">
-                <input id="spring" type="radio" class="favorites-input" name="season" value="spring">Spring
+                <input id="spring" type="radio" class="favorites__input" name="season" value="spring">
+                <label for="spring" class="favorites__label-input">
+                  <div class="favorites__push-area">
+                    <div class="favorites__circle">
+                      <div class="favorites__disk"></div>
+                    </div>
+                  </div>
+                </label>
+                <label for="spring" class="favorites__label">Spring</label>
               </div>
               <div class="favorites__selector">
-                <input id="summer" type="radio" class="favorites-input" name="season" value="summer">Summer
+                <input id="summer" type="radio" class="favorites__input" name="season" value="summer">
+                <label for="summer" class="favorites__label-input">
+                  <div class="favorites__push-area">
+                    <div class="favorites__circle">
+                      <div class="favorites__disk"></div>
+                    </div>
+                  </div>
+                </label>
+                <label for="summer" class="favorites__label">Summer</label>
               </div>
               <div class="favorites__selector">
-                <input id="autumn" type="radio" class="favorites-input" name="season" value="autumn">Autumn
+                <input id="autumn" type="radio" class="favorites__input" name="season" value="autumn">
+                <label for="autumn" class="favorites__label-input">
+                  <div class="favorites__push-area">
+                    <div class="favorites__circle">
+                      <div class="favorites__disk"></div>
+                    </div>
+                  </div>
+                </label>
+                <label for="autumn" class="favorites__label">Autumn</label>
+              </div>
+            </div>
+            <div class="favorites__books-container">
+              <div class="favorites__book-card">
+                <div class="favorites__subheading">Staff Picks</div>
+                <div class="favorites__underscore"></div>
+                <div class="favorites__title-author">
+                  <p class="favorites__title">The Book Eaters</p>
+                  <p class="favorites__author">By Sunyi Dean</p>
+                </div>
+                <div class="favorites__book-description">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. 
+                  Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.
+                </div>
+                <button class="favorites__buy-button">Buy</button>
+                <div class="favorites__book-image"><img src="./img/books/book_1.png" alt="The book eaters" class="favorites__image"></div>
               </div>
             </div>
           </section>
+          <!-- Favorites end -->
+
         </div>
-    </main>
-    <!-- Main end -->
-
-    <!-- Footer start -->
-    <footer class="footer">
-
-    </footer>
-    <script src="./index.js"></script>
-</body>
-</html>
+      </main>
+      <!-- Main end -->
+      
+      <!-- Footer start -->
+      <footer class="footer">
+        
+      </footer>
+      <script src="./index.js"></script>
+    </body>
+    </html>
