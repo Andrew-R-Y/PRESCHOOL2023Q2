@@ -19,10 +19,10 @@
         <div class="header__nav-and-profile">
           <nav class="header__nav">
             <ul class="header__list">
-              <li class="header__item">About</li>
-              <li class="header__item">Favorites</li>
-              <li class="header__item">Coffee shop</li>
-              <li class="header__item">Contacts</li>
+              <li class="header__item"><a href="#about">About</a></li>
+              <li class="header__item"><a href="#favorites">Favorites</a></li>
+              <li class="header__item"><a href="#shop">Coffee shop</a></li>
+              <li class="header__item"><a href="#contacts">Contacts</a></li>
               <li class="header__item">Library Card</li>
             </ul>
           </nav>
@@ -36,7 +36,7 @@
     <main class="main">
 
       <!-- Welcome start -->
-      <section class="welcome">
+      <section class="welcome" id="welcome">
         <div class="welcome__overlay"></div>
         <div class="welcome__wrapper">
           <h2 class="welcome__content">Welcome<br>to the Brooklyn<br>Library</h2>
@@ -46,7 +46,7 @@
       
       <div class="main__wrapper">
           <!-- About start -->
-          <section class="about">
+          <section class="about" id="about">
             <h2 class="about__heading section-heading">About</h2>
             <div class="section-heading__underscore"></div>
             <p class="section-paragraph">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</p>
@@ -70,7 +70,7 @@
           <!-- About end -->
 
           <!-- Favorites start -->
-          <section class="favorites">
+          <section class="favorites" id="favorites">
             <h2 class="favorites__heading section-heading">Favorites</h2>
             <div class="section-heading__underscore"></div>
             <p class="favorites__choose">Pick favorites of season</p>
@@ -347,14 +347,93 @@
           <!-- Favorites end -->
           
           <!-- Coffee Shop start -->
-          <section class="coffee-shop">
+          <section class="shop" id="shop">
             <h2 class="favorites__heading section-heading">Coffee Shop</h2>
             <div class="section-heading__underscore"></div>
-            <div class="section-paragraph coffee-shop__p">In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. 
-              You can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts from bakery.</div>
+            <div class="section-paragraph shop__p">In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. 
+              You can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts from bakery.
+            </div>
+            <div class="shop__menu">
+              <div class="shop__beverages">
+                <div class="shop__menu-heading">Coffee & Tea</div>
+                <div class="shop__menu-item">
+                  <p class="shop__drink">Cold Brew Coffee</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$3</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__drink">French Press Pot</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$5</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__drink">Espresso</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$2</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__drink">Cappuccino</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$4</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__drink">Hot Tea</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$2</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__drink">Cold Tea</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$2</p>
+                </div>
+              </div>
+              <div class="shop__meals">
+                <div class="shop__menu-heading right-side">
+                  Desserts & Cakes
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__food">Forest Gateau</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$16</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__food">Blue Moon</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$16</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__food">Truffle Cake</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$15</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__food">Chocolate Cake</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$18</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__food">Poet’s Dream Cake</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$16</p>
+                </div>
+                <div class="shop__menu-item">
+                  <p class="shop__food">Pineapple Cake</p>
+                  <div class="shop__line"></div>
+                  <p class="shop__price">$14</p>
+                </div>
+                
+              </div>
+            </div>
           </section>
           <!-- Coffee Shop end -->
           
+          <!-- Contacts start -->
+          <section class="contacts" id="contacts">
+            <h2 class="favorites__heading section-heading">Our Contacts</h2>
+            <div class="section-heading__underscore"></div>
+          </section>
+          <!-- Contacts end -->
+
         </div>
       </main>
       <!-- Main end -->
