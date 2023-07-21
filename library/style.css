@@ -55,6 +55,9 @@ html {
   font: 400 20px/50px 'Inter', sans-serif;
   line-height: 50px;
 }
+.header__item a {
+  color: #ffffff;
+}
 
 .header__profile-image {
   margin-left: 11px;
@@ -371,11 +374,79 @@ input:checked + label + label.favorites__label {
 /* Favorites styles end */
 
 /* Coffee Shop styles start */
-.coffee__shop {
-  padding: 20px 20px 40px;
+.shop {
+  padding: 0px 20px 40px;
 }
-.section-paragraph.coffee-shop__p {
+.section-paragraph.shop__p {
   letter-spacing: 2px;
   padding: 0px 16px;
+  margin-bottom: 40px;
+}
+
+.shop__menu {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shop__beverages {
+  flex-basis: 460px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop__menu-heading {
+  font: 400 40px/40px 'Forum', sans-serif;
+  letter-spacing: 2px;
+  color: #bb945f;
+}
+.shop__menu-heading.right-side {
+  text-align: end;
+}
+
+.shop__meals {
+}
+
+.shop__menu-item {
+  height: 40px;
+  margin-top: 40px;
+}
+
+.shop__drink {
+  display: inline-block;
+  width: 199px;
+  margin-right: 55px;
+  font: 400 20px/40px 'Inter', sans-serif;
+  letter-spacing: 2px;
+}
+
+.shop__line {
+  display: inline-block;
+  width: 100px;
+  margin-bottom: 6px;
+  margin-right: 55px;
+  border-bottom: 1px solid #bb945f;
+}
+
+.shop__price {
+  display: inline-block;
+  font: 400 20px/40px 'Forum', sans-serif;
+  letter-spacing: 2px;
+}
+
+.shop__food {
+  display: inline-block;
+  width: 214px;
+  margin-right: 55px;
+  font: 400 20px/40px 'Inter', sans-serif;
+  letter-spacing: 2px;
+  text-align: end;
 }
 /* Coffee Shop styles end */
+
+/* Contacts styles start */
+.contacts {
+  padding: 20px;
+}
+/* Contacts styles end */
