@@ -219,20 +219,21 @@ p.favorites__choose {
 input.favorites__input {
   display: none;
 }
+
 .favorites__label {
   font: 400 20px 'Inter', sans-serif;
   display: inline-block;
   margin-top: -3px;
-  padding: 5px;
+  padding: 5px 5px 5px 15px;
   /*align-self: flex-start;*/
 }
 
 .favorites__push-area {
   display: inline-block;
-  margin-right: 10px;
   align-self: flex-end;
 }
 .favorites__circle {
+  display: inline-block;
   width: 17px;
   height: 17px;
   margin: 7px;
@@ -242,13 +243,14 @@ input.favorites__input {
 }
 
 .favorites__disk {
+  display: block;
   width: 7px;
   height: 7px;
   margin: 3px auto;
   border-radius: 50%;
 }
 
-input:checked + .favorites__label-input .favorites__disk {
+input:checked + .favorites__push-area .favorites__disk {
   background-color: #000000;
 }
 
@@ -256,7 +258,7 @@ input:checked + label + label.favorites__label {
   font-weight: 700;
 }
 
-.favorites__label-input:hover {
+.favorites__push-area:hover {
   cursor: pointer;
 }
 
@@ -403,9 +405,6 @@ input:checked + label + label.favorites__label {
 }
 .shop__menu-heading.right-side {
   text-align: end;
-}
-
-.shop__meals {
 }
 
 .shop__menu-item {
