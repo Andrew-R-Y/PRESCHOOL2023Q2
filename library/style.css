@@ -456,6 +456,60 @@ input:checked + label + label.favorites__label {
 
 /* Contacts styles start */
 .contacts {
-  padding: 20px;
+  padding: 20px 20px 40px;
+}
+
+.contacts .section-heading {
+  margin-top: 2px;
+}
+
+.contacts__heading {
+  margin-bottom: 40px;
+}
+
+.contacts__info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contacts__data {
+  padding-right: 199px;
+  font: 400 20px/40px 'Inter', sans-serif;
+  letter-spacing: 2px;
+  text-transform: capitalize
+}
+
+.contacts__p-main {
+  font-weight: 700;
+}
+
+.contacts__p-main:first-child {
+  margin-bottom: 40px;
+}
+
+.contacts__p-secondary {
+  margin-bottom: 20px;
+}
+
+.contacts__p-secondary:nth-child(4) {
+  margin-bottom: 40px;
+}
+
+.contacts__p-main:nth-child(5) {
+  margin-bottom: 20px;
+}
+
+.contacts__p-secondary a {
+  color: #000000;
+}
+
+.contacts__director {
+  font-weight: 700;
+  padding-bottom: 34px;
 }
 /* Contacts styles end */
+
+/* Library card styles start */
+
+/* Library card styles end */
