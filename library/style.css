@@ -16,7 +16,6 @@ html {
 /* Header styles start */
 .header {
   width: 100%;
-  background: #0c0c0e;
   box-sizing: border-box;
   color: #ffffff;
 }
@@ -27,6 +26,7 @@ html {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #0c0c0e;
   padding: 20px;
 }
 
@@ -56,6 +56,12 @@ html {
 }
 .header__item a {
   color: #ffffff;
+  transition: all 0.3s;
+}
+
+.header__item a:hover {
+  color: #bb945f;
+  text-decoration: underline;
 }
 
 .header__profile-image {
@@ -66,7 +72,9 @@ html {
 /* Welcome styles start */
 .welcome {
   height: 600px;
+  width: 100%;
   color: #ffffff;
+  overflow: hidden;
 }
 
 .welcome img {
@@ -74,6 +82,7 @@ html {
   height: 100%;
   object-fit: cover;
 }
+
 .welcome__wrapper {
   width: 1440px;
   margin: 0 auto;
@@ -81,7 +90,7 @@ html {
 }
 
 .welcome__overlay {
-  width: 100%;
+  width: 1440px;
   box-sizing: border-box;
   height: 300px;
   position: absolute;
@@ -90,13 +99,13 @@ html {
 }
 
 .welcome__content {
-  width: 520px;
+  width: 600px;
   padding: 35px 40px;
   text-align: center;
   font: 400 40px/50px 'Forum', sans-serif;
   letter-spacing: 3px;
   text-transform: uppercase;
-  background-color: black;
+  background-color: #0c0c0e;
   position: absolute;
   top: 310px;
   z-index: 5;
@@ -342,6 +351,7 @@ input:checked + label + label.favorites__label {
   background-color: #ffffff;
   border-radius: 2px;
   border: 1px solid #0c0c0e;
+  transition: all 0.5s;
 }
 
 .favorites__button.own {
@@ -367,6 +377,12 @@ input:checked + label + label.favorites__label {
 
 .favorites__button:hover {
   cursor: pointer;
+  background-color: #bb945f;
+}
+
+.favorites__button.own:hover {
+  cursor: default;
+  background-color: #ffffff;
 }
 
 .favorites__book-image {
@@ -511,5 +527,213 @@ input:checked + label + label.favorites__label {
 /* Contacts styles end */
 
 /* Library card styles start */
+.card {
+  padding: 15px 20px 40px;
+}
 
+.card__underscore {
+  margin-top: 2px;
+  margin-bottom: 40px;
+}
+
+.card__cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card__find-card {
+  flex-basis: 601px;
+  flex-grow: 0;
+}
+.card__subheading {
+  margin-bottom: 30px;
+  text-align: center;
+  font: 400 30px 'Inter', sans-serif;
+  letter-spacing: 0.6px;
+}
+
+.card__card-body {
+  box-sizing: border-box;
+  width: 600px;
+  height: 386px;
+  border: 3px solid #bb945f;
+  padding: 17px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card__background {
+  height: 272px;
+  background-color: #bb945f;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.card__paragraph {
+  font: 400 30px/50px 'Forum', sans-serif;
+  letter-spacing: 0.6px;
+  margin-bottom: 20px;
+}
+
+.card__input {
+  display: block;
+  height: 66px;
+  width: 100%;
+  padding-left: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  font: 400 30px/50px 'Forum', sans-serif;
+  letter-spacing: 0.6px;
+  color: #bb945f;
+}
+
+.card__submit {
+  display: block;
+  box-sizing: border-box;
+  width: 242px;
+  margin: 0 auto;
+  padding: 9px 38px;
+  text-align: center;
+  font: 700 20px 'Inter', sans-serif;
+  letter-spacing: 1px;
+  color: #0c0c0e;
+  background: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #0c0c0e;
+  transition: all 0.5s;
+}
+
+.card__submit:hover {
+  cursor: pointer;
+  background-color: #bb945f;
+}
+
+.card__get-card {
+  flex-basis: 456px;
+  height: 253px;
+  flex-grow: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: #ffffff;
+}
+
+.card__firstline {
+font: 400 30px 'Forum', sans-serif;
+letter-spacing: 0.6px;
+}
+
+.card__secondline {
+font: 400 20px/40px 'Inter', sans-serif;
+letter-spacing: 0.4px;
+text-align: right;
+}
+
+.card__button {
+  width: 75px;
+  height: 30px;
+  bottom: 14px;
+  left: 19px;
+  text-align: center;
+  font: 700 10px 'Inter', sans-serif;
+  letter-spacing: 1px;
+  color: #0c0c0e;
+  background-color: #ffffff;
+  border-radius: 2px;
+  border: 1px solid #0c0c0e;
+  transition: all 0.5s;
+}
+
+.card__button:first-child {
+  margin-right: 15px;
+}
+.card__button:hover {
+  background-color: #bb945f;
+  cursor: pointer;
+}
 /* Library card styles end */
+
+/* Footer styles start */
+.footer {
+  height: 250px;
+  color: #ffffff;
+}
+.footer a {
+  color: #ffffff;
+}
+
+.footer__wrapper {
+  background-color: #0c0c0e;
+  box-sizing: border-box;
+  width: 1440px;
+  margin: 0 auto;
+  padding: 20px 20px 0px;
+}
+
+.footer__first-line {
+  display: flex;
+  justify-content: space-between;
+  font: 400 15px/20px 'Inter', sans-serif;
+  margin-bottom: 10px;
+}
+
+
+.footer__address {
+  flex-basis: 229px;
+  flex-grow: 0;
+}
+.footer__address-link {
+  display: block;
+  flex-basis: 229px;
+  flex-grow: 0;
+}
+
+.footer__schedule {
+  flex-basis: 149px;
+  flex-grow: 0;
+  text-align: right;
+}
+
+.footer__second-line {
+display: flex;
+justify-content: space-between;
+font: 400 15px/20px 'Inter', sans-serif;
+margin-bottom: 30px;
+}
+
+.footer__social {
+  width: 102px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__item {
+  list-style-type: none;
+  padding-top: 6px;
+}
+
+.footer__underscore {
+  width: 100%;
+  border-bottom: 1px solid #ffffff;
+}
+
+.footer__bottom-section {
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 400 20px 'Inter', sans-serif;
+  letter-spacing: 2px;
+  color: #ffffff;
+}
+
+.footer__bottom-section a {
+color: #ffffff;
+}
+
+.footer__school {
+  padding-left: 80px;
+}
+/* Footer styles end */

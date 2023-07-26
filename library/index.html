@@ -23,7 +23,7 @@
               <li class="header__item"><a href="#favorites">Favorites</a></li>
               <li class="header__item"><a href="#shop">Coffee shop</a></li>
               <li class="header__item"><a href="#contacts">Contacts</a></li>
-              <li class="header__item">Library Card</li>
+              <li class="header__item"><a href="#card">Library Card</a></li>
             </ul>
           </nav>
           <img src="./img/svg/icon_profile.svg" alt="profile logo" class="header__profile-image">
@@ -34,18 +34,18 @@
     
     <!-- Main start -->
     <main class="main">
-
-      <!-- Welcome start -->
-      <section class="welcome" id="welcome">
-        <img src="./img/welcome-bg.jpeg" alt="library background image">
-        <div class="welcome__overlay"></div>
-        <div class="welcome__wrapper">
-          <h2 class="welcome__content">Welcome<br>to the Brooklyn<br>Library</h2>
-        </div>
-      </section>
-      <!-- Welcome end -->
-      
       <div class="main__wrapper">
+
+        <!-- Welcome start -->
+        <section class="welcome" id="welcome">
+          <img src="./img/welcome-bg.jpeg" alt="library background image">
+          <div class="welcome__overlay"></div>
+          <div class="welcome__wrapper">
+            <h2 class="welcome__content">Welcome<br>to the Brooklyn<br>Library</h2>
+          </div>
+        </section>
+        <!-- Welcome end -->
+        
           <!-- About start -->
           <section class="about" id="about">
             <h2 class="about__heading section-heading">About</h2>
@@ -165,7 +165,7 @@
                 <div class="favorites__book-description">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors
                    have evolved and thrived as the modern world has changed around them.
                 </div>
-                <button class="favorites__button own"><span>Buy</span><span>Own</span></button>
+                <button class="favorites__button own" disabled><span>Buy</span><span>Own</span></button>
                 <div class="favorites__book-image"><img src="./img/books/book_4.png" alt="The Last Queen" class="favorites__image"></div>
               </div>
               <div class="favorites__book-card spring">
@@ -439,20 +439,66 @@
           <!-- Contacts end -->
           
           <!-- Library card start -->
-          <section class="contacts" id="contacts">
+          <section class="card" id="card">
             <h2 class="section-heading">Digital Library Cards</h2>
-            <div class="section-heading__underscore"></div>
+            <div class="section-heading__underscore card__underscore"></div>
+            <div class="card__cards">
+              <form class="card__find-card" action="./">
+                <h3 class="card__subheading">Find your Library card</h3>
+                <div class="card__card-body">
+                  <div class="card__background">
+                    <p class="card__paragraph">Brooklyn Public Library</p>
+                    <input type="text" class="card__input" placeholder="Reader's name" pattern="^[A-Za-z0-9\-]+$">
+                    <input type="text" class="card__input" placeholder="Card number"pattern="^[A-Za-z0-9\-]+$">
+                  </div>
+                  <button class="card__submit" type="submit">Check the card</button>
+                </div>
+
+              </form>
+              <div class="card__get-card">
+                <p class="card__firstline">Get a reader card</p>
+                <p class="card__secondline">You will be able to see a reader card after logging 
+                  into account or you can register a new account
+                </p>
+                <div class="card__buttons">
+                  <button class="card__button">Sign Up</button>
+                  <button class="card__button">Log in</button>
+                </div>
+              </div>
+            </div>
           </section>
           <!-- Library card end -->
 
-        </div>
-      </main>
-      <!-- Main end -->
+      </div>
+    </main>
+    <!-- Main end -->
       
-      <!-- Footer start -->
-      <footer class="footer">
-        
-      </footer>
-      <script src="./index.js"></script>
-    </body>
-    </html>
+    <!-- Footer start -->
+    <footer class="footer">
+      <div class="footer__wrapper">
+        <div class="footer__first-line">
+          <a href="https://goo.gl/maps/4H4pDu6Ro2rT7qGx5" class="footer__address-link" target="_blank"><div class="footer__address">286 Cadman Plaza, New York, NY 11238, United States</div></a>
+          <div class="footer__schedule">Mon - Fri<br>08:00 am - 07:00 pm</div>
+        </div>
+        <div class="footer__second-line">
+          <ul class="footer__social">
+            <li class="footer__item"><a href="#!" class="footer__social-link"><img src="./img/svg/twitter.svg" alt="twitter logo"></a></li>
+            <li class="footer__item"><a href="#!" class="footer__social-link"><img src="./img/svg/instagram.svg" alt="instagram logo"></a></li>
+            <li class="footer__item"><a href="#!" class="footer__social-link"><img src="./img/svg/facebook.svg" alt="facebook logo"></a></li>
+            
+            
+            
+          </ul>
+          <div class="footer__schedule">Sat - Sun<br>10:00 am - 06:00 pm</div>
+        </div>
+        <div class="footer__underscore"></div>
+        <div class="footer__bottom-section">
+          <div class="footer__year">2023</div>
+          <div class="footer__school"><a href="https://rs.school/js-stage0/" class="footer__school-link" target="_blank">The Rolling Scopes School</a></div>
+          <div class="footer__github"><a href="https://github.com/Andrew-R-Y/" class="footer__github-link" target="_blank">Andrew-R-Y</a></div>
+        </div>
+      </div>
+    </footer>
+    <script src="./index.js"></script>
+</body>
+</html>
