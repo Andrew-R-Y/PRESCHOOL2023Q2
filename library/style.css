@@ -732,9 +732,6 @@ margin-bottom: 30px;
   list-style-type: none;
   padding-top: 6px;
 }
-.footer__item:hover a {
-  fill: #bb945f;
-}
 
 .footer__underscore {
   width: 100%;
