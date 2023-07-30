@@ -648,6 +648,7 @@ text-align: right;
 .card__button:first-child {
   margin-right: 15px;
 }
+
 .card__button:hover {
   background-color: #bb945f;
   cursor: pointer;
@@ -659,8 +660,15 @@ text-align: right;
   height: 250px;
   color: #ffffff;
 }
+
 .footer a {
   color: #ffffff;
+  transition: all 0.3s;
+}
+
+.footer a:hover{
+  color: #bb945f;
+  text-decoration: underline;
 }
 
 .footer__wrapper {
@@ -704,6 +712,7 @@ margin-bottom: 30px;
 
 .footer__social {
   width: 102px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -731,6 +740,12 @@ margin-bottom: 30px;
 
 .footer__bottom-section a {
 color: #ffffff;
+transition: all 0.3s;
+}
+
+.footer__bottom-section a:hover {
+color: #bb945f;
+text-decoration: underline;
 }
 
 .footer__school {
