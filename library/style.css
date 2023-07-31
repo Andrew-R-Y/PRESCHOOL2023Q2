@@ -378,6 +378,7 @@ input:checked + label + label.favorites__label {
 .favorites__button:hover {
   cursor: pointer;
   background-color: #bb945f;
+  border: 1px solid #bb945f;
 }
 
 .favorites__button.own:hover {
@@ -616,6 +617,7 @@ input:checked + label + label.favorites__label {
 .card__submit:hover {
   cursor: pointer;
   background-color: #bb945f;
+  border: 1px solid #bb945f;
 }
 
 .card__get-card {
