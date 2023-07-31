@@ -663,6 +663,7 @@ text-align: right;
 
 .card__button:hover {
   background-color: #bb945f;
+  border: 1px solid #bb945f;
   cursor: pointer;
 }
 /* Library card styles end */
