@@ -9,6 +9,18 @@
   text-decoration: none;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: lightgrey;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #bb945f;
+}
+
 html {
   scroll-behavior: smooth;
 }
