@@ -17,6 +17,7 @@
 ::-webkit-scrollbar-track {
   background-color: lightgrey;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #bb945f;
 }
@@ -33,7 +34,7 @@ html {
 }
 
 .header__wrapper {
-  width: 1440px;
+  max-width: 1440px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -43,6 +44,8 @@ html {
 }
 
 .header__main-text {
+  flex-basis: 295px;
+  flex-shrink: 0;
   font: 400 30px/50px 'Forum', sans-serif;
   letter-spacing: 0.6px;
   text-transform: capitalize;
@@ -66,6 +69,8 @@ html {
   font: 400 20px/50px 'Inter', sans-serif;
   line-height: 50px;
 }
+
+
 .header__item a {
   color: #ffffff;
   transition: all 0.3s;
@@ -79,6 +84,101 @@ html {
 .header__profile-image {
   margin-left: 11px;
 }
+
+
+.header__burger-menu {
+  display: none;
+}
+
+.header__burger-menu > span {
+  width: 100%;
+  height: 2px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 0;
+  top: 15px;
+}
+
+.header__burger-menu::before {
+  content: '';
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.header__burger-menu::after {
+  content: '';
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+@media (max-width:1440px) {
+  .header__item {
+    margin-right: calc(20px + (30 - 20) * ((100vw - 1024px)/(1440 - 1024)));
+  }
+} 
+
+@media(max-width: 1024px) {
+  .header__burger-menu {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    margin-left: 40px;
+  }
+  
+  .header__nav-and-profile {
+    flex-direction: column-reverse;
+    justify-content: start;
+    align-items: center;
+    padding: 20px 20px 0;
+    width: 332px;
+    height: 90px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 5;
+    background-color: #0c0c0e;
+    transition: all 0.5s;
+  }
+  
+  .header__list {
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    bottom: 120%;
+    transition: all 0.5s;
+  }
+
+  .header__item {
+    margin: 0 0 30px 0;
+  }
+
+  .header__item:first-child {
+    margin-top: 40px;
+  }
+
+  .header__nav-and-profile.active {
+    height: 570px;
+    background-color: #000000;
+  }
+  
+  .header__nav-and-profile.active .header__list{
+    bottom: 0;
+    left: 0;
+}
+    
+  .header__logo-burger {
+    align-self: flex-end;
+  }
+}
 /* Header styles end */
 
 /* Welcome styles start */
@@ -91,7 +191,7 @@ html {
 
 .welcome img {
   width: 100%;
-  height: 100%;
+  height: 600px;
   object-fit: cover;
 }
 
@@ -102,12 +202,13 @@ html {
 }
 
 .welcome__overlay {
-  width: 1440px;
+  width: 100vw;
+  max-width: 1440px;
   box-sizing: border-box;
   height: 300px;
   position: absolute;
   top: 90px;
-  background: linear-gradient(180deg, #0C0C0E 0%, #0C0C0E 0.01%, rgba(18, 18, 21, 0.10) 100%);
+  background: linear-gradient(180deg, #0c0c0e 0%, #0c0c0e 0.01%, rgba(18, 18, 21, 0.10) 100%);
 }
 
 .welcome__content {
@@ -120,7 +221,7 @@ html {
   background-color: #0c0c0e;
   position: absolute;
   top: 310px;
-  z-index: 5;
+  z-index: 2;
 }
 /* Welcome styles end */
 
@@ -130,7 +231,7 @@ html {
 }
 .main__wrapper {
   box-sizing: border-box;
-  width: 1440px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 /* Main styles end */
@@ -169,6 +270,7 @@ html {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .about__pagination {
@@ -247,7 +349,6 @@ input.favorites__input {
   display: inline-block;
   margin-top: -3px;
   padding: 5px 5px 5px 15px;
-  /*align-self: flex-start;*/
 }
 
 .favorites__push-area {
@@ -425,12 +526,23 @@ input:checked + label + label.favorites__label {
 
 .shop__menu {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .shop__beverages {
   flex-basis: 460px;
   flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shop__meals {
+  flex-basis: 482px;
+  flex-grow: 0;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -561,6 +673,7 @@ input:checked + label + label.favorites__label {
 
 .card__cards {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
@@ -699,7 +812,7 @@ text-align: right;
 .footer__wrapper {
   background-color: #0c0c0e;
   box-sizing: border-box;
-  width: 1440px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 20px 20px 0px;
 }
