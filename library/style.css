@@ -388,7 +388,7 @@ html {
   }
 }
 
-@media(max-width: 970px) {
+@media(max-width: 1024px) {
   .slide-2 {
     display: none;
   }
@@ -434,6 +434,20 @@ p.favorites__choose {
 
 .favorites__selector:nth-child(3) {
   margin-right: 82px;
+}
+
+@media(max-width: 767px) {
+  .favorites__selector:first-child {
+    margin-right: calc(20px + (70 - 20) * ((100vw - 600px)/(768 - 600)));
+  }
+  
+  .favorites__selector:nth-child(2) {
+    margin-right: calc(20px + (65 - 20) * ((100vw - 600px)/(768 - 600)));
+  }
+  
+  .favorites__selector:nth-child(3) {
+    margin-right: calc(20px + (82 - 20) * ((100vw - 600px)/(768 - 600)));
+  }
 }
 
 input.favorites__input {
