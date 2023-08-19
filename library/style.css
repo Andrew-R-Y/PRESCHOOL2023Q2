@@ -304,13 +304,26 @@ html {
   font: 400 20px/40px 'Inter', sans-serif;
 }
 
-.about__slider {
-  box-sizing: border-box;
-  padding-top: 20px;
+.about__slider-block {
   display: flex;
   justify-content: space-between;
-  overflow: hidden;
+  align-items: center;
+}
+
+.about__slider-wrapper {
   margin-bottom: min(35px, calc(20px + (35 - 20) * ((100vw - 768px)/(1440 - 768))));
+  padding-top: 20px;
+  overflow: hidden;
+}
+
+.about__slider {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: start;
+  gap: 25px;
+  position: relative;
+  transition: all 0.7s;
+  will-change: right;
 }
 
 .about__slider-arrow {
@@ -323,9 +336,33 @@ html {
   transition: all 0.3s;
 }
 
+.about__image {
+  display: inline-block;
+}
+
 .about__slider-arrow img {
   display: inline-block;
   margin: 0;
+}
+
+.position-1 {
+  right: 0;
+}
+
+.position-2 {
+  right: 475px;
+}
+
+.position-3 {
+  right: 950px;
+}
+
+.position-4 {
+  right: 1425px;
+}
+
+.position-5 {
+  right: 1900px;
 }
 
 @media(hover:hover) {
@@ -335,14 +372,16 @@ html {
   }
 }
 
-.slide-4 {
-  display: none;
-}
+@media(max-width: 1439px) {
+  .about__slider-block {
+    justify-content: space-around;
+  }
+  
+  .about__slider-wrapper {
+    flex-basis: 450px;
+  }
 
-.slide-5 {
-  display: none;
 }
-
 
 .about__pagination {
   margin: 0 auto 16px;
@@ -368,6 +407,10 @@ html {
   .about__pagination-button:hover {
     cursor: pointer;
   }
+
+  .about__pagination_active:hover {
+    cursor: auto;
+  }
 }
 
 .about__circle {
@@ -378,33 +421,19 @@ html {
   background-color: var(--color-secondary-dark);
 }
 
-.about__pagination-button:first-child .about__circle {
+.about__pagination_active > .about__circle {
   background-color: var(--color-active);
 }
 
-@media(max-width: 1400px) {
+@media(max-width: 1439px) {
   .about__slider-arrow {
     display: block;
-  }
-  
-  .slide-3 {
-    display: none;
-  }
-  
-  .about__slider {
-    justify-content: space-evenly;
   }
 
   .about__pagination-button-4 {
     display: block;
   }
-}
 
-@media(max-width: 1024px) {
-  .slide-2 {
-    display: none;
-  }
-  
   .about__pagination-button-5 {
     display: block;
   }
@@ -639,7 +668,7 @@ input:checked + label + label.favorites__label {
   object-fit: contain;
 }
 
-@media (max-width: 1229px) {
+@media (max-width: 1233px) {
   .favorites__books-container {
     flex-direction: column;
     justify-content: flex-start;
