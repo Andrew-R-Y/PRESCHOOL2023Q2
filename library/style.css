@@ -311,6 +311,7 @@ html {
 }
 
 .about__slider-wrapper {
+  margin: 0 10px;
   margin-bottom: min(35px, calc(20px + (35 - 20) * ((100vw - 768px)/(1440 - 768))));
   padding-top: 20px;
   overflow: hidden;
@@ -329,13 +330,18 @@ html {
 .about__slider-arrow {
   align-self: center;
   flex: 0 0 24px;
-  padding: 4px 8px;
+  height: 24px;
+  padding: 3px 3px 3px 7px;
   display: none;
   position: relative;
   top: 22px;
+  border-radius: 50%;
   transition: all 0.3s;
 }
 
+.slider-arrow-right {
+  padding-left: 8px;
+}
 .about__image {
   display: inline-block;
 }
@@ -372,13 +378,13 @@ html {
   }
   .arrow-disabled:hover {
     cursor: auto;
-    background-color: #ffffff;
+    background-color: transparent;
   }
 }
 
 @media(max-width: 1439px) {
   .about__slider-block {
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
   
   .about__slider-wrapper {
