@@ -101,4 +101,65 @@ BUTTON_5.addEventListener('click', () => {
     SLIDER.classList.remove('position-4')
     SLIDER.classList.add('position-5')
 })
+
+const LEFT_ARROW = document.querySelector('.slider-arrow-left');
+const RIGHT_ARROW = document.querySelector('.slider-arrow-right');
+
+LEFT_ARROW.addEventListener('click', () => {
+    if (SLIDER.classList.contains('position-1')) {
+        return
+    } else if (SLIDER.classList.contains('position-2')) {
+        SLIDER.classList.remove('position-2');
+        SLIDER.classList.add('position-1');
+        BUTTON_2.classList.remove('about__pagination_active')
+        BUTTON_1.classList.add('about__pagination_active')
+        LEFT_ARROW.classList.add('arrow-disabled');
+    } else if (SLIDER.classList.contains('position-3')) {
+        SLIDER.classList.remove('position-3');
+        SLIDER.classList.add('position-2');
+        BUTTON_3.classList.remove('about__pagination_active')
+        BUTTON_2.classList.add('about__pagination_active')
+    } else if (SLIDER.classList.contains('position-4')) {
+        SLIDER.classList.remove('position-4');
+        SLIDER.classList.add('position-3');
+        BUTTON_4.classList.remove('about__pagination_active')
+        BUTTON_3.classList.add('about__pagination_active')
+    } else if (SLIDER.classList.contains('position-5')) {
+        SLIDER.classList.remove('position-5');
+        SLIDER.classList.add('position-4');
+        BUTTON_5.classList.remove('about__pagination_active')
+        BUTTON_4.classList.add('about__pagination_active')
+        RIGHT_ARROW.classList.remove('arrow-disabled')
+    }
+})
+
+RIGHT_ARROW.addEventListener('click', () => {
+    if (SLIDER.classList.contains('position-5')) {
+        return
+    } else if (SLIDER.classList.contains('position-1')) {
+        SLIDER.classList.remove('position-1');
+        SLIDER.classList.add('position-2');
+        BUTTON_1.classList.remove('about__pagination_active');
+        BUTTON_2.classList.add('about__pagination_active');
+        LEFT_ARROW.classList.remove('arrow-disabled');
+    } else if (SLIDER.classList.contains('position-2')) {
+        SLIDER.classList.remove('position-2');
+        SLIDER.classList.add('position-3');
+        BUTTON_2.classList.remove('about__pagination_active')
+        BUTTON_3.classList.add('about__pagination_active')
+    } else if (SLIDER.classList.contains('position-3')) {
+        SLIDER.classList.remove('position-3');
+        SLIDER.classList.add('position-4');
+        BUTTON_3.classList.remove('about__pagination_active')
+        BUTTON_4.classList.add('about__pagination_active')
+    } else if (SLIDER.classList.contains('position-4')) {
+        SLIDER.classList.remove('position-4');
+        SLIDER.classList.add('position-5');
+        BUTTON_4.classList.remove('about__pagination_active')
+        BUTTON_5.classList.add('about__pagination_active')
+        RIGHT_ARROW.classList.add('arrow-disabled')
+    }
+})
+
+
 // About slider end
