@@ -370,6 +370,10 @@ html {
     cursor: pointer;
     background-color: var(--color-active);
   }
+  .arrow-disabled:hover {
+    cursor: auto;
+    background-color: #ffffff;
+  }
 }
 
 @media(max-width: 1439px) {
@@ -403,9 +407,30 @@ html {
   display: none;
 }
 
+.about__circle {
+  width: 16px;
+  height: 16px;
+  margin: 5px auto;
+  border-radius: 50%;
+  background-color: var(--color-secondary-dark);
+  transition: all 0.5s;
+}
+
+.about__pagination_active > .about__circle {
+  background-color: var(--color-active);
+}
+
 @media(hover:hover) {
   .about__pagination-button:hover {
     cursor: pointer;
+  }
+
+  .about__pagination-button:hover > .about__circle {
+    scale: 1.4;
+  }
+  
+  .about__pagination_active:hover > .about__circle {
+    scale: 1;
   }
 
   .about__pagination_active:hover {
@@ -413,17 +438,6 @@ html {
   }
 }
 
-.about__circle {
-  width: 16px;
-  height: 16px;
-  margin: 5px auto;
-  border-radius: 50%;
-  background-color: var(--color-secondary-dark);
-}
-
-.about__pagination_active > .about__circle {
-  background-color: var(--color-active);
-}
 
 @media(max-width: 1439px) {
   .about__slider-arrow {
