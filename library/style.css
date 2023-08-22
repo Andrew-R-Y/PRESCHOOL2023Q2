@@ -581,14 +581,36 @@ input:checked + label + label.favorites__label {
   position: relative;
   padding: 13px 170px 50px 19px;
   border: 1px solid var(--color-dark);
-}
-
-.favorites__book-card {
   display: none;
+  will-change: opacity;
 }
 
-.favorites__book-card.winter {
+.favorites__book-card.is-active {
   display: block;
+}
+
+.favorites__fade-out {
+  animation-name: fade-out;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.favorites__fade-in {
+  animation-name: fade-in;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-out {
+  0% {opacity: 1}
+  100% {opacity: 0}
+}
+
+@keyframes fade-in {
+  0% {opacity: 0}
+  100% {opacity: 1}
 }
 
 .favorites__subheading {
