@@ -171,3 +171,40 @@ RIGHT_ARROW.addEventListener('click', () => {
     }
 })
 // About slider end
+
+// Favorites seasons selector start
+const SEASONS = document.querySelectorAll('input.favorites__input');
+const BOOKS = document.querySelectorAll('.favorites__book-card');
+let activeSeason;
+let previosSeason = 'winter';
+SEASONS.forEach(setEventListener);
+
+function setEventListener(item){
+    item.addEventListener('change', showCardsBySeason)
+}
+
+function showCardsBySeason(event) {
+    activeSeason = event.target.value;
+    console.log('activeSeason:', activeSeason);
+    console.log('previosSeason', previosSeason)
+    BOOKS.forEach((book) => {
+        if(book.classList.contains(activeSeason)) {
+            setTimeout(() => {book.classList.add('favorites__fade-in')}, 2000);
+            setTimeout(() => {book.classList.add('is-active')}, 2000);
+            setTimeout(() => {book.classList.remove('favorites__fade-in')}, 4000);
+        } 
+        if(book.classList.contains(previosSeason)){
+            book.classList.add('favorites__fade-out')
+            setTimeout(() => {book.classList.remove('favorites__fade-out')}, 2000)
+            setTimeout(() => {book.classList.remove('is-active')}, 2000)
+        }
+    })
+    previosSeason = activeSeason;
+}
+
+BOOKS.forEach((book) => {
+    if (book.classList.contains('winter')) {
+        book.classList.add('is-active')
+    }
+})
+// Favorites seasons selector end 
