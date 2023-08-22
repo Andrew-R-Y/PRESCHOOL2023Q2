@@ -48,6 +48,8 @@ BUTTON_1.addEventListener('click', () => {
     SLIDER.classList.remove('position-4')
     SLIDER.classList.remove('position-5')
     SLIDER.classList.add('position-1')
+    LEFT_ARROW.classList.add('arrow-disabled');
+    RIGHT_ARROW.classList.remove('arrow-disabled');
 })
 
 BUTTON_2.addEventListener('click', () => {
@@ -61,6 +63,8 @@ BUTTON_2.addEventListener('click', () => {
     SLIDER.classList.remove('position-4')
     SLIDER.classList.remove('position-5')
     SLIDER.classList.add('position-2')
+    LEFT_ARROW.classList.remove('arrow-disabled');
+    RIGHT_ARROW.classList.remove('arrow-disabled');
 })
 
 BUTTON_3.addEventListener('click', () => {
@@ -74,6 +78,8 @@ BUTTON_3.addEventListener('click', () => {
     SLIDER.classList.remove('position-4')
     SLIDER.classList.remove('position-5')
     SLIDER.classList.add('position-3')
+    LEFT_ARROW.classList.remove('arrow-disabled');
+    RIGHT_ARROW.classList.remove('arrow-disabled');
 })
 
 BUTTON_4.addEventListener('click', () => {
@@ -87,6 +93,8 @@ BUTTON_4.addEventListener('click', () => {
     SLIDER.classList.remove('position-3')
     SLIDER.classList.remove('position-5')
     SLIDER.classList.add('position-4')
+    LEFT_ARROW.classList.remove('arrow-disabled');
+    RIGHT_ARROW.classList.remove('arrow-disabled');
 })
 
 BUTTON_5.addEventListener('click', () => {
@@ -100,6 +108,8 @@ BUTTON_5.addEventListener('click', () => {
     SLIDER.classList.remove('position-3')
     SLIDER.classList.remove('position-4')
     SLIDER.classList.add('position-5')
+    LEFT_ARROW.classList.remove('arrow-disabled');
+    RIGHT_ARROW.classList.add('arrow-disabled');
 })
 
 const LEFT_ARROW = document.querySelector('.slider-arrow-left');
@@ -160,6 +170,4 @@ RIGHT_ARROW.addEventListener('click', () => {
         RIGHT_ARROW.classList.add('arrow-disabled')
     }
 })
-
-
 // About slider end
