@@ -76,13 +76,12 @@ html {
   line-height: 50px;
 }
 
-
 .header__item a {
   color: #ffffff;
   transition: all 0.3s;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .header__item a:hover {
     color: var(--color-active);
     text-decoration: underline;
@@ -92,7 +91,6 @@ html {
 .header__profile-image {
   margin-left: 11px;
 }
-
 
 .header__burger-menu {
   display: none;
@@ -142,13 +140,13 @@ html {
   transition: all 0.5s;
 }
 
-@media (max-width:1440px) {
+@media (max-width: 1440px) {
   .header__item {
-    margin-right: calc(20px + (30 - 20) * ((100vw - 1024px)/(1440 - 1024)));
+    margin-right: calc(20px + (30 - 20) * ((100vw - 1024px) / (1440 - 1024)));
   }
-} 
+}
 
-@media(max-width: 1024px) {
+@media (max-width: 1024px) {
   .header__burger-menu {
     display: inline-block;
     width: 45px;
@@ -157,7 +155,7 @@ html {
     margin-left: 35px;
     margin-bottom: 3px;
   }
-  
+
   .header__nav-and-profile {
     flex-direction: column-reverse;
     justify-content: start;
@@ -171,7 +169,7 @@ html {
     z-index: 5;
     transition: all 0.5s;
   }
-  
+
   .header__list {
     flex-direction: column;
     align-items: center;
@@ -192,12 +190,12 @@ html {
     height: 570px;
     background-color: var(--color-secondary-dark);
   }
-  
-  .header__nav-and-profile.active .header__list{
+
+  .header__nav-and-profile.active .header__list {
     bottom: 0;
     left: 0;
-}
-    
+  }
+
   .header__logo-burger {
     align-self: flex-end;
   }
@@ -213,7 +211,7 @@ html {
   .active .header__burger-line-first {
     transform: rotate(45deg);
   }
-  
+
   .active .header__burger-line-second {
     transform: rotate(-45deg);
   }
@@ -247,7 +245,12 @@ html {
   height: 300px;
   position: absolute;
   top: 90px;
-  background: linear-gradient(180deg, var(--color-secondary-dark) 0%, var(--color-secondary-dark) 0.01%, rgba(18, 18, 21, 0.10) 100%);
+  background: linear-gradient(
+    180deg,
+    var(--color-secondary-dark) 0%,
+    var(--color-secondary-dark) 0.01%,
+    rgba(18, 18, 21, 0.1) 100%
+  );
 }
 
 .welcome__content {
@@ -312,7 +315,10 @@ html {
 
 .about__slider-wrapper {
   margin: 0 10px;
-  margin-bottom: min(35px, calc(20px + (35 - 20) * ((100vw - 768px)/(1440 - 768))));
+  margin-bottom: min(
+    35px,
+    calc(20px + (35 - 20) * ((100vw - 768px) / (1440 - 768)))
+  );
   padding-top: 20px;
   overflow: hidden;
 }
@@ -371,7 +377,7 @@ html {
   right: 1900px;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .about__slider-arrow:hover {
     cursor: pointer;
     background-color: var(--color-active);
@@ -382,15 +388,14 @@ html {
   }
 }
 
-@media(max-width: 1439px) {
+@media (max-width: 1439px) {
   .about__slider-block {
     justify-content: space-evenly;
   }
-  
+
   .about__slider-wrapper {
     flex-basis: 450px;
   }
-
 }
 
 .about__pagination {
@@ -426,7 +431,7 @@ html {
   background-color: var(--color-active);
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .about__pagination-button:hover {
     cursor: pointer;
   }
@@ -434,7 +439,7 @@ html {
   .about__pagination-button:hover > .about__circle {
     scale: 1.4;
   }
-  
+
   .about__pagination_active:hover > .about__circle {
     scale: 1;
   }
@@ -444,8 +449,7 @@ html {
   }
 }
 
-
-@media(max-width: 1439px) {
+@media (max-width: 1439px) {
   .about__slider-arrow {
     display: block;
   }
@@ -497,17 +501,17 @@ p.favorites__choose {
   margin-right: 82px;
 }
 
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .favorites__selector:first-child {
-    margin-right: calc(20px + (70 - 20) * ((100vw - 600px)/(768 - 600)));
+    margin-right: calc(20px + (70 - 20) * ((100vw - 600px) / (768 - 600)));
   }
-  
+
   .favorites__selector:nth-child(2) {
-    margin-right: calc(20px + (65 - 20) * ((100vw - 600px)/(768 - 600)));
+    margin-right: calc(20px + (65 - 20) * ((100vw - 600px) / (768 - 600)));
   }
-  
+
   .favorites__selector:nth-child(3) {
-    margin-right: calc(20px + (82 - 20) * ((100vw - 600px)/(768 - 600)));
+    margin-right: calc(20px + (82 - 20) * ((100vw - 600px) / (768 - 600)));
   }
 }
 
@@ -553,11 +557,11 @@ input:checked + label + label.favorites__label {
   font-weight: 700;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .favorites__push-area:hover {
     cursor: pointer;
   }
-  
+
   .favorites__label:hover {
     cursor: pointer;
   }
@@ -589,28 +593,36 @@ input:checked + label + label.favorites__label {
   display: block;
 }
 
-.favorites__fade-out {
+.fade-out {
   animation-name: fade-out;
-  animation-duration: 2s;
-  animation-timing-function: linear;
+  animation-duration: 0.8s;
+  animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
 
-.favorites__fade-in {
+.fade-in {
   animation-name: fade-in;
-  animation-duration: 2s;
-  animation-timing-function: linear;
+  animation-duration: 1.6s;
+  animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
 
 @keyframes fade-out {
-  0% {opacity: 1}
-  100% {opacity: 0}
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @keyframes fade-in {
-  0% {opacity: 0}
-  100% {opacity: 1}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .favorites__subheading {
@@ -684,13 +696,13 @@ input:checked + label + label.favorites__label {
   display: block;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .favorites__button:hover {
     cursor: pointer;
     background-color: var(--color-active);
     border: 1px solid var(--color-active);
   }
-  
+
   .favorites__button.own:hover {
     cursor: default;
     background-color: #ffffff;
@@ -716,13 +728,12 @@ input:checked + label + label.favorites__label {
     justify-content: flex-start;
     align-items: center;
   }
-  
+
   .favorites__book-card {
     flex-basis: 555px;
     width: 550px;
     margin: 0 0 40px -40px;
   }
-  
 }
 /* Favorites styles end */
 
@@ -733,7 +744,7 @@ input:checked + label + label.favorites__label {
 
 .section-paragraph.shop__p {
   letter-spacing: 1.94px;
-  padding: 0px calc(16 * ((100vw - 768px)/(1440 - 768)));
+  padding: 0px calc(16 * ((100vw - 768px) / (1440 - 768)));
   margin-bottom: 40px;
 }
 
@@ -808,7 +819,7 @@ input:checked + label + label.favorites__label {
   text-align: end;
 }
 
-@media(max-width: 981px) {
+@media (max-width: 981px) {
   .shop__menu {
     flex-direction: column;
   }
@@ -866,7 +877,7 @@ input:checked + label + label.favorites__label {
   transition: all 0.3s;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .contacts__p-secondary a:hover {
     color: var(--color-active);
     text-decoration: underline;
@@ -889,13 +900,13 @@ input:checked + label + label.favorites__label {
   font-weight: 700;
   padding-bottom: 34px;
 }
-@media(max-width: 1439px) {
+@media (max-width: 1439px) {
   .contacts__p-secondary:last-child {
     margin-bottom: 100px;
   }
 }
 
-@media(max-width: 800px) {
+@media (max-width: 800px) {
   .contacts__data {
     flex: 1 1 auto;
     padding-right: 0;
@@ -982,7 +993,7 @@ input:checked + label + label.favorites__label {
   transition: all 0.5s;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .card__submit:hover {
     cursor: pointer;
     background-color: var(--color-active);
@@ -1032,7 +1043,7 @@ input:checked + label + label.favorites__label {
   margin-right: 15px;
 }
 
-@media(hover:hover) {
+@media (hover: hover) {
   .card__button:hover {
     background-color: var(--color-active);
     border: 1px solid var(--color-active);
@@ -1040,7 +1051,7 @@ input:checked + label + label.favorites__label {
   }
 }
 
-@media(max-width: 1096px) {
+@media (max-width: 1096px) {
   .card__cards {
     justify-content: center;
   }
@@ -1067,7 +1078,6 @@ input:checked + label + label.favorites__label {
   color: #ffffff;
   transition: all 0.3s;
 }
-
 
 .footer__wrapper {
   background-color: var(--color-secondary-dark);
@@ -1141,8 +1151,8 @@ input:checked + label + label.favorites__label {
   transition: all 0.3s;
 }
 
-@media(hover:hover) {
-  .footer a:hover{
+@media (hover: hover) {
+  .footer a:hover {
     color: var(--color-active);
     text-decoration: underline;
   }
@@ -1154,6 +1164,6 @@ input:checked + label + label.favorites__label {
 }
 
 .footer__school {
-  padding-left: calc(20px + (80 - 20) * ((100vw - 768px)/(1440 - 768)));
+  padding-left: calc(20px + (80 - 20) * ((100vw - 768px) / (1440 - 768)));
 }
 /* Footer styles end */
