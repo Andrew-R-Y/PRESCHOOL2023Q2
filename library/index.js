@@ -272,5 +272,20 @@ function changeSeason(event) {
 }
 
 let booksContainerHeight = BOOKS_CONTAINER.offsetHeight;
-
 // Favorites seasons selector end
+
+// Favorites selector area background-color on scroll start
+const NAV_PANEL = document.querySelector('.favorites__navigation-panel');
+document.addEventListener('scroll', blackoutNavPanel);
+function blackoutNavPanel() {
+  const windowScrollTop = window.scrollY;
+  const navPanelOffsetTop = NAV_PANEL.offsetTop;
+  console.log('windowScrollTop', windowScrollTop);
+  console.log('delta', navPanelOffsetTop - windowScrollTop);
+  if (navPanelOffsetTop - windowScrollTop <= 0) {
+    NAV_PANEL.classList.add('favorites__navigation-panel_move');
+  } else {
+    NAV_PANEL.classList.remove('favorites__navigation-panel_move');
+  }
+}
+// Favorites selector area background-color on scroll end
