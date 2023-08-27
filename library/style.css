@@ -47,6 +47,7 @@ html {
   justify-content: space-between;
   background: var(--color-secondary-dark);
   padding: 20px;
+  position: relative;
 }
 
 .header__main-text {
@@ -90,6 +91,12 @@ html {
 
 .header__profile-image {
   margin-left: 11px;
+}
+
+@media (hover: hover) {
+  .header__profile-image {
+    cursor: pointer;
+  }
 }
 
 .header__burger-menu {
@@ -1180,3 +1187,52 @@ input:checked + label + label.favorites__label {
   padding-left: calc(20px + (80 - 20) * ((100vw - 768px) / (1440 - 768)));
 }
 /* Footer styles end */
+
+/* Drop menu styles start*/
+.drop-menu {
+  box-sizing: border-box;
+  padding: 5px 3px 5px;
+  width: 80px;
+  height: 1px;
+  background-color: #ffffff;
+  color: var(--color-dark);
+  font: 400 15px/ 20px 'Inter', sans-serif;
+  text-align: center;
+  display: none;
+  transition: all 0.2s;
+}
+
+.drop-menu p:first-child {
+  font-weight: 700;
+}
+
+.drop-menu__line {
+  width: 40px;
+  height: 1px;
+  background-color: var(--color-active);
+  margin: 0 auto 15px;
+}
+
+.drop-menu p {
+  text-align: center;
+  margin-bottom: 10px;
+}
+/* Drop menu styles end*/
+
+/* Drop menu profile noAuth styles start */
+.drop-menu__no-auth_active {
+  height: 115px;
+  position: absolute;
+  z-index: 1;
+  top: 65px;
+  right: 20px;
+  display: block;
+}
+
+@media (max-width: 1024px) {
+  .drop-menu__no-auth_active {
+    top: 65px;
+    right: 103px;
+  }
+}
+/* Drop menu profile noAuth styles end */

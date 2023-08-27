@@ -280,8 +280,6 @@ document.addEventListener('scroll', blackoutNavPanel);
 function blackoutNavPanel() {
   const windowScrollTop = window.scrollY;
   const navPanelOffsetTop = NAV_PANEL.offsetTop;
-  console.log('windowScrollTop', windowScrollTop);
-  console.log('delta', navPanelOffsetTop - windowScrollTop);
   if (navPanelOffsetTop - windowScrollTop <= 0) {
     NAV_PANEL.classList.add('favorites__navigation-panel_move');
   } else {
@@ -289,3 +287,25 @@ function blackoutNavPanel() {
   }
 }
 // Favorites selector area background-color on scroll end
+
+// Login drop menu display start
+const PROFILE_IMAGE = document.querySelector('.header__profile-image');
+const DROP_MENU_NO_AUTH = document.querySelector('.drop-menu__no-auth');
+
+const DropMenuNoAuth = function (event) {
+  if (event.target.closest('.header__profile-image')) {
+    navMenu.classList.remove('active');
+    DROP_MENU_NO_AUTH.classList.toggle('drop-menu__no-auth_active');
+  }
+  if (
+    DROP_MENU_NO_AUTH.classList.contains('drop-menu__no-auth_active') &&
+    !event.target.closest('.drop-menu') &&
+    !event.target.closest('.header__profile-image')
+  ) {
+    DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
+    console.log('закрываю дроп меню!');
+  }
+};
+
+document.addEventListener('click', DropMenuNoAuth);
+// Login drop menu display end
