@@ -314,3 +314,34 @@ const escapeCloseDrop = function (event) {
 document.addEventListener('click', DropMenuNoAuth);
 document.addEventListener('keyup', escapeCloseDrop);
 // Login drop menu display end
+
+// Popup register start
+const popupOpenButton = document.querySelector('.popup-register_link-button');
+const popupOpenLink = document.querySelector('.popup-register_link');
+const popupRegisterWindow = document.querySelector('.popup-register');
+
+function openPopup(event) {
+  if (
+    event.target.closest('.popup-register_link-button') ||
+    event.target.closest('.popup-register_link')
+  ) {
+    popupRegisterWindow.classList.add('open');
+    popupRegisterWindow.addEventListener('click', function (event) {
+      if (
+        !event.target.closest('.popup-register__content') ||
+        event.target.closest('.close-popup')
+      ) {
+        popupRegisterWindow.classList.remove('open');
+      }
+    });
+  }
+}
+
+function escapeCloseRegisterWindow(event) {
+  if (event.code === 'Escape') {
+    popupRegisterWindow.classList.remove('open');
+  }
+}
+
+document.addEventListener('click', openPopup);
+document.addEventListener('keyup', escapeCloseRegisterWindow);
