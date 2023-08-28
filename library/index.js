@@ -303,9 +303,14 @@ const DropMenuNoAuth = function (event) {
     !event.target.closest('.header__profile-image')
   ) {
     DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
-    console.log('закрываю дроп меню!');
   }
 };
 
+const escapeCloseDrop = function (event) {
+  if (event.code === 'Escape') {
+    DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
+  }
+};
 document.addEventListener('click', DropMenuNoAuth);
+document.addEventListener('keyup', escapeCloseDrop);
 // Login drop menu display end

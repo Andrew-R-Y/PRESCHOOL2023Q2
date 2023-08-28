@@ -163,6 +163,12 @@ html {
     margin-bottom: 3px;
   }
 
+  @media (hover: hover) {
+    .header__burger-menu {
+      cursor: pointer;
+    }
+  }
+
   .header__nav-and-profile {
     flex-direction: column-reverse;
     justify-content: start;
@@ -1194,13 +1200,21 @@ input:checked + label + label.favorites__label {
   box-sizing: border-box;
   padding: 5px 3px 5px;
   width: 80px;
-  height: 1px;
+  height: 0px;
   background-color: #ffffff;
   color: var(--color-dark);
   font: 400 15px/ 20px 'Inter', sans-serif;
   text-align: center;
-  display: none;
-  transition: all 0.2s;
+  position: absolute;
+  z-index: 3;
+  top: 65px;
+  right: 20px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.6s, height 0.4s;
+  will-change: opacity;
+  will-change: height;
+  will-change: visibility;
 }
 
 .drop-menu p:first-child {
@@ -1222,12 +1236,9 @@ input:checked + label + label.favorites__label {
 
 /* Drop menu profile noAuth styles start */
 .drop-menu__no-auth_active {
+  visibility: visible;
+  opacity: 1;
   height: 115px;
-  position: absolute;
-  z-index: 3;
-  top: 65px;
-  right: 20px;
-  display: block;
 }
 
 @media (max-width: 1024px) {
@@ -1237,3 +1248,114 @@ input:checked + label + label.favorites__label {
   }
 }
 /* Drop menu profile noAuth styles end */
+
+/* Popup-register styles start */
+.popup-register {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-dark);
+}
+
+.popup-register__body {
+  box-sizing: border-box;
+  width: 250px;
+  height: 382px;
+  padding: 20px 25px 15px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.popup-register__close-button {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .popup-register__close-button:hover {
+    cursor: pointer;
+  }
+}
+.popup-register__title {
+  text-transform: uppercase;
+  text-align: center;
+  font: 400 20px 'Forum', sans-serif;
+  letter-spacing: 0.4px;
+  margin-bottom: 20px;
+}
+
+.popup-register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.popup-register__item {
+  flex: 0 0 50px;
+}
+
+.popup-register__label {
+  display: inline-block;
+  margin-bottom: 10px;
+  font: 400 15px 'Inter', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.popup-register__input {
+  width: 100%;
+  height: 20px;
+  border: 1px solid var(--color-active);
+}
+
+.popup-register__button {
+  box-sizing: border-box;
+  flex-basis: 30px;
+  align-self: flex-start;
+  width: 75px;
+  margin-top: 10px;
+  padding: 8px 14px;
+  font: 700 10px 'Inter', sans-serif;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-secondary-dark);
+  border-radius: 2px;
+  background-color: #ffffff;
+  transition: all 0.5s;
+}
+
+@media (hover: hover) {
+  .popup-register__button:hover {
+    background-color: var(--color-active);
+    border: 1px solid var(--color-active);
+    cursor: pointer;
+  }
+}
+
+.popup-register__content p {
+  display: inline-block;
+}
+
+.popup-register__text {
+  font: 400 10px 'Inter', sans-serif;
+  margin-right: 8px;
+}
+
+.popup-register__login a {
+  font: 700 10px 'Inter', sans-serif;
+  letter-spacing: 1px;
+  color: var(--color-secondary-dark);
+  text-decoration: underline;
+}
+/* Popup-register styles end */
