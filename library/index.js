@@ -298,9 +298,11 @@ const DropMenuNoAuth = function (event) {
     DROP_MENU_NO_AUTH.classList.toggle('drop-menu__no-auth_active');
   }
   if (
-    DROP_MENU_NO_AUTH.classList.contains('drop-menu__no-auth_active') &&
-    !event.target.closest('.drop-menu') &&
-    !event.target.closest('.header__profile-image')
+    (DROP_MENU_NO_AUTH.classList.contains('drop-menu__no-auth_active') &&
+      !event.target.closest('.drop-menu') &&
+      !event.target.closest('.header__profile-image')) ||
+    event.target.closest('.popup-register_link') ||
+    event.target.closest('.popup-login-register_link')
   ) {
     DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
   }
@@ -323,13 +325,15 @@ const popupRegisterWindow = document.querySelector('.popup-register');
 function openPopup(event) {
   if (
     event.target.closest('.popup-register_link-button') ||
-    event.target.closest('.popup-register_link')
+    event.target.closest('.popup-register_link') ||
+    event.target.closest('.popup-login__inner-link')
   ) {
     popupRegisterWindow.classList.add('open');
     popupRegisterWindow.addEventListener('click', function (event) {
       if (
         !event.target.closest('.popup-register__content') ||
-        event.target.closest('.close-popup')
+        event.target.closest('.close-popup') ||
+        event.target.closest('.popup-register__inner-link')
       ) {
         popupRegisterWindow.classList.remove('open');
       }
@@ -345,3 +349,66 @@ function escapeCloseRegisterWindow(event) {
 
 document.addEventListener('click', openPopup);
 document.addEventListener('keyup', escapeCloseRegisterWindow);
+// Popup register end
+
+// Popup login start
+const popupLoginOpenButton = document.querySelector('.popup-login_link-button');
+const popupLoginOpenLink = document.querySelector('.popup-login-register_link');
+const popupLoginWindow = document.querySelector('.popup-login');
+
+function openLoginPopup(event) {
+  if (
+    event.target.closest('.popup-login_link-button') ||
+    event.target.closest('.popup-login-register_link') ||
+    event.target.closest('.popup-register__inner-link')
+  ) {
+    popupLoginWindow.classList.add('open');
+    popupLoginWindow.addEventListener('click', function (event) {
+      if (
+        !event.target.closest('.popup-login__content') ||
+        event.target.closest('.close-popup') ||
+        event.target.closest('.popup-login__inner-link')
+      ) {
+        popupLoginWindow.classList.remove('open');
+      }
+    });
+  }
+}
+
+function escapeCloseLoginWindow(event) {
+  if (event.code === 'Escape') {
+    popupLoginWindow.classList.remove('open');
+  }
+}
+
+document.addEventListener('click', openLoginPopup);
+document.addEventListener('keyup', escapeCloseLoginWindow);
+// Popup login end
+
+// working with localStorage start
+const REGISTER_FORM = document.getElementById('register-form');
+const FIRSTNAME_INPUT = document.getElementById('first-name');
+const LASTNAME_INPUT = document.getElementById('last-name');
+const EMAIL_INPUT = document.getElementById('email');
+const PASSWORD_INPUT = document.getElementById('password');
+
+function createUser(event) {
+  event.preventDefault();
+  let user = {};
+  user.firstname = FIRSTNAME_INPUT.value;
+  user.lastname = LASTNAME_INPUT.value;
+  user.email = EMAIL_INPUT.value;
+  user.password = PASSWORD_INPUT.value;
+  REGISTER_FORM.reset();
+  popupRegisterWindow.classList.remove('open');
+
+  console.log(user);
+
+  usersData = JSON.stringify(user);
+
+  localStorage.setItem('user', usersData);
+}
+
+REGISTER_FORM.addEventListener('submit', createUser);
+
+// working with localStorage end
