@@ -91,11 +91,17 @@ html {
 
 .header__profile-image {
   margin-left: 11px;
+  display: none;
+}
+
+.header__profile-image.header__profile-image_visible {
+  display: block;
 }
 
 .header__profile-initials {
   width: 28px;
   height: 28px;
+  margin-left: 11px;
   border-radius: 50%;
   color: var(--color-active);
   font: 400 15px/20px 'Inter', sans-serif;
@@ -105,8 +111,16 @@ html {
   display: none;
 }
 
+.header__profile-initials.header__profile-initials_visible {
+  display: block;
+}
+
 @media (hover: hover) {
   .header__profile-image {
+    cursor: pointer;
+  }
+
+  .header__profile-initials {
     cursor: pointer;
   }
 }
@@ -1248,7 +1262,10 @@ input:checked + label + label.favorites__label {
 }
 
 @media (hover: hover) {
-  .drop-menu p:hover {
+  .drop-menu p.popup-login_link:hover,
+  .drop-menu p.popup-register_link:hover,
+  .drop-menu p.popup-profile_link:hover,
+  .drop-menu p.popup-logout_link:hover {
     cursor: pointer;
     font-weight: 700;
     text-decoration: underline;
@@ -1258,14 +1275,14 @@ input:checked + label + label.favorites__label {
 /* Drop menu styles end*/
 
 /* Drop menu profile noAuth styles start */
-.drop-menu__no-auth_active {
+.drop-menu_active {
   visibility: visible;
   opacity: 1;
   height: 115px;
 }
 
 @media (max-width: 1024px) {
-  .drop-menu__no-auth_active {
+  .drop-menu_active {
     top: 65px;
     right: 103px;
   }
