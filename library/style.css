@@ -1258,8 +1258,8 @@ input:checked + label + label.favorites__label {
 }
 /* Drop menu profile noAuth styles end */
 
-/* Popup-register styles start */
-.popup-register {
+/* Popup-register & Popup-login styles start */
+.popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -1272,23 +1272,22 @@ input:checked + label + label.favorites__label {
   visibility: hidden;
 }
 
-.popup-register.open {
+.popup.open {
   opacity: 1;
   visibility: visible;
 }
 
-.popup-register__body {
+.popup__body {
   min-height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 0.8s;
+  transition: all 0.2s;
 }
 
-.popup-register__content {
+.popup__content {
   box-sizing: border-box;
   width: 250px;
-  height: 382px;
   padding: 20px 25px 15px;
   background-color: #ffffff;
   position: relative;
@@ -1297,12 +1296,20 @@ input:checked + label + label.favorites__label {
   transition: all 0.8s;
 }
 
-.popup-register.open .popup-register__content {
+.popup-register__content {
+  height: 382px;
+}
+
+.popup-login__content {
+  height: 262px;
+}
+
+.popup.open .popup__content {
   opacity: 1;
   transform: translate(0px, 0px);
 }
 
-.popup-register__close-button {
+.popup__close-button {
   width: 15px;
   height: 15px;
   position: absolute;
@@ -1312,12 +1319,12 @@ input:checked + label + label.favorites__label {
 }
 
 @media (hover: hover) {
-  .popup-register__close-button:hover {
+  .popup__close-button:hover {
     cursor: pointer;
   }
 }
 
-.popup-register__title {
+.popup__title {
   text-transform: uppercase;
   text-align: center;
   font: 400 20px 'Forum', sans-serif;
@@ -1325,7 +1332,7 @@ input:checked + label + label.favorites__label {
   margin-bottom: 20px;
 }
 
-.popup-register__form {
+.popup__form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1333,25 +1340,25 @@ input:checked + label + label.favorites__label {
   margin-bottom: 5px;
 }
 
-.popup-register__item {
+.popup__item {
   flex: 0 0 50px;
 }
 
-.popup-register__label {
+.popup__label {
   display: inline-block;
   margin-bottom: 10px;
   font: 400 15px 'Inter', sans-serif;
   letter-spacing: 0.3px;
 }
 
-.popup-register__input {
+.popup__input {
   width: 100%;
   height: 20px;
   font: 400 15px 'Inter', sans-serif;
   border: 1px solid var(--color-active);
 }
 
-.popup-register__button {
+.popup__button {
   box-sizing: border-box;
   flex-basis: 30px;
   align-self: flex-start;
@@ -1367,159 +1374,26 @@ input:checked + label + label.favorites__label {
 }
 
 @media (hover: hover) {
-  .popup-register__button:hover {
+  .popup__button:hover {
     background-color: var(--color-active);
     border: 1px solid var(--color-active);
     cursor: pointer;
   }
 }
 
-.popup-register__content p {
+.popup__content p {
   display: inline-block;
 }
 
-.popup-register__text {
+.popup__text {
   font: 400 10px 'Inter', sans-serif;
   margin-right: 8px;
 }
 
-.popup-register__login a {
+.popup__login a {
   font: 700 10px 'Inter', sans-serif;
   letter-spacing: 1px;
   color: var(--color-secondary-dark);
   text-decoration: underline;
 }
 /* Popup-register styles end */
-
-/* Popup-login styles start */
-.popup-login {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: var(--color-dark);
-  opacity: 0;
-  visibility: hidden;
-}
-
-.popup-login.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.popup-login__body {
-  min-height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: all 0.8s;
-}
-
-.popup-login__content {
-  box-sizing: border-box;
-  width: 250px;
-  height: 262px;
-  padding: 20px 25px 15px;
-  background-color: #ffffff;
-  position: relative;
-  opacity: 0;
-  transform: translate(0px, -100%);
-  transition: all 0.8s;
-}
-
-.popup-login.open .popup-login__content {
-  opacity: 1;
-  transform: translate(0px, 0px);
-}
-
-.popup-login__close-button {
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  object-fit: cover;
-}
-
-@media (hover: hover) {
-  .popup-login__close-button:hover {
-    cursor: pointer;
-  }
-}
-
-.popup-login__title {
-  text-transform: uppercase;
-  text-align: center;
-  font: 400 20px 'Forum', sans-serif;
-  letter-spacing: 0.4px;
-  margin-bottom: 20px;
-}
-
-.popup-login__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 5px;
-}
-
-.popup-login__item {
-  flex: 0 0 50px;
-}
-
-.popup-login__label {
-  display: inline-block;
-  margin-bottom: 10px;
-  font: 400 15px 'Inter', sans-serif;
-  letter-spacing: 0.3px;
-}
-
-.popup-login__input {
-  width: 100%;
-  height: 20px;
-  font: 400 15px 'Inter', sans-serif;
-  border: 1px solid var(--color-active);
-}
-
-.popup-login__button {
-  box-sizing: border-box;
-  flex-basis: 30px;
-  align-self: flex-start;
-  width: 75px;
-  margin-top: 10px;
-  padding: 8px 14px;
-  font: 700 10px 'Inter', sans-serif;
-  letter-spacing: 1px;
-  border: 1px solid var(--color-secondary-dark);
-  border-radius: 2px;
-  background-color: #ffffff;
-  transition: all 0.5s;
-}
-
-@media (hover: hover) {
-  .popup-login__button:hover {
-    background-color: var(--color-active);
-    border: 1px solid var(--color-active);
-    cursor: pointer;
-  }
-}
-
-.popup-login__content p {
-  display: inline-block;
-}
-
-.popup-login__text {
-  font: 400 10px 'Inter', sans-serif;
-  margin-right: 8px;
-}
-
-.popup-login__login a {
-  font: 700 10px 'Inter', sans-serif;
-  letter-spacing: 1px;
-  color: var(--color-secondary-dark);
-  text-decoration: underline;
-}
-/* Popup-login styles end */

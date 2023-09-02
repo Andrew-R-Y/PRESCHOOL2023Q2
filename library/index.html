@@ -77,7 +77,7 @@
         <div class="drop-menu drop-menu__no-auth">
           <p class="drop-menu__heading">Profile</p>
           <div class="drop-menu__line"></div>
-          <p class="popup-login-register_link">Log In</p>
+          <p class="popup-login_link">Log In</p>
           <p class="popup-register_link">Register</p>
         </div>
         <!-- Drop menu no-auth end -->
@@ -870,67 +870,51 @@
     <!-- Footer end -->
 
     <!-- Popup Register start -->
-    <div class="popup-register">
-      <div class="popup-register__body">
-        <div class="popup-register__content">
-          <div class="popup-register__close-button">
+    <div class="popup popup-register">
+      <div class="popup__body">
+        <div class="popup__content popup-register__content">
+          <div class="popup__close-button">
             <img
               src="./img/svg/close-btn.svg"
               alt="close-button"
               class="close-popup"
             />
           </div>
-          <div class="popup-register__title">register</div>
-          <form id="register-form" action="" class="popup-register__form">
-            <div class="popup-register__item">
-              <label for="first-name" class="popup-register__label">
-                First name
-              </label>
+          <div class="popup__title">register</div>
+          <form id="register-form" action="" class="popup__form">
+            <div class="popup__item">
+              <label for="first-name" class="popup__label"> First name </label>
               <input
                 type="text"
-                class="popup-register__input"
+                class="popup__input"
                 id="first-name"
                 required
               />
             </div>
-            <div class="popup-register__item">
-              <label for="last-name" class="popup-register__label">
-                Last name
-              </label>
-              <input
-                type="text"
-                class="popup-register__input"
-                id="last-name"
-                required
-              />
+            <div class="popup__item">
+              <label for="last-name" class="popup__label"> Last name </label>
+              <input type="text" class="popup__input" id="last-name" required />
             </div>
-            <div class="popup-register__item">
-              <label for="email" class="popup-register__label"> E-mail </label>
-              <input
-                type="email"
-                class="popup-register__input"
-                id="email"
-                required
-              />
+            <div class="popup__item">
+              <label for="email" class="popup__label"> E-mail </label>
+              <input type="email" class="popup__input" id="email" required />
             </div>
-            <div class="popup-register__item">
-              <label for="password" class="popup-register__label">
-                Password
-              </label>
+            <div class="popup__item">
+              <label for="password" class="popup__label"> Password </label>
               <input
                 type="password"
-                class="popup-register__input"
+                class="popup__input"
                 id="password"
                 minlength="8"
                 required
               />
             </div>
-            <button class="popup-register__button" type="submit">
+            <button class="popup__button popup__register-button" type="submit">
               Sign Up
             </button>
           </form>
-          <p class="popup-register__text">Already have an account?</p>
-          <p class="popup-register__login">
+          <p class="popup__text">Already have an account?</p>
+          <p class="popup__login">
             <a class="popup-register__inner-link" href="#!">Login</a>
           </p>
         </div>
@@ -939,45 +923,47 @@
     <!-- Popup Register end -->
 
     <!-- Popup Login start -->
-    <div class="popup-login">
-      <div class="popup-login__body">
-        <div class="popup-login__content">
-          <div class="popup-login__close-button">
+    <div class="popup popup-login">
+      <div class="popup__body">
+        <div class="popup__content popup-login__content">
+          <div class="popup__close-button">
             <img
               src="./img/svg/close-btn.svg"
               alt="close-button"
               class="close-popup"
             />
           </div>
-          <div class="popup-login__title">login</div>
-          <form id="login-form" action="" class="popup-login__form">
-            <div class="popup-login__item">
-              <label for="login-email" class="popup-login__label">
+          <div class="popup__title">login</div>
+          <form id="login-form" action="" class="popup__form">
+            <div class="popup__item">
+              <label for="login-email" class="popup__label">
                 E-mail or readers card
               </label>
               <input
                 type="email"
-                class="popup-login__input"
+                class="popup__input"
                 id="login-email"
                 required
               />
             </div>
-            <div class="popup-login__item">
-              <label for="login-password" class="popup-login__label">
+            <div class="popup__item">
+              <label for="login-password" class="popup__label">
                 Password
               </label>
               <input
                 type="password"
-                class="popup-login__input"
+                class="popup__input"
                 id="login-password"
                 minlength="8"
                 required
               />
             </div>
-            <button class="popup-login__button" type="submit">Log in</button>
+            <button class="popup__button popup__login-button" type="submit">
+              Log in
+            </button>
           </form>
-          <p class="popup-login__text">Don't have an account?</p>
-          <p class="popup-login__login">
+          <p class="popup__text">Don't have an account?</p>
+          <p class="popup__login">
             <a class="popup-login__inner-link" href="#!">Register</a>
           </p>
         </div>
