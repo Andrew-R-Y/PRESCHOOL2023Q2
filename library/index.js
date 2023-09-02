@@ -291,29 +291,31 @@ function blackoutNavPanel() {
 // Login drop menu display start
 const PROFILE_IMAGE = document.querySelector('.header__profile-image');
 const DROP_MENU_NO_AUTH = document.querySelector('.drop-menu__no-auth');
+const DROP_MENU_WITH_AUTH = document.querySelector('.drop-menu__with-auth');
 
-const DropMenuNoAuth = function (event) {
+const dropMenuNoAuth = function (event) {
   if (event.target.closest('.header__profile-image')) {
     navMenu.classList.remove('active');
-    DROP_MENU_NO_AUTH.classList.toggle('drop-menu__no-auth_active');
+    DROP_MENU_NO_AUTH.classList.toggle('drop-menu_active');
   }
   if (
-    (DROP_MENU_NO_AUTH.classList.contains('drop-menu__no-auth_active') &&
+    (DROP_MENU_NO_AUTH.classList.contains('drop-menu_active') &&
       !event.target.closest('.drop-menu') &&
       !event.target.closest('.header__profile-image')) ||
     event.target.closest('.popup-register_link') ||
     event.target.closest('.popup-login_link')
   ) {
-    DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
+    DROP_MENU_NO_AUTH.classList.remove('drop-menu_active');
   }
 };
 
 const escapeCloseDrop = function (event) {
   if (event.code === 'Escape') {
-    DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
+    DROP_MENU_NO_AUTH.classList.remove('drop-menu_active');
+    DROP_MENU_WITH_AUTH.classList.remove('drop-menu_active');
   }
 };
-document.addEventListener('click', DropMenuNoAuth);
+document.addEventListener('click', dropMenuNoAuth);
 document.addEventListener('keyup', escapeCloseDrop);
 // Login drop menu display end
 
@@ -394,6 +396,7 @@ const LASTNAME_INPUT = document.getElementById('last-name');
 const EMAIL_INPUT = document.getElementById('email');
 const PASSWORD_INPUT = document.getElementById('password');
 const PROFILE_INITIALS = document.querySelector('.header__profile-initials');
+const LOGOUT_LINK = document.querySelector('.popup-logout_link');
 
 let users = [];
 let usersCollection = [];
@@ -423,6 +426,27 @@ function createNewUser() {
   }
 }
 
+function displayPersonalUserLogo() {
+  PROFILE_INITIALS.textContent = (
+    user.firstname[0] + user.lastname[0]
+  ).toUpperCase();
+  PROFILE_INITIALS.setAttribute('title', `${user.firstname} ${user.lastname}`);
+  PROFILE_INITIALS.classList.add('header__profile-initials_visible');
+  PROFILE_IMAGE.classList.remove('header__profile-image_visible');
+}
+
+function logOut(event) {
+  if (event.target.closest('.popup-logout_link')) {
+    user = {};
+    PROFILE_INITIALS.textContent = '';
+    PROFILE_INITIALS.removeAttribute('title');
+    PROFILE_INITIALS.classList.remove('header__profile-initials_visible');
+    PROFILE_IMAGE.classList.add('header__profile-image_visible');
+  }
+}
+
+document.addEventListener('click', logOut);
+
 function clearFormAndClose() {
   REGISTER_FORM.reset();
   popupRegisterWindow.classList.remove('open');
@@ -445,6 +469,7 @@ function addFirstUser() {
   });
   clearFormAndClose();
   isLoggedIn = true;
+  displayPersonalUserLogo();
 }
 
 function addNextUser() {
@@ -467,6 +492,7 @@ function addNextUser() {
     });
     clearFormAndClose();
     isLoggedIn = true;
+    displayPersonalUserLogo();
   } else {
     console.log('ошибка добавления нового пользователя');
     alert(
@@ -499,3 +525,23 @@ function UserDataProcessing(event) {
 REGISTER_FORM.addEventListener('submit', UserDataProcessing);
 
 // working with localStorage end
+
+// Profile drop menu display start
+const dropMenuWithAuth = function (event) {
+  if (event.target.closest('.header__profile-initials')) {
+    navMenu.classList.remove('active');
+    DROP_MENU_WITH_AUTH.classList.toggle('drop-menu_active');
+  }
+  if (
+    (DROP_MENU_WITH_AUTH.classList.contains('drop-menu_active') &&
+      !event.target.closest('.drop-menu') &&
+      !event.target.closest('.header__profile-initials')) ||
+    event.target.closest('.popup-profile_link') ||
+    event.target.closest('.popup-logout_link')
+  ) {
+    DROP_MENU_WITH_AUTH.classList.remove('drop-menu_active');
+  }
+};
+
+document.addEventListener('click', dropMenuWithAuth);
+// Profile drop menu display end
