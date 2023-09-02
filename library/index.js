@@ -321,6 +321,7 @@ document.addEventListener('keyup', escapeCloseDrop);
 const popupOpenButton = document.querySelector('.popup-register_link-button');
 const popupOpenLink = document.querySelector('.popup-register_link');
 const popupRegisterWindow = document.querySelector('.popup-register');
+const REGISTER_FORM = document.getElementById('register-form');
 
 function openPopup(event) {
   if (
@@ -336,6 +337,7 @@ function openPopup(event) {
         event.target.closest('.popup-register__inner-link')
       ) {
         popupRegisterWindow.classList.remove('open');
+        REGISTER_FORM.reset();
       }
     });
   }
@@ -344,6 +346,7 @@ function openPopup(event) {
 function escapeCloseRegisterWindow(event) {
   if (event.code === 'Escape') {
     popupRegisterWindow.classList.remove('open');
+    REGISTER_FORM.reset();
   }
 }
 
@@ -386,29 +389,113 @@ document.addEventListener('keyup', escapeCloseLoginWindow);
 // Popup login end
 
 // working with localStorage start
-const REGISTER_FORM = document.getElementById('register-form');
 const FIRSTNAME_INPUT = document.getElementById('first-name');
 const LASTNAME_INPUT = document.getElementById('last-name');
 const EMAIL_INPUT = document.getElementById('email');
 const PASSWORD_INPUT = document.getElementById('password');
+const PROFILE_INITIALS = document.querySelector('.header__profile-initials');
 
-function createUser(event) {
-  event.preventDefault();
-  let user = {};
+let users = [];
+let usersCollection = [];
+let user = {};
+let userDataIsCorrect;
+let isLoggedIn = false;
+
+function createNewUser() {
   user.firstname = FIRSTNAME_INPUT.value;
   user.lastname = LASTNAME_INPUT.value;
-  user.email = EMAIL_INPUT.value;
+  user.email = EMAIL_INPUT.value.toLowerCase();
   user.password = PASSWORD_INPUT.value;
+  user.visits = 1;
+  user.books = [];
+  user.cardnumber = Math.floor(Math.pow(16, 9) * Math.random()).toString(16);
+  for (let i = 0; i < 7; i++) {
+    if (user.cardnumber.length < 9) {
+      user.cardnumber = '0' + user.cardnumber;
+    }
+  }
+
+  userDataIsCorrect = user.firstname.trim() && user.lastname.trim();
+
+  if (!userDataIsCorrect) {
+    alert('First name and Last name fields must not be empty!');
+    return;
+  }
+}
+
+function clearFormAndClose() {
   REGISTER_FORM.reset();
   popupRegisterWindow.classList.remove('open');
+}
 
-  console.log(user);
+function addFirstUser() {
+  console.log(
+    'в хранилище пока нет пользователей, добавляю нового пользователя',
+    user.firstname,
+    user.lastname
+  );
+  users.push(user);
+  usersCollection = users;
+  localStorage.setItem('users', JSON.stringify(usersCollection));
+  usersCollection = JSON.parse(localStorage.getItem('users'));
+  console.log('количество пользователей в базе:', usersCollection.length);
+  console.log('полный перечень пользователей:');
+  usersCollection.forEach((item) => {
+    console.log(item);
+  });
+  clearFormAndClose();
+  isLoggedIn = true;
+}
+
+function addNextUser() {
+  console.log('в хранилище уже есть пользователи, проверяю на совпадения');
+  userIsUnique = true;
+  usersCollection.forEach((item) => {
+    if (user.email === item.email) {
+      console.log('такой пользователь уже существует');
+      userIsUnique = false;
+    }
+  });
+  if (userIsUnique) {
+    console.log('добавляю нового пользователя:', user.firstname, user.lastname);
+    usersCollection.push(user);
+    localStorage.setItem('users', JSON.stringify(usersCollection));
+    console.log('количество пользователей в базе:', usersCollection.length);
+    console.log('полный перечень пользователей:');
+    usersCollection.forEach((item) => {
+      console.log(item);
+    });
+    clearFormAndClose();
+    isLoggedIn = true;
+  } else {
+    console.log('ошибка добавления нового пользователя');
+    alert(
+      'Такой пользователь уже существует. Войдите в учётную запись или придумайте что-то новенькое!'
+    );
+  }
+}
+
+function UserDataProcessing(event) {
+  event.preventDefault();
+  createNewUser();
+
+  if (!userDataIsCorrect) {
+    return;
+  }
+
+  usersCollection = JSON.parse(localStorage.getItem('users'));
+
+  if (!usersCollection || usersCollection.length === 0) {
+    addFirstUser();
+  } else {
+    addNextUser();
+  }
 
   usersData = JSON.stringify(user);
 
   localStorage.setItem('user', usersData);
 }
 
-REGISTER_FORM.addEventListener('submit', createUser);
+REGISTER_FORM.addEventListener('submit', UserDataProcessing);
 
 // working with localStorage end

@@ -93,6 +93,18 @@ html {
   margin-left: 11px;
 }
 
+.header__profile-initials {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: var(--color-active);
+  font: 400 15px/20px 'Inter', sans-serif;
+  background-color: #ffffff;
+  text-align: center;
+  padding: 5px 0px;
+  display: none;
+}
+
 @media (hover: hover) {
   .header__profile-image {
     cursor: pointer;
@@ -160,7 +172,6 @@ html {
     height: 22px;
     position: relative;
     margin-left: 35px;
-    margin-bottom: 3px;
   }
 
   @media (hover: hover) {
@@ -211,6 +222,9 @@ html {
 
   .header__logo-burger {
     align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .active .header__burger-menu::before {
