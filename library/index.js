@@ -302,7 +302,7 @@ const DropMenuNoAuth = function (event) {
       !event.target.closest('.drop-menu') &&
       !event.target.closest('.header__profile-image')) ||
     event.target.closest('.popup-register_link') ||
-    event.target.closest('.popup-login-register_link')
+    event.target.closest('.popup-login_link')
   ) {
     DROP_MENU_NO_AUTH.classList.remove('drop-menu__no-auth_active');
   }
@@ -317,7 +317,7 @@ document.addEventListener('click', DropMenuNoAuth);
 document.addEventListener('keyup', escapeCloseDrop);
 // Login drop menu display end
 
-// Popup register start
+// Popup start
 const popupOpenButton = document.querySelector('.popup-register_link-button');
 const popupOpenLink = document.querySelector('.popup-register_link');
 const popupRegisterWindow = document.querySelector('.popup-register');
@@ -331,7 +331,7 @@ function openPopup(event) {
     popupRegisterWindow.classList.add('open');
     popupRegisterWindow.addEventListener('click', function (event) {
       if (
-        !event.target.closest('.popup-register__content') ||
+        !event.target.closest('.popup__content') ||
         event.target.closest('.close-popup') ||
         event.target.closest('.popup-register__inner-link')
       ) {
@@ -349,23 +349,23 @@ function escapeCloseRegisterWindow(event) {
 
 document.addEventListener('click', openPopup);
 document.addEventListener('keyup', escapeCloseRegisterWindow);
-// Popup register end
+// Popup end
 
 // Popup login start
 const popupLoginOpenButton = document.querySelector('.popup-login_link-button');
-const popupLoginOpenLink = document.querySelector('.popup-login-register_link');
+const popupLoginOpenLink = document.querySelector('.popup-login_link');
 const popupLoginWindow = document.querySelector('.popup-login');
 
 function openLoginPopup(event) {
   if (
     event.target.closest('.popup-login_link-button') ||
-    event.target.closest('.popup-login-register_link') ||
+    event.target.closest('.popup-login_link') ||
     event.target.closest('.popup-register__inner-link')
   ) {
     popupLoginWindow.classList.add('open');
     popupLoginWindow.addEventListener('click', function (event) {
       if (
-        !event.target.closest('.popup-login__content') ||
+        !event.target.closest('.popup__content') ||
         event.target.closest('.close-popup') ||
         event.target.closest('.popup-login__inner-link')
       ) {
