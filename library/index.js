@@ -23,14 +23,6 @@ function showNav(event) {
     navMenu.classList.remove('active');
   }
 }
-
-document.addEventListener('keyup', escapeFunction);
-
-function escapeFunction(event) {
-  if (event.code === 'Escape') {
-    navMenu.classList.remove('active');
-  }
-}
 // Burger menu end
 
 // About slider start
@@ -309,14 +301,7 @@ const dropMenuNoAuth = function (event) {
   }
 };
 
-const escapeCloseDrop = function (event) {
-  if (event.code === 'Escape') {
-    DROP_MENU_NO_AUTH.classList.remove('drop-menu_active');
-    DROP_MENU_WITH_AUTH.classList.remove('drop-menu_active');
-  }
-};
 document.addEventListener('click', dropMenuNoAuth);
-document.addEventListener('keyup', escapeCloseDrop);
 // Login drop menu display end
 
 // Popup start
@@ -345,15 +330,7 @@ function openPopup(event) {
   }
 }
 
-function escapeCloseRegisterWindow(event) {
-  if (event.code === 'Escape') {
-    popupRegisterWindow.classList.remove('open');
-    REGISTER_FORM.reset();
-  }
-}
-
 document.addEventListener('click', openPopup);
-document.addEventListener('keyup', escapeCloseRegisterWindow);
 // Popup end
 
 // Popup login start
@@ -380,14 +357,7 @@ function openLoginPopup(event) {
   }
 }
 
-function escapeCloseLoginWindow(event) {
-  if (event.code === 'Escape') {
-    popupLoginWindow.classList.remove('open');
-  }
-}
-
 document.addEventListener('click', openLoginPopup);
-document.addEventListener('keyup', escapeCloseLoginWindow);
 // Popup login end
 
 // working with localStorage start
@@ -397,6 +367,9 @@ const EMAIL_INPUT = document.getElementById('email');
 const PASSWORD_INPUT = document.getElementById('password');
 const PROFILE_INITIALS = document.querySelector('.header__profile-initials');
 const LOGOUT_LINK = document.querySelector('.popup-logout_link');
+const LOGIN_FORM = document.getElementById('login-form');
+const DROP_MENU_HEADING = document.getElementById('drop-menu__profile-heading');
+const DROP_MENU_CARDNUMBER = document.querySelector('.drop-menu__card-number');
 
 let users = [];
 let usersCollection = [];
@@ -433,6 +406,8 @@ function displayPersonalUserLogo() {
   PROFILE_INITIALS.setAttribute('title', `${user.firstname} ${user.lastname}`);
   PROFILE_INITIALS.classList.add('header__profile-initials_visible');
   PROFILE_IMAGE.classList.remove('header__profile-image_visible');
+  DROP_MENU_HEADING.classList.add('drop-menu__heading_login');
+  DROP_MENU_CARDNUMBER.textContent = user.cardnumber;
 }
 
 function logOut(event) {
@@ -442,6 +417,8 @@ function logOut(event) {
     PROFILE_INITIALS.removeAttribute('title');
     PROFILE_INITIALS.classList.remove('header__profile-initials_visible');
     PROFILE_IMAGE.classList.add('header__profile-image_visible');
+    DROP_MENU_HEADING.classList.remove('drop-menu__heading_login');
+    DROP_MENU_CARDNUMBER.textContent = '';
   }
 }
 
@@ -545,3 +522,40 @@ const dropMenuWithAuth = function (event) {
 
 document.addEventListener('click', dropMenuWithAuth);
 // Profile drop menu display end
+
+//Popup My-Profile start
+const POPUP_MY_PROFILE = document.querySelector('.popup-my-profile');
+const popupMyProfileOpenLink = document.querySelector('.popup-profile_link');
+
+function openMyProfilePopup(event) {
+  if (event.target.closest('.popup-profile_link')) {
+    POPUP_MY_PROFILE.classList.add('open');
+    POPUP_MY_PROFILE.addEventListener('click', function (event) {
+      if (
+        !event.target.closest('.popup-my-profile__content') ||
+        event.target.closest('.popup-my-profile__close-button')
+      ) {
+        POPUP_MY_PROFILE.classList.remove('open');
+      }
+    });
+  }
+}
+
+document.addEventListener('click', openMyProfilePopup);
+//Popup My-Profile end
+
+// Close windows on Esc button start
+function escapeFunction(event) {
+  if (event.code === 'Escape') {
+    navMenu.classList.remove('active');
+    DROP_MENU_NO_AUTH.classList.remove('drop-menu_active');
+    DROP_MENU_WITH_AUTH.classList.remove('drop-menu_active');
+    popupRegisterWindow.classList.remove('open');
+    REGISTER_FORM.reset();
+    popupLoginWindow.classList.remove('open');
+    DROP_MENU_WITH_AUTH.classList.remove('drop-menu_active');
+    POPUP_MY_PROFILE.classList.remove('open');
+  }
+}
+document.addEventListener('keyup', escapeFunction);
+// Close windows on Esc button end
