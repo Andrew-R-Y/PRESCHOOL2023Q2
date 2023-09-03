@@ -76,7 +76,7 @@
 
         <!-- Drop menu no-auth start -->
         <div class="drop-menu drop-menu__no-auth">
-          <p class="drop-menu__heading">Profile</p>
+          <p class="drop-menu__heading"><span>Profile</span><span></span></p>
           <div class="drop-menu__line"></div>
           <p class="popup-login_link">Log In</p>
           <p class="popup-register_link">Register</p>
@@ -85,7 +85,9 @@
 
         <!-- Drop menu with-auth start -->
         <div class="drop-menu drop-menu__with-auth">
-          <p class="drop-menu__heading">Profile</p>
+          <p class="drop-menu__heading" id="drop-menu__profile-heading">
+            <span>Profile</span><span class="drop-menu__card-number"></span>
+          </p>
           <div class="drop-menu__line"></div>
           <p class="popup-profile_link">My profile</p>
           <p class="popup-logout_link">Log Out</p>
@@ -971,6 +973,88 @@
       </div>
     </div>
     <!-- Popup Login end -->
+
+    <!-- Popup MyProfile start -->
+    <div class="popup-my-profile">
+      <div class="popup-my-profile__body">
+        <div class="popup-my-profile__content">
+          <div class="popup-my-profile__close-button">
+            <img
+              src="./img/svg/close-btn.svg"
+              alt="close-button"
+              class="close-popup"
+            />
+          </div>
+          <div class="popup-my-profile__left-block">
+            <div class="popup-my-profile__initials-and-name">
+              <div class="popup-my-profile__initials">
+                <p id="my-profile__initials">JD</p>
+              </div>
+              <div class="popup-my-profile__name">
+                <p class="popup-my-profile__name-inside">john doe</p>
+              </div>
+            </div>
+          </div>
+          <div class="popup-my-profile__right-block">
+            <div class="popup-my-profile__heading">My profile</div>
+            <div class="popup-my-profile__cards">
+              <div class="popup-my-profile__card-item">
+                <p class="popup-my-profile__item-name">visits</p>
+                <img
+                  class="popup-my-profile__item-image"
+                  src="./img/svg/my-profile_union.svg"
+                  alt="user logo"
+                />
+                <div class="popup-my-profile__number-block">
+                  <p class="popup-my-profile__number">23</p>
+                </div>
+              </div>
+              <div class="popup-my-profile__card-item">
+                <p class="popup-my-profile__item-name">bonuses</p>
+                <img
+                  class="popup-my-profile__item-image"
+                  src="./img/svg/my-profile_star.svg"
+                  alt="star logo"
+                />
+                <div class="popup-my-profile__number-block">
+                  <p class="popup-my-profile__number">1240</p>
+                </div>
+              </div>
+              <div class="popup-my-profile__card-item">
+                <p class="popup-my-profile__item-name">books</p>
+                <img
+                  class="popup-my-profile__item-image"
+                  src="./img/svg/my-profile_book.svg"
+                  alt="book logo"
+                />
+                <div class="popup-my-profile__number-block">
+                  <p class="popup-my-profile__number">2</p>
+                </div>
+              </div>
+            </div>
+            <p class="popup-my-profile__rented-books-heading">Rented books</p>
+            <ul class="popup-my-profile__rented-books-block">
+              <li class="popup-my-profile__book-item">
+                The Last Queen, Clive Irving
+              </li>
+              <li class="popup-my-profile__book-item">
+                Dominicana, Angie Cruz
+              </li>
+            </ul>
+            <div class="popup-my-profile__card-number-block">
+              <p>Card number</p>
+              <p class="popup-my-profile__card-number-value">F00234030</p>
+              <img
+                src="./img/svg/my-profile_icon-copy.svg"
+                alt="copy icon"
+                class="popup-my-profile__icon-copy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Popup MyProfile end -->
 
     <script src="./index.js"></script>
   </body>

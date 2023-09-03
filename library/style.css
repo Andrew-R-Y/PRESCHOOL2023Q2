@@ -1245,8 +1245,29 @@ input:checked + label + label.favorites__label {
   will-change: visibility;
 }
 
-.drop-menu p:first-child {
+.drop-menu__heading span {
   font-weight: 700;
+}
+
+.drop-menu__heading span:first-child {
+  display: block;
+}
+
+.drop-menu__heading span:last-child {
+  display: none;
+}
+
+.drop-menu__heading.drop-menu__heading_login span:first-child {
+  display: none;
+}
+
+.drop-menu__heading.drop-menu__heading_login span:last-child {
+  display: block;
+}
+
+.drop-menu__card-number {
+  font: 700 12px/ 20px 'Inter', sans-serif;
+  text-transform: uppercase;
 }
 
 .drop-menu__line {
@@ -1428,3 +1449,212 @@ input:checked + label + label.favorites__label {
   text-decoration: underline;
 }
 /* Popup-register styles end */
+
+/* Popup MyProfile styles start */
+.popup-my-profile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--color-dark);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup-my-profile.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-my-profile__body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.popup-my-profile__content {
+  box-sizing: border-box;
+  width: 600px;
+  height: 400px;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  position: relative;
+  display: flex;
+  opacity: 0;
+  transform: translate(0px, -100%);
+  transition: all 0.8s;
+}
+
+.popup-my-profile.open .popup-my-profile__content {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+
+.popup-my-profile__close-button {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .popup-my-profile__close-button:hover {
+    cursor: pointer;
+  }
+}
+
+.popup-my-profile__left-block {
+  flex-basis: 170px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-secondary-dark);
+}
+
+.popup-my-profile__initials-and-name {
+  margin-top: 8px;
+}
+
+.popup-my-profile__initials {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 10px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#my-profile__initials {
+  color: var(--color-active);
+  font: 400 20px/ 20px 'Inter', sans-serif;
+  text-transform: capitalize;
+}
+
+.popup-my-profile__name {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.popup-my-profile__name-inside {
+  color: var(--color-dark);
+  background-color: #ffffff;
+  font: 400 20px/ 20px 'Inter', sans-serif;
+  text-transform: capitalize;
+  text-align: center;
+  flex: 1 1 100px;
+  padding: 5px;
+  min-width: 120px;
+}
+
+.popup-my-profile__right-block {
+  flex: 1 0 auto;
+  background-color: #ffffff;
+  padding: 40px 20px 30px;
+  color: var(--color-dark);
+}
+
+.popup-my-profile__heading {
+  margin-bottom: 40px;
+  font: 400 40px/ 20px 'Forum', sans-serif;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.popup-my-profile__cards {
+  height: 81px;
+  width: 237px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.popup-my-profile__card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-my-profile__item-name {
+  font: 400 20px/20px 'Inter', sans-serif;
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
+}
+
+.popup-my-profile__item-image {
+  display: block;
+  width: 20px;
+  height: 21px;
+}
+
+.popup-my-profile__number-block {
+  display: flex;
+  justify-content: center;
+}
+.popup-my-profile__number {
+  color: var(--color-dark);
+  font: 400 10px/20px 'Inter', sans-serif;
+  letter-spacing: 0.2px;
+}
+
+.popup-my-profile__rented-books-heading {
+  font: 400 25px/20px 'Inter', sans-serif;
+  color: var(--color-secondary-dark);
+  margin-bottom: 30px;
+}
+
+.popup-my-profile__rented-books-block {
+  height: 80px;
+  margin-bottom: 10px;
+  overflow-y: auto;
+}
+
+.popup-my-profile__book-item {
+  margin-left: 30px;
+  color: var(--color-dark);
+  font: 400 20px/20px 'Inter', sans-serif;
+  letter-spacing: 2px;
+}
+
+li.popup-my-profile__book-item + li {
+  margin-top: 10px;
+}
+
+.popup-my-profile__card-number-block {
+  width: 281px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 400 20px/20px 'Inter', sans-serif;
+  color: var(--color-secondary-dark);
+}
+
+.popup-my-profile__card-number-value {
+  color: var(--color-active);
+}
+
+.popup-my-profile__icon-copy {
+  width: 13.31px;
+  height: 12px;
+}
+
+@media (hover: hover) {
+  .popup-my-profile__icon-copy:hover {
+    cursor: pointer;
+  }
+}
+/* Popup MyProfile styles end */
