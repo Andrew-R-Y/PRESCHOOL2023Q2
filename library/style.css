@@ -105,6 +105,7 @@ html {
   border-radius: 50%;
   color: var(--color-active);
   font: 400 15px/20px 'Inter', sans-serif;
+  text-transform: uppercase;
   background-color: #ffffff;
   text-align: center;
   padding: 5px 0px;
@@ -1538,7 +1539,7 @@ input:checked + label + label.favorites__label {
 #my-profile__initials {
   color: var(--color-active);
   font: 400 20px/ 20px 'Inter', sans-serif;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 
 .popup-my-profile__name {
@@ -1645,6 +1646,7 @@ li.popup-my-profile__book-item + li {
 
 .popup-my-profile__card-number-value {
   color: var(--color-active);
+  text-transform: uppercase;
 }
 
 .popup-my-profile__icon-copy {
