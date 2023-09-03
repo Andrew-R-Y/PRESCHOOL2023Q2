@@ -370,6 +370,17 @@ const LOGOUT_LINK = document.querySelector('.popup-logout_link');
 const LOGIN_FORM = document.getElementById('login-form');
 const DROP_MENU_HEADING = document.getElementById('drop-menu__profile-heading');
 const DROP_MENU_CARDNUMBER = document.querySelector('.drop-menu__card-number');
+const POPUP_PROFILE_CARDNUMBER = document.querySelector(
+  '.popup-my-profile__card-number-value'
+);
+const POPUP_PROFILE_FULLNAME = document.querySelector(
+  '.popup-my-profile__name-inside'
+);
+const POPUP_PROFILE_INITIALS = document.getElementById('my-profile__initials');
+const POPUP_PROFILE_VISITS = document.querySelector(
+  '.popup-my-profile__visits'
+);
+const POPUP_PROFILE_BOOKS = document.querySelector('.popup-my-profile-books');
 
 let users = [];
 let usersCollection = [];
@@ -378,10 +389,10 @@ let userDataIsCorrect;
 let isLoggedIn = false;
 
 function createNewUser() {
-  user.firstname = FIRSTNAME_INPUT.value;
-  user.lastname = LASTNAME_INPUT.value;
-  user.email = EMAIL_INPUT.value.toLowerCase();
-  user.password = PASSWORD_INPUT.value;
+  user.firstname = FIRSTNAME_INPUT.value.trim().toLowerCase();
+  user.lastname = LASTNAME_INPUT.value.trim().toLowerCase();
+  user.email = EMAIL_INPUT.value.trim().toLowerCase();
+  user.password = PASSWORD_INPUT.value.trim();
   user.visits = 1;
   user.books = [];
   user.cardnumber = Math.floor(Math.pow(16, 9) * Math.random()).toString(16);
@@ -399,15 +410,42 @@ function createNewUser() {
   }
 }
 
+function writeCardNumber(cardNumber) {
+  navigator.clipboard.writeText(cardNumber).then(
+    () => {
+      console.log('copied');
+    },
+    () => {
+      console.error('not copied');
+    }
+  );
+}
+
+function copyCard(event) {
+  if (event.target.closest('.popup-my-profile__icon-copy')) {
+    writeCardNumber(user.cardnumber.toUpperCase());
+  } else {
+    return;
+  }
+}
+
 function displayPersonalUserLogo() {
-  PROFILE_INITIALS.textContent = (
-    user.firstname[0] + user.lastname[0]
-  ).toUpperCase();
-  PROFILE_INITIALS.setAttribute('title', `${user.firstname} ${user.lastname}`);
+  PROFILE_INITIALS.textContent = user.firstname[0] + user.lastname[0];
+  let fullName = `${user.firstname
+    .charAt(0)
+    .toUpperCase()}${user.firstname.slice(1)} ${user.lastname
+    .charAt(0)
+    .toUpperCase()}${user.lastname.slice(1)}`;
+  PROFILE_INITIALS.setAttribute('title', fullName);
   PROFILE_INITIALS.classList.add('header__profile-initials_visible');
   PROFILE_IMAGE.classList.remove('header__profile-image_visible');
   DROP_MENU_HEADING.classList.add('drop-menu__heading_login');
   DROP_MENU_CARDNUMBER.textContent = user.cardnumber;
+  POPUP_PROFILE_CARDNUMBER.textContent = user.cardnumber;
+  POPUP_PROFILE_FULLNAME.textContent = fullName;
+  POPUP_PROFILE_INITIALS.textContent = user.firstname[0] + user.lastname[0];
+  POPUP_PROFILE_VISITS.textContent = user.visits;
+  POPUP_PROFILE_BOOKS.textContent = user.books.length;
 }
 
 function logOut(event) {
@@ -419,8 +457,15 @@ function logOut(event) {
     PROFILE_IMAGE.classList.add('header__profile-image_visible');
     DROP_MENU_HEADING.classList.remove('drop-menu__heading_login');
     DROP_MENU_CARDNUMBER.textContent = '';
+    POPUP_PROFILE_CARDNUMBER.textContent = '';
+    POPUP_PROFILE_FULLNAME.textContent = '';
+    POPUP_PROFILE_INITIALS.textContent = '';
+    POPUP_PROFILE_VISITS.textContent = '';
+    POPUP_PROFILE_BOOKS.textContent = '';
   }
 }
+
+document.addEventListener('click', copyCard);
 
 document.addEventListener('click', logOut);
 
