@@ -560,6 +560,7 @@ function logInDataProcessing(event) {
   event.preventDefault();
   const emailAttempt = LOGIN_EMAIL.value.trim().toLowerCase();
   const passwordAttempt = LOGIN_PASSWORD.value.trim();
+  let loginByEmail;
 
   if (!emailAttempt) {
     alert('Email field must not be empty!');
@@ -579,32 +580,64 @@ function logInDataProcessing(event) {
     );
     return;
   }
+
+  if (emailAttempt.includes('@')) {
+    loginByEmail = true;
+  }
+
   let userPosition;
   let result;
-  const currentUser = usersCollection.find((item, index) => {
-    if (item.email === emailAttempt) {
-      userPosition = index;
-      if (item.password === passwordAttempt) {
-        return true;
+  let currentUser;
+
+  if (loginByEmail) {
+    currentUser = usersCollection.find((item, index) => {
+      if (item.email === emailAttempt) {
+        userPosition = index;
+        if (item.password === passwordAttempt) {
+          return true;
+        } else {
+          result = 'password incorrect!';
+          return false;
+        }
       } else {
-        result = 'password incorrect!';
         return false;
       }
-    } else {
-      return false;
-    }
-  });
+    });
+  } else {
+    currentUser = usersCollection.find((item, index) => {
+      if (item.cardnumber === emailAttempt) {
+        userPosition = index;
+        if (item.password === passwordAttempt) {
+          return true;
+        } else {
+          result = 'password incorrect!';
+          return false;
+        }
+      } else {
+        return false;
+      }
+    });
+  }
+
   if (result) {
     alert(result);
     LOGIN_PASSWORD.value = '';
     return;
   }
+
   if (!currentUser) {
-    alert(
-      `User with e-mail ${emailAttempt} not found! You need to register before log in.`
-    );
+    if (loginByEmail) {
+      alert(
+        `User with e-mail: ${emailAttempt} not found!\nYou need to register before log in.`
+      );
+    } else {
+      alert(
+        `User with readers card: ${emailAttempt} not found!\nYou need to register before log in.`
+      );
+    }
     return;
   }
+
   user = currentUser;
   user.visits += 1;
   usersCollection[userPosition] = user;
