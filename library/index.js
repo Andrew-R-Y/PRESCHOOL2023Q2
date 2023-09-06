@@ -304,7 +304,7 @@ const dropMenuNoAuth = function (event) {
 document.addEventListener('click', dropMenuNoAuth);
 // Login drop menu display end
 
-// Popup start
+// Popup Register-form start
 const popupOpenButton = document.querySelector('.popup-register_link-button');
 const popupOpenLink = document.querySelector('.popup-register_link');
 const popupRegisterWindow = document.querySelector('.popup-register');
@@ -323,15 +323,19 @@ function openPopup(event) {
         event.target.closest('.close-popup') ||
         event.target.closest('.popup-register__inner-link')
       ) {
-        popupRegisterWindow.classList.remove('open');
-        REGISTER_FORM.reset();
+        clearFormAndClose();
       }
     });
   }
 }
 
 document.addEventListener('click', openPopup);
-// Popup end
+
+function clearFormAndClose() {
+  REGISTER_FORM.reset();
+  popupRegisterWindow.classList.remove('open');
+}
+// Popup Register-form end
 
 // Popup login start
 const popupLoginOpenButton = document.querySelector('.popup-login_link-button');
@@ -351,13 +355,18 @@ function openLoginPopup(event) {
         event.target.closest('.close-popup') ||
         event.target.closest('.popup-login__inner-link')
       ) {
-        popupLoginWindow.classList.remove('open');
+        clearLoginAndClose();
       }
     });
   }
 }
 
 document.addEventListener('click', openLoginPopup);
+
+function clearLoginAndClose() {
+  LOGIN_FORM.reset();
+  popupLoginWindow.classList.remove('open');
+}
 // Popup login end
 
 // working with localStorage start
@@ -367,7 +376,6 @@ const EMAIL_INPUT = document.getElementById('email');
 const PASSWORD_INPUT = document.getElementById('password');
 const PROFILE_INITIALS = document.querySelector('.header__profile-initials');
 const LOGOUT_LINK = document.querySelector('.popup-logout_link');
-const LOGIN_FORM = document.getElementById('login-form');
 const DROP_MENU_HEADING = document.getElementById('drop-menu__profile-heading');
 const DROP_MENU_CARDNUMBER = document.querySelector('.drop-menu__card-number');
 const POPUP_PROFILE_CARDNUMBER = document.querySelector(
@@ -382,10 +390,15 @@ const POPUP_PROFILE_VISITS = document.querySelector(
 );
 const POPUP_PROFILE_BOOKS = document.querySelector('.popup-my-profile-books');
 
+const LOGIN_FORM = document.getElementById('login-form');
+const LOGIN_EMAIL = document.getElementById('login-email');
+const LOGIN_PASSWORD = document.getElementById('login-password');
+
 let users = [];
 let usersCollection = [];
 let user = {};
 let userDataIsCorrect;
+let loginDataIsCorrect;
 let isLoggedIn = false;
 
 function createNewUser() {
@@ -429,7 +442,7 @@ function copyCard(event) {
   }
 }
 
-function displayPersonalUserLogo() {
+function displayPersonalUserData() {
   PROFILE_INITIALS.textContent = user.firstname[0] + user.lastname[0];
   let fullName = `${user.firstname
     .charAt(0)
@@ -462,17 +475,13 @@ function logOut(event) {
     POPUP_PROFILE_INITIALS.textContent = '';
     POPUP_PROFILE_VISITS.textContent = '';
     POPUP_PROFILE_BOOKS.textContent = '';
+    isLoggedIn = false;
   }
 }
 
 document.addEventListener('click', copyCard);
 
 document.addEventListener('click', logOut);
-
-function clearFormAndClose() {
-  REGISTER_FORM.reset();
-  popupRegisterWindow.classList.remove('open');
-}
 
 function addFirstUser() {
   console.log(
@@ -491,7 +500,7 @@ function addFirstUser() {
   });
   clearFormAndClose();
   isLoggedIn = true;
-  displayPersonalUserLogo();
+  displayPersonalUserData();
 }
 
 function addNextUser() {
@@ -514,7 +523,7 @@ function addNextUser() {
     });
     clearFormAndClose();
     isLoggedIn = true;
-    displayPersonalUserLogo();
+    displayPersonalUserData();
   } else {
     console.log('ошибка добавления нового пользователя');
     alert(
@@ -545,6 +554,69 @@ function UserDataProcessing(event) {
 }
 
 REGISTER_FORM.addEventListener('submit', UserDataProcessing);
+
+// working on Login ability start
+function logInDataProcessing(event) {
+  event.preventDefault();
+  const emailAttempt = LOGIN_EMAIL.value.trim().toLowerCase();
+  const passwordAttempt = LOGIN_PASSWORD.value.trim();
+
+  if (!emailAttempt) {
+    alert('Email field must not be empty!');
+    return;
+  }
+
+  if (!passwordAttempt) {
+    alert('Password field must not be empty!');
+    return;
+  }
+
+  usersCollection = JSON.parse(localStorage.getItem('users'));
+
+  if (!usersCollection || usersCollection.length === 0) {
+    alert(
+      `User with e-mail ${emailAttempt} not found! You need to register before log in.`
+    );
+    return;
+  }
+  let userPosition;
+  let result;
+  const currentUser = usersCollection.find((item, index) => {
+    if (item.email === emailAttempt) {
+      userPosition = index;
+      if (item.password === passwordAttempt) {
+        return true;
+      } else {
+        result = 'password incorrect!';
+        return false;
+      }
+    } else {
+      return false;
+    }
+  });
+  if (result) {
+    alert(result);
+    LOGIN_PASSWORD.value = '';
+    return;
+  }
+  if (!currentUser) {
+    alert(
+      `User with e-mail ${emailAttempt} not found! You need to register before log in.`
+    );
+    return;
+  }
+  user = currentUser;
+  user.visits += 1;
+  usersCollection[userPosition] = user;
+
+  localStorage.setItem('users', JSON.stringify(usersCollection));
+
+  displayPersonalUserData();
+  clearLoginAndClose();
+}
+
+LOGIN_FORM.addEventListener('submit', logInDataProcessing);
+// working on Login ability end
 
 // working with localStorage end
 
