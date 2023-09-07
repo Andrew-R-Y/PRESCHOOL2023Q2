@@ -388,11 +388,14 @@ const POPUP_PROFILE_INITIALS = document.getElementById('my-profile__initials');
 const POPUP_PROFILE_VISITS = document.querySelector(
   '.popup-my-profile__visits'
 );
-const POPUP_PROFILE_BOOKS = document.querySelector('.popup-my-profile-books');
+const POPUP_PROFILE_BOOKS_NUMBER = document.querySelector(
+  '.popup-my-profile-books-number'
+);
 
 const LOGIN_FORM = document.getElementById('login-form');
 const LOGIN_EMAIL = document.getElementById('login-email');
 const LOGIN_PASSWORD = document.getElementById('login-password');
+const RENTED_BOOKS = document.getElementById('rented-books');
 
 let users = [];
 let usersCollection = [];
@@ -400,6 +403,7 @@ let user = {};
 let userDataIsCorrect;
 let loginDataIsCorrect;
 let isLoggedIn = false;
+let userPosition;
 
 function createNewUser() {
   user.firstname = FIRSTNAME_INPUT.value.trim().toLowerCase();
@@ -408,6 +412,7 @@ function createNewUser() {
   user.password = PASSWORD_INPUT.value.trim();
   user.visits = 1;
   user.books = [];
+  user.bookTitles = [];
   user.cardnumber = Math.floor(Math.pow(16, 9) * Math.random()).toString(16);
   for (let i = 0; i < 7; i++) {
     if (user.cardnumber.length < 9) {
@@ -458,7 +463,7 @@ function displayPersonalUserData() {
   POPUP_PROFILE_FULLNAME.textContent = fullName;
   POPUP_PROFILE_INITIALS.textContent = user.firstname[0] + user.lastname[0];
   POPUP_PROFILE_VISITS.textContent = user.visits;
-  POPUP_PROFILE_BOOKS.textContent = user.books.length;
+  POPUP_PROFILE_BOOKS_NUMBER.textContent = user.books.length;
 }
 
 function logOut(event) {
@@ -474,8 +479,10 @@ function logOut(event) {
     POPUP_PROFILE_FULLNAME.textContent = '';
     POPUP_PROFILE_INITIALS.textContent = '';
     POPUP_PROFILE_VISITS.textContent = '';
-    POPUP_PROFILE_BOOKS.textContent = '';
+    POPUP_PROFILE_BOOKS_NUMBER.textContent = '';
     isLoggedIn = false;
+    userCanBuyBookOff();
+    profileRemoveAllRentedBooks();
   }
 }
 
@@ -500,6 +507,7 @@ function addFirstUser() {
   });
   clearFormAndClose();
   isLoggedIn = true;
+  userCanBuyBookOn();
   displayPersonalUserData();
 }
 
@@ -508,7 +516,9 @@ function addNextUser() {
   userIsUnique = true;
   usersCollection.forEach((item) => {
     if (user.email === item.email) {
-      console.log('такой пользователь уже существует');
+      console.log(
+        'такой пользователь уже существует, войдите в учётную запись'
+      );
       userIsUnique = false;
     }
   });
@@ -523,6 +533,7 @@ function addNextUser() {
     });
     clearFormAndClose();
     isLoggedIn = true;
+    userCanBuyBookOn();
     displayPersonalUserData();
   } else {
     console.log('ошибка добавления нового пользователя');
@@ -544,7 +555,9 @@ function UserDataProcessing(event) {
 
   if (!usersCollection || usersCollection.length === 0) {
     addFirstUser();
+    userPosition = 0;
   } else {
+    userPosition = usersCollection.length;
     addNextUser();
   }
 
@@ -585,7 +598,6 @@ function logInDataProcessing(event) {
     loginByEmail = true;
   }
 
-  let userPosition;
   let result;
   let currentUser;
 
@@ -638,14 +650,26 @@ function logInDataProcessing(event) {
     return;
   }
 
+  isLoggedIn = true;
   user = currentUser;
   user.visits += 1;
   usersCollection[userPosition] = user;
 
   localStorage.setItem('users', JSON.stringify(usersCollection));
 
+  if (user && user.books && user.books.length > 0) {
+    user.books.forEach(function (book) {
+      const newBook = document.createElement('li');
+      newBook.textContent = book;
+      newBook.classList.add('popup-my-profile__book-item');
+      RENTED_BOOKS.append(newBook);
+    });
+  }
+
+  disableOwnBookBuyButtons();
   displayPersonalUserData();
   clearLoginAndClose();
+  userCanBuyBookOn();
 }
 
 LOGIN_FORM.addEventListener('submit', logInDataProcessing);
@@ -709,3 +733,67 @@ function escapeFunction(event) {
 }
 document.addEventListener('keyup', escapeFunction);
 // Close windows on Esc button end
+
+// Buying books in favories section start
+function userCanBuyBookOn() {
+  if (!isLoggedIn) {
+    return;
+  }
+  BOOKS.forEach(function (book) {
+    if (!book.children[4].classList.contains('own')) {
+      book.addEventListener('click', bookBuyHandler);
+    }
+  });
+}
+
+function userCanBuyBookOff() {
+  BOOKS.forEach(function (book) {
+    book.removeEventListener('click', bookBuyHandler);
+  });
+}
+
+function bookBuyHandler(event) {
+  if (event.target.closest('.favorites__button')) {
+    let bookTitle = this.children[2].firstElementChild.textContent;
+    let bookAuthor = this.children[2].lastElementChild.textContent.slice(3);
+    console.log('title:', bookTitle);
+    console.log('author:', bookAuthor);
+    const bookItem = `${bookTitle}, ${bookAuthor}`;
+    user.books.push(bookItem);
+    user.bookTitles.push(bookTitle);
+    addBookToMyProfile(bookItem);
+    let numberOfBooks = Number(POPUP_PROFILE_BOOKS_NUMBER.textContent);
+    numberOfBooks += 1;
+    POPUP_PROFILE_BOOKS_NUMBER.textContent = numberOfBooks;
+    this.children[4].classList.add('own');
+    this.removeEventListener('click', bookBuyHandler);
+    usersCollection[userPosition] = user;
+    localStorage.setItem('users', JSON.stringify(usersCollection));
+  }
+}
+
+function disableOwnBookBuyButtons() {
+  BOOKS.forEach(checkOwnBooks);
+}
+
+function checkOwnBooks(book) {
+  let bookTitle = book.children[2].firstElementChild.textContent;
+  if (user.bookTitles && user.bookTitles.includes(bookTitle)) {
+    book.children[4].classList.add('own');
+    console.log(`book ${bookTitle} is own`);
+  }
+}
+
+function addBookToMyProfile(book) {
+  const newBook = document.createElement('li');
+  newBook.textContent = book;
+  newBook.classList.add('popup-my-profile__book-item');
+  RENTED_BOOKS.append(newBook);
+}
+// Buying books in favories section end
+
+function profileRemoveAllRentedBooks() {
+  while (RENTED_BOOKS.firstChild) {
+    RENTED_BOOKS.firstChild.remove();
+  }
+}
