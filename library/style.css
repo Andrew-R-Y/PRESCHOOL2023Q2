@@ -1563,6 +1563,7 @@ input:checked + label + label.favorites__label {
 
 .popup-my-profile__right-block {
   flex: 1 0 auto;
+  max-width: 430px;
   background-color: #ffffff;
   padding: 40px 20px 30px;
   color: var(--color-dark);
@@ -1622,6 +1623,7 @@ input:checked + label + label.favorites__label {
   height: 80px;
   margin-bottom: 10px;
   overflow-y: auto;
+  /* overflow-x: wrap; */
 }
 
 .popup-my-profile__book-item {
