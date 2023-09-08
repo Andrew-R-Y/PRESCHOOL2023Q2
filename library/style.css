@@ -1756,9 +1756,6 @@ li.popup-my-profile__book-item + li {
   background-color: #ffffff;
 }
 
-#buy-library-card-form {
-}
-
 .popup-buy-library-card__content-left {
   flex-basis: 200px;
   flex-grow: 0;
