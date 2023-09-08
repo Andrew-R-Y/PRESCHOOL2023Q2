@@ -1057,6 +1057,131 @@
     </div>
     <!-- Popup MyProfile end -->
 
+    <!-- Popup Buy Library Card start -->
+    <div class="popup-buy-library-card">
+      <div class="popup-buy-library-card__body">
+        <div class="popup-buy-library-card__content">
+          <div class="popup-buy-library-card__close-button">
+            <img
+              src="./img/svg/close-btn-white.svg"
+              alt="close-button"
+              class="close-popup"
+            />
+          </div>
+          <div class="popup-buy-library-card__head-block">
+            <p class="popup-buy-library-card__head-text">Buy a library card</p>
+          </div>
+          <div class="popup-buy-library-card__bottom-block">
+            <div class="popup-buy-library-card__content-left">
+              <form id="buy-library-card-form" action="" class="popup__form">
+                <div class="popup__item">
+                  <label for="bank-card-number" class="popup__label">
+                    Bank card number
+                  </label>
+                  <input
+                    type="text"
+                    class="popup__input"
+                    id="bank-card-number"
+                    maxlength="19"
+                    minlength="16"
+                    pattern="[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4} {0,1}[0-9]{4}"
+                    title="The number must be 16-digit card number"
+                    required
+                  />
+                </div>
+                <div class="popup__item">
+                  <label
+                    for="expiration-code-month"
+                    class="popup__label popup__short-item-label"
+                  >
+                    Expiration code
+                  </label>
+                  <input
+                    type="text"
+                    class="popup__input popup__short-input"
+                    id="expiration-code-month"
+                    maxlength="2"
+                    pattern="[0-9]{2}"
+                    title="Month must be 2-digit number"
+                    required
+                  />
+                  <input
+                    type="text"
+                    class="popup__input popup__short-input"
+                    id="expiration-code-year"
+                    pattern="[0-9]{2}"
+                    title="Year must be 2-digit number"
+                    required
+                  />
+                </div>
+                <div class="popup__cvc-item">
+                  <label for="cvc" class="popup__label popup__short-item-label">
+                    CVC
+                  </label>
+                  <input
+                    type="text"
+                    class="popup__input popup__short-input"
+                    id="cvc"
+                    maxlength="3"
+                    minlength="3"
+                    pattern="[0-9]{3}"
+                    title="CVC must be 3-digit number"
+                    required
+                  />
+                </div>
+                <div class="popup__item">
+                  <label for="cardholder-name" class="popup__label">
+                    Cardholder name
+                  </label>
+                  <input
+                    type="text"
+                    class="popup__input"
+                    id="cardholder-name"
+                    required
+                  />
+                </div>
+                <div class="popup__item">
+                  <label for="postal-code" class="popup__label">
+                    Postal code
+                  </label>
+                  <input
+                    type="text"
+                    class="popup__input"
+                    id="postal-code"
+                    required
+                  />
+                </div>
+                <div class="popup__item">
+                  <label for="city-town" class="popup__label">
+                    City / Town
+                  </label>
+                  <input
+                    type="text"
+                    class="popup__input"
+                    id="city-town"
+                    required
+                  />
+                </div>
+                <div class="popup__item popup__buy-library-card-last-item">
+                  <button class="popup__buy-library-card-button" type="submit">
+                    Buy
+                  </button>
+                  <p class="popup__card-price">$ 25.00</p>
+                </div>
+              </form>
+            </div>
+            <div class="popup-buy-library-card__content-right">
+              If you are live, work, attend school, or pay property taxes in New
+              York State, you can get a $25 digital library card right now using
+              this online form. Visitors to New York State can also use this
+              form to apply for a temporary card.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Popup Buy Library Card end -->
+
     <script src="./index.js"></script>
   </body>
 </html>
