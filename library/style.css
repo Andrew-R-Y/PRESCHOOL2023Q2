@@ -1416,7 +1416,6 @@ input:checked + label + label.favorites__label {
   flex-basis: 30px;
   align-self: flex-start;
   width: 75px;
-  margin-top: 10px;
   padding: 8px 14px;
   font: 700 10px 'Inter', sans-serif;
   letter-spacing: 1px;
@@ -1424,6 +1423,11 @@ input:checked + label + label.favorites__label {
   border-radius: 2px;
   background-color: #ffffff;
   transition: all 0.5s;
+}
+
+.popup__register-button,
+.popup__login-button {
+  margin-top: 10px;
 }
 
 @media (hover: hover) {
@@ -1662,3 +1666,159 @@ li.popup-my-profile__book-item + li {
   }
 }
 /* Popup MyProfile styles end */
+
+/* Popup Buy Library Card styles start */
+.popup-buy-library-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: var(--color-dark);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.popup-buy-library-card.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-buy-library-card__body {
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.popup-buy-library-card__content {
+  box-sizing: border-box;
+  width: 640px;
+  height: 540px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translate(0px, -100%);
+  transition: all 0.8s;
+}
+
+.popup-buy-library-card.open .popup-buy-library-card__content {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+
+.popup-buy-library-card__close-button {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  object-fit: cover;
+}
+
+@media (hover: hover) {
+  .popup-buy-library-card__close-button:hover {
+    cursor: pointer;
+  }
+}
+
+.popup-buy-library-card__head-block {
+  flex-basis: 60px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-secondary-dark);
+}
+
+.popup-buy-library-card__head-text {
+  color: #ffffff;
+  font: 400 40px/20px 'Forum', sans-serif;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.popup-buy-library-card__bottom-block {
+  flex-basis: 470px;
+  flex-shrink: 0;
+  flex-grow: 1;
+  padding: 30px 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  background-color: #ffffff;
+}
+
+#buy-library-card-form {
+}
+
+.popup-buy-library-card__content-left {
+  flex-basis: 200px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.popup-buy-library-card__content-right {
+  flex-basis: 330px;
+  flex-grow: 0;
+  flex-shrink: 1;
+  font: 400 15px/20px 'Inter', sans-serif;
+  letter-spacing: 2px;
+  color: #8e8e8e;
+}
+
+.popup__cvc-item {
+  margin-bottom: 10px;
+}
+
+.popup__short-item-label {
+  display: block;
+}
+.popup__short-input {
+  width: 45px;
+  margin-right: 10px;
+}
+
+.popup__buy-library-card-last-item {
+  flex: 0 0 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  gap: 25px;
+}
+
+.popup__buy-library-card-button {
+  flex: 0 0 75px;
+  align-self: flex-end;
+  box-sizing: border-box;
+  padding: 8px 14px;
+  font: 700 10px 'Inter', sans-serif;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-secondary-dark);
+  border-radius: 2px;
+  background-color: #ffffff;
+  transition: all 0.5s;
+}
+
+@media (hover: hover) {
+  .popup__buy-library-card-button.active:hover {
+    background-color: var(--color-active);
+    border: 1px solid var(--color-active);
+    cursor: pointer;
+  }
+}
+
+.popup__card-price {
+  font: 700 20px/20px 'Inter', sans-serif;
+  letter-spacing: 2px;
+  color: var(--color-secondary-dark);
+}
+/* Popup Buy Library Card styles end */
