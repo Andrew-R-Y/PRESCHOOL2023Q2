@@ -346,7 +346,8 @@ function openLoginPopup(event) {
   if (
     event.target.closest('.popup-login_link-button') ||
     event.target.closest('.popup-login_link') ||
-    event.target.closest('.popup-register__inner-link')
+    event.target.closest('.popup-register__inner-link') ||
+    (event.target.closest('.favorites__button') && !isLoggedIn)
   ) {
     popupLoginWindow.classList.add('open');
     popupLoginWindow.addEventListener('click', function (event) {
@@ -396,6 +397,15 @@ const LOGIN_FORM = document.getElementById('login-form');
 const LOGIN_EMAIL = document.getElementById('login-email');
 const LOGIN_PASSWORD = document.getElementById('login-password');
 const RENTED_BOOKS = document.getElementById('rented-books');
+const CHECK_CARD_BUTTON = document.querySelector('.card__submit');
+const FORM_FIND_CARD = document.querySelector('.card__find-card');
+const POPUP_BUY_LIBRARY_CARD = document.querySelector(
+  '.popup-buy-library-card'
+);
+const POPUP_BUY_LIBRARY_CARD_FORM = document.getElementById(
+  'buy-library-card-form'
+);
+const FAVORITES_BUTTONS_ALL = document.querySelectorAll('.favorites__button');
 
 let users = [];
 let usersCollection = [];
@@ -405,6 +415,10 @@ let loginDataIsCorrect;
 let isLoggedIn = false;
 let userPosition;
 
+CHECK_CARD_BUTTON.addEventListener('click', (event) => {
+  event.preventDefault();
+});
+
 function createNewUser() {
   user.firstname = FIRSTNAME_INPUT.value.trim().toLowerCase();
   user.lastname = LASTNAME_INPUT.value.trim().toLowerCase();
@@ -413,6 +427,7 @@ function createNewUser() {
   user.visits = 1;
   user.books = [];
   user.bookTitles = [];
+  user.ownLibraryCard = false;
   user.cardnumber = Math.floor(Math.pow(16, 9) * Math.random()).toString(16);
   for (let i = 0; i < 7; i++) {
     if (user.cardnumber.length < 9) {
@@ -481,8 +496,14 @@ function logOut(event) {
     POPUP_PROFILE_VISITS.textContent = '';
     POPUP_PROFILE_BOOKS_NUMBER.textContent = '';
     isLoggedIn = false;
+    BOOKS.forEach((book) => {
+      book.removeEventListener('click', openBuyLibraryCard);
+    });
     userCanBuyBookOff();
     profileRemoveAllRentedBooks();
+    FAVORITES_BUTTONS_ALL.forEach((button) => {
+      button.classList.remove('own');
+    });
   }
 }
 
@@ -507,8 +528,10 @@ function addFirstUser() {
   });
   clearFormAndClose();
   isLoggedIn = true;
-  userCanBuyBookOn();
   displayPersonalUserData();
+  BOOKS.forEach((book) => {
+    book.addEventListener('click', openBuyLibraryCard);
+  });
 }
 
 function addNextUser() {
@@ -533,8 +556,10 @@ function addNextUser() {
     });
     clearFormAndClose();
     isLoggedIn = true;
-    userCanBuyBookOn();
     displayPersonalUserData();
+    BOOKS.forEach((book) => {
+      book.addEventListener('click', openBuyLibraryCard);
+    });
   } else {
     console.log('ошибка добавления нового пользователя');
     alert(
@@ -589,7 +614,7 @@ function logInDataProcessing(event) {
 
   if (!usersCollection || usersCollection.length === 0) {
     alert(
-      `User with e-mail ${emailAttempt} not found! You need to register before log in.`
+      `User with e-mail or readers card ${emailAttempt} not found! You need to register before log in.`
     );
     return;
   }
@@ -669,7 +694,13 @@ function logInDataProcessing(event) {
   disableOwnBookBuyButtons();
   displayPersonalUserData();
   clearLoginAndClose();
-  userCanBuyBookOn();
+  if (!user.ownLibraryCard) {
+    BOOKS.forEach((book) => {
+      book.addEventListener('click', openBuyLibraryCard);
+    });
+  } else {
+    userCanBuyBookOn();
+  }
 }
 
 LOGIN_FORM.addEventListener('submit', logInDataProcessing);
@@ -729,6 +760,9 @@ function escapeFunction(event) {
     popupLoginWindow.classList.remove('open');
     DROP_MENU_WITH_AUTH.classList.remove('drop-menu_active');
     POPUP_MY_PROFILE.classList.remove('open');
+    POPUP_BUY_LIBRARY_CARD.classList.remove('open');
+    POPUP_BUY_LIBRARY_CARD_FORM.reset();
+    POPUP_BUY_LIBRARY_CARD.removeEventListener('keyup', activateBuyButton);
   }
 }
 document.addEventListener('keyup', escapeFunction);
@@ -754,8 +788,10 @@ function userCanBuyBookOff() {
 
 function bookBuyHandler(event) {
   if (event.target.closest('.favorites__button')) {
-    let bookTitle = this.children[2].firstElementChild.textContent;
-    let bookAuthor = this.children[2].lastElementChild.textContent.slice(3);
+    let bookTitle = this.children[2].firstElementChild.textContent.trim();
+    let bookAuthor = this.children[2].lastElementChild.textContent
+      .trim()
+      .replace('By ', '');
     console.log('title:', bookTitle);
     console.log('author:', bookAuthor);
     const bookItem = `${bookTitle}, ${bookAuthor}`;
@@ -777,7 +813,7 @@ function disableOwnBookBuyButtons() {
 }
 
 function checkOwnBooks(book) {
-  let bookTitle = book.children[2].firstElementChild.textContent;
+  let bookTitle = book.children[2].firstElementChild.textContent.trim();
   if (user.bookTitles && user.bookTitles.includes(bookTitle)) {
     book.children[4].classList.add('own');
     console.log(`book ${bookTitle} is own`);
@@ -797,3 +833,82 @@ function profileRemoveAllRentedBooks() {
     RENTED_BOOKS.firstChild.remove();
   }
 }
+// Popup Buy Library Card functionality start
+
+function openBuyLibraryCard(event) {
+  if (event.target.closest('.favorites__button') && isLoggedIn) {
+    POPUP_BUY_LIBRARY_CARD.classList.add('open');
+    BUY_LIBRARY_CARD_BUTTON.setAttribute('disabled', true);
+    BUY_LIBRARY_CARD_BUTTON.classList.remove('active');
+    POPUP_BUY_LIBRARY_CARD.addEventListener('keyup', activateBuyButton);
+    POPUP_BUY_LIBRARY_CARD_FORM.addEventListener('submit', getLibraryCard);
+    POPUP_BUY_LIBRARY_CARD.addEventListener('click', function (event) {
+      if (
+        !event.target.closest('.popup-buy-library-card__content') ||
+        event.target.closest('.popup-buy-library-card__close-button')
+      ) {
+        POPUP_BUY_LIBRARY_CARD.classList.remove('open');
+        POPUP_BUY_LIBRARY_CARD.removeEventListener('keyup', activateBuyButton);
+        POPUP_BUY_LIBRARY_CARD_FORM.reset();
+      }
+    });
+  }
+}
+
+const CARD_NUMBER_INPUT = document.getElementById('bank-card-number');
+const EXPIRATION_CODE_MONTH_INPUT = document.getElementById(
+  'expiration-code-month'
+);
+const EXPIRATION_CODE_YEAR_INPUT = document.getElementById(
+  'expiration-code-year'
+);
+const CVC_INPUT = document.getElementById('cvc');
+const CARDHOLDER_NAME_INPUT = document.getElementById('cardholder-name');
+const POSTAL_CODE_INPUT = document.getElementById('postal-code');
+const CITY_TOWN_INPUT = document.getElementById('city-town');
+const BUY_LIBRARY_CARD_BUTTON = document.querySelector(
+  '.popup__buy-library-card-button'
+);
+
+function activateBuyButton() {
+  const input1 = CARD_NUMBER_INPUT.value.trim();
+  const input2 = EXPIRATION_CODE_MONTH_INPUT.value.trim();
+  const input3 = EXPIRATION_CODE_YEAR_INPUT.value.trim();
+  const input4 = CVC_INPUT.value.trim();
+  const input5 = CARDHOLDER_NAME_INPUT.value.trim();
+  const input6 = POSTAL_CODE_INPUT.value.trim();
+  const input7 = CITY_TOWN_INPUT.value.trim();
+  if (
+    input1 &&
+    input1.length > 0 &&
+    input2 &&
+    input2.length > 0 &&
+    input3 &&
+    input3.length > 0 &&
+    input4 &&
+    input4.length > 0 &&
+    input5 &&
+    input5.length > 0 &&
+    input6 &&
+    input6.length > 0 &&
+    input7 &&
+    input7.length > 0
+  ) {
+    BUY_LIBRARY_CARD_BUTTON.removeAttribute('disabled');
+    BUY_LIBRARY_CARD_BUTTON.classList.add('active');
+  }
+}
+
+function getLibraryCard(event) {
+  event.preventDefault();
+  user.ownLibraryCard = true;
+  usersCollection[userPosition] = user;
+  localStorage.setItem('users', JSON.stringify(usersCollection));
+  BOOKS.forEach((book) => {
+    book.removeEventListener('click', openBuyLibraryCard);
+  });
+  userCanBuyBookOn();
+  POPUP_BUY_LIBRARY_CARD_FORM.reset();
+  POPUP_BUY_LIBRARY_CARD.classList.remove('open');
+}
+// Popup Buy Library Card functionality end
