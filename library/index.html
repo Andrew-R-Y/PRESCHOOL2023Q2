@@ -769,12 +769,14 @@
                     class="card__input card__input-name"
                     placeholder="Reader's name"
                     pattern="^[A-Za-z0-9\-]+$"
+                    title="Only firstname (or lastname) - one word, letters and digits are allowed, spaces not allowed"
                   />
                   <input
                     type="text"
                     class="card__input card__input-number"
                     placeholder="Card number"
                     pattern="^[A-Za-z0-9\-]+$"
+                    title="Only one word - card number, letters and digits are allowed, spaces not allowed"
                   />
                 </div>
                 <button class="card__submit card__submit_active" type="submit">
@@ -932,12 +934,21 @@
                 type="text"
                 class="popup__input"
                 id="first-name"
+                pattern="^[A-Za-z0-9\-]+$"
+                title="Only one word, letters and digits are allowed, spaces not allowed"
                 required
               />
             </div>
             <div class="popup__item">
               <label for="last-name" class="popup__label"> Last name </label>
-              <input type="text" class="popup__input" id="last-name" required />
+              <input
+                type="text"
+                class="popup__input"
+                id="last-name"
+                pattern="^[A-Za-z0-9\-]+$"
+                title="Only one word, letters and digits are allowed, spaces not allowed"
+                required
+              />
             </div>
             <div class="popup__item">
               <label for="email" class="popup__label"> E-mail </label>

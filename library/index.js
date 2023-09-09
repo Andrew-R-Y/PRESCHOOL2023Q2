@@ -187,7 +187,6 @@ function setEventListener(item) {
 }
 
 function changeSeason(event) {
-  // BOOKS_CONTAINER.style.height = booksContainerHeight + 'px';
   activeSeason = event.target.value;
 
   const removeFadeIn = function () {
@@ -234,8 +233,6 @@ function changeSeason(event) {
       book.classList.remove('is-active');
       book.classList.remove('fade-in');
       book.removeEventListener('animationend', removeFadeIn);
-      //
-      //
     } else if (
       book.classList.contains('is-active') &&
       book.classList.contains('fade-out')
@@ -243,8 +240,6 @@ function changeSeason(event) {
       book.classList.remove('is-active');
       book.classList.remove('fade-out');
       book.removeEventListener('animationend', changeActive);
-      //
-      //
     } else if (book.classList.contains('is-active')) {
       book.classList.add('fade-out');
       book.addEventListener('animationend', changeActive);
@@ -262,8 +257,6 @@ function changeSeason(event) {
   });
   previousSeason = activeSeason;
 }
-
-// let booksContainerHeight = BOOKS_CONTAINER.offsetHeight;
 // Favorites seasons selector end
 
 // Favorites selector area background-color on scroll start
@@ -428,10 +421,6 @@ let loginDataIsCorrect;
 let isLoggedIn = false;
 let userPosition;
 
-CHECK_CARD_BUTTON.addEventListener('click', (event) => {
-  event.preventDefault();
-});
-
 function createNewUser() {
   user.firstname = FIRSTNAME_INPUT.value.trim().toLowerCase();
   user.lastname = LASTNAME_INPUT.value.trim().toLowerCase();
@@ -562,20 +551,10 @@ document.addEventListener('click', copyCard);
 document.addEventListener('click', logOut);
 
 function addFirstUser() {
-  console.log(
-    'в хранилище пока нет пользователей, добавляю нового пользователя',
-    user.firstname,
-    user.lastname
-  );
   users.push(user);
   usersCollection = users;
   localStorage.setItem('users', JSON.stringify(usersCollection));
   usersCollection = JSON.parse(localStorage.getItem('users'));
-  console.log('количество пользователей в базе:', usersCollection.length);
-  console.log('полный перечень пользователей:');
-  usersCollection.forEach((item) => {
-    console.log(item);
-  });
   clearFormAndClose();
   isLoggedIn = true;
   displayPersonalUserData();
@@ -588,25 +567,15 @@ function addFirstUser() {
 }
 
 function addNextUser() {
-  console.log('в хранилище уже есть пользователи, проверяю на совпадения');
   userIsUnique = true;
   usersCollection.forEach((item) => {
     if (user.email === item.email) {
-      console.log(
-        'такой пользователь уже существует, войдите в учётную запись'
-      );
       userIsUnique = false;
     }
   });
   if (userIsUnique) {
-    console.log('добавляю нового пользователя:', user.firstname, user.lastname);
     usersCollection.push(user);
     localStorage.setItem('users', JSON.stringify(usersCollection));
-    console.log('количество пользователей в базе:', usersCollection.length);
-    console.log('полный перечень пользователей:');
-    usersCollection.forEach((item) => {
-      console.log(item);
-    });
     clearFormAndClose();
     isLoggedIn = true;
     displayPersonalUserData();
@@ -617,7 +586,6 @@ function addNextUser() {
       book.addEventListener('click', openBuyLibraryCard);
     });
   } else {
-    console.log('ошибка добавления нового пользователя');
     alert(
       'Такой пользователь уже существует. Войдите в учётную запись или придумайте что-то новенькое!'
     );
@@ -641,10 +609,6 @@ function UserDataProcessing(event) {
     userPosition = usersCollection.length;
     addNextUser();
   }
-
-  usersData = JSON.stringify(user);
-
-  localStorage.setItem('user', usersData);
 }
 
 REGISTER_FORM.addEventListener('submit', UserDataProcessing);
@@ -824,6 +788,9 @@ function escapeFunction(event) {
     POPUP_BUY_LIBRARY_CARD.classList.remove('open');
     POPUP_BUY_LIBRARY_CARD_FORM.reset();
     POPUP_BUY_LIBRARY_CARD.removeEventListener('keyup', activateBuyButton);
+    FORM_FIND_CARD.reset();
+    BOTTOM_PROFILE_MENU.classList.remove('bottom-profile-menu_active');
+    CHECK_CARD_BUTTON.classList.add('card__submit_active');
   }
 }
 document.addEventListener('keyup', escapeFunction);
@@ -852,9 +819,7 @@ function bookBuyHandler(event) {
     let bookTitle = this.children[2].firstElementChild.textContent.trim();
     let bookAuthor = this.children[2].lastElementChild.textContent
       .trim()
-      .replace('By ', '');
-    console.log('title:', bookTitle);
-    console.log('author:', bookAuthor);
+      .slice(3);
     const bookItem = `${bookTitle}, ${bookAuthor}`;
     user.books.push(bookItem);
     user.bookTitles.push(bookTitle);
@@ -878,7 +843,6 @@ function checkOwnBooks(book) {
   let bookTitle = book.children[2].firstElementChild.textContent.trim();
   if (user.bookTitles && user.bookTitles.includes(bookTitle)) {
     book.children[4].classList.add('own');
-    console.log(`book ${bookTitle} is own`);
   }
 }
 
@@ -974,3 +938,85 @@ function getLibraryCard(event) {
   POPUP_BUY_LIBRARY_CARD.classList.remove('open');
 }
 // Popup Buy Library Card functionality end
+
+// Find Library Card start
+function findLibraryCard(event) {
+  event.preventDefault();
+  usersCollection = JSON.parse(localStorage.getItem('users'));
+
+  if (!usersCollection || usersCollection.length === 0) {
+    return;
+  }
+
+  let cardNumberAttempt = CARD_INPUT_NUMBER.value;
+  let userNameAttempt = CARD_INPUT_NAME.value;
+
+  if (cardNumberAttempt) {
+    cardNumberAttempt = cardNumberAttempt.trim();
+    if (cardNumberAttempt) {
+      cardNumberAttempt = cardNumberAttempt.toLowerCase();
+    } else {
+      alert('Library Card field must not be empty!');
+      return;
+    }
+  } else {
+    return;
+  }
+
+  if (userNameAttempt) {
+    userNameAttempt = userNameAttempt.trim();
+    if (userNameAttempt) {
+      userNameAttempt = userNameAttempt.toLowerCase();
+    } else {
+      alert('User name field must not be empty!');
+      return;
+    }
+  } else {
+    return;
+  }
+
+  user = usersCollection.find((item, index) => {
+    if (cardNumberAttempt === item.cardnumber) {
+      userPosition = index;
+      if (
+        item.firstname === userNameAttempt ||
+        item.lastname === userNameAttempt
+      ) {
+        return true;
+      } else {
+        result = 'user not found!';
+        return false;
+      }
+    } else {
+      return false;
+    }
+  });
+
+  if (user) {
+    addBottomUserData();
+    setTimeout(removeBottomUserData, 10000);
+  } else {
+    alert(result);
+  }
+}
+
+function addBottomUserData() {
+  BOTTOM_PROFILE_VISITS.textContent = user.visits;
+  BOTTOM_PROFILE_BOOKS_NUMBER.textContent = user.books.length;
+  CHECK_CARD_BUTTON.classList.remove('card__submit_active');
+  BOTTOM_PROFILE_MENU.classList.add('bottom-profile-menu_active');
+  CARD_INPUT_NAME.value = `${user.firstname[0].toUpperCase()}${user.firstname.slice(
+    1
+  )} ${user.lastname[0].toUpperCase()}${user.lastname.slice(1)}`;
+  CARD_INPUT_NUMBER.value = user.cardnumber.toUpperCase();
+}
+
+function removeBottomUserData() {
+  BOTTOM_PROFILE_MENU.classList.remove('bottom-profile-menu_active');
+  CHECK_CARD_BUTTON.classList.add('card__submit_active');
+  FORM_FIND_CARD.reset();
+  user = {};
+}
+
+FORM_FIND_CARD.addEventListener('submit', findLibraryCard);
+// Find Library Card end
