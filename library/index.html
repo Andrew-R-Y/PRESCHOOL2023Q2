@@ -777,9 +777,47 @@
                     pattern="^[A-Za-z0-9\-]+$"
                   />
                 </div>
-                <button class="card__submit" type="submit">
+                <button class="card__submit card__submit_active" type="submit">
                   Check the card
                 </button>
+
+                <!-- bottom profile menu start -->
+                <div class="bottom-profile-menu">
+                  <div class="my-profile__card-item">
+                    <p class="my-profile__item-name">visits</p>
+                    <img
+                      class="my-profile__item-image"
+                      src="./img/svg/my-profile_union.svg"
+                      alt="user logo"
+                    />
+                    <div class="my-profile__number-block">
+                      <p class="my-profile__number my-profile-visits"></p>
+                    </div>
+                  </div>
+                  <div class="my-profile__card-item">
+                    <p class="my-profile__item-name">bonuses</p>
+                    <img
+                      class="my-profile__item-image"
+                      src="./img/svg/my-profile_star.svg"
+                      alt="star logo"
+                    />
+                    <div class="my-profile__number-block">
+                      <p class="my-profile__number">1240</p>
+                    </div>
+                  </div>
+                  <div class="my-profile__card-item">
+                    <p class="my-profile__item-name">books</p>
+                    <img
+                      class="my-profile__item-image"
+                      src="./img/svg/my-profile_book.svg"
+                      alt="book logo"
+                    />
+                    <div class="my-profile__number-block">
+                      <p class="my-profile__number my-profile-books-number"></p>
+                    </div>
+                  </div>
+                </div>
+                <!-- bottom profile menu end -->
               </div>
             </form>
             <div class="card__get-card">
@@ -789,11 +827,14 @@
                 or you can register a new account
               </p>
               <div class="card__buttons">
-                <button class="card__button popup-register_link-button">
+                <button class="card__button popup-register_link-button active">
                   Sign Up
                 </button>
-                <button class="card__button popup-login_link-button">
+                <button class="card__button popup-login_link-button active">
                   Log in
+                </button>
+                <button class="card__button profile-link-button">
+                  Profile
                 </button>
               </div>
             </div>
@@ -1007,7 +1048,7 @@
                 />
                 <div class="popup-my-profile__number-block">
                   <p
-                    class="popup-my-profile__number popup-my-profile__visits"
+                    class="popup-my-profile__number popup-my-profile-visits"
                   ></p>
                 </div>
               </div>
@@ -1101,8 +1142,8 @@
                     class="popup__input popup__short-input"
                     id="expiration-code-month"
                     maxlength="2"
-                    pattern="[0-9]{2}"
-                    title="Month must be 2-digit number"
+                    pattern="[0-1]{0,1}[0-9]{1}"
+                    title="Month must be a two-digit number no more than 12"
                     required
                   />
                   <input
