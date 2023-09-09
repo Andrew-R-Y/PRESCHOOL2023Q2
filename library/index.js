@@ -417,6 +417,8 @@ const BOTTOM_SING_UP_BUTTON = document.querySelector(
 );
 const BOTTOM_LOG_IN_BUTTON = document.querySelector('.popup-login_link-button');
 const BOTTOM_PROFILE_BUTTON = document.querySelector('.profile-link-button');
+const CARD_INPUT_NAME = document.querySelector('.card__input-name');
+const CARD_INPUT_NUMBER = document.querySelector('.card__input-number');
 
 let users = [];
 let usersCollection = [];
@@ -504,6 +506,10 @@ function displayBottomProfileMenu() {
   BOTTOM_SING_UP_BUTTON.classList.remove('active');
   BOTTOM_LOG_IN_BUTTON.classList.remove('active');
   BOTTOM_PROFILE_BUTTON.classList.add('active');
+  CARD_INPUT_NAME.value = `${user.firstname[0].toUpperCase()}${user.firstname.slice(
+    1
+  )} ${user.lastname[0].toUpperCase()}${user.lastname.slice(1)}`;
+  CARD_INPUT_NUMBER.value = user.cardnumber.toUpperCase();
 }
 
 function removeBottomProfileMenu() {
@@ -516,6 +522,8 @@ function removeBottomProfileMenu() {
   BOTTOM_SING_UP_BUTTON.classList.add('active');
   BOTTOM_LOG_IN_BUTTON.classList.add('active');
   BOTTOM_PROFILE_BUTTON.classList.remove('active');
+  CARD_INPUT_NAME.value = '';
+  CARD_INPUT_NUMBER.value = '';
 }
 
 function logOut(event) {
