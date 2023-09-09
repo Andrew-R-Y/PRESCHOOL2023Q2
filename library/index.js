@@ -187,7 +187,7 @@ function setEventListener(item) {
 }
 
 function changeSeason(event) {
-  BOOKS_CONTAINER.style.height = booksContainerHeight + 'px';
+  // BOOKS_CONTAINER.style.height = booksContainerHeight + 'px';
   activeSeason = event.target.value;
 
   const removeFadeIn = function () {
@@ -263,7 +263,7 @@ function changeSeason(event) {
   previousSeason = activeSeason;
 }
 
-let booksContainerHeight = BOOKS_CONTAINER.offsetHeight;
+// let booksContainerHeight = BOOKS_CONTAINER.offsetHeight;
 // Favorites seasons selector end
 
 // Favorites selector area background-color on scroll start
@@ -386,11 +386,13 @@ const POPUP_PROFILE_FULLNAME = document.querySelector(
   '.popup-my-profile__name-inside'
 );
 const POPUP_PROFILE_INITIALS = document.getElementById('my-profile__initials');
-const POPUP_PROFILE_VISITS = document.querySelector(
-  '.popup-my-profile__visits'
-);
+const POPUP_PROFILE_VISITS = document.querySelector('.popup-my-profile-visits');
+const BOTTOM_PROFILE_VISITS = document.querySelector('.my-profile-visits');
 const POPUP_PROFILE_BOOKS_NUMBER = document.querySelector(
   '.popup-my-profile-books-number'
+);
+const BOTTOM_PROFILE_BOOKS_NUMBER = document.querySelector(
+  '.my-profile-books-number'
 );
 
 const LOGIN_FORM = document.getElementById('login-form');
@@ -406,6 +408,15 @@ const POPUP_BUY_LIBRARY_CARD_FORM = document.getElementById(
   'buy-library-card-form'
 );
 const FAVORITES_BUTTONS_ALL = document.querySelectorAll('.favorites__button');
+const BOTTOM_PROFILE_MENU = document.querySelector('.bottom-profile-menu');
+const FIND_CARD_HEADING = document.querySelector('.card__subheading');
+const CARD_FIRST_LINE = document.querySelector('.card__firstline');
+const CARD_SECOND_LINE = document.querySelector('.card__secondline');
+const BOTTOM_SING_UP_BUTTON = document.querySelector(
+  '.popup-register_link-button'
+);
+const BOTTOM_LOG_IN_BUTTON = document.querySelector('.popup-login_link-button');
+const BOTTOM_PROFILE_BUTTON = document.querySelector('.profile-link-button');
 
 let users = [];
 let usersCollection = [];
@@ -478,7 +489,33 @@ function displayPersonalUserData() {
   POPUP_PROFILE_FULLNAME.textContent = fullName;
   POPUP_PROFILE_INITIALS.textContent = user.firstname[0] + user.lastname[0];
   POPUP_PROFILE_VISITS.textContent = user.visits;
+  BOTTOM_PROFILE_VISITS.textContent = user.visits;
   POPUP_PROFILE_BOOKS_NUMBER.textContent = user.books.length;
+  BOTTOM_PROFILE_BOOKS_NUMBER.textContent = user.books.length;
+}
+
+function displayBottomProfileMenu() {
+  CHECK_CARD_BUTTON.classList.remove('card__submit_active');
+  BOTTOM_PROFILE_MENU.classList.add('bottom-profile-menu_active');
+  FIND_CARD_HEADING.textContent = 'Your Library card';
+  CARD_FIRST_LINE.textContent = 'Visit your profile';
+  CARD_SECOND_LINE.textContent =
+    'With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.';
+  BOTTOM_SING_UP_BUTTON.classList.remove('active');
+  BOTTOM_LOG_IN_BUTTON.classList.remove('active');
+  BOTTOM_PROFILE_BUTTON.classList.add('active');
+}
+
+function removeBottomProfileMenu() {
+  CHECK_CARD_BUTTON.classList.add('card__submit_active');
+  BOTTOM_PROFILE_MENU.classList.remove('bottom-profile-menu_active');
+  FIND_CARD_HEADING.textContent = 'Find your Library card';
+  CARD_FIRST_LINE.textContent = 'Get a reader card';
+  CARD_SECOND_LINE.textContent =
+    'You will be able to see a reader card after logging into account or you can register a new account';
+  BOTTOM_SING_UP_BUTTON.classList.add('active');
+  BOTTOM_LOG_IN_BUTTON.classList.add('active');
+  BOTTOM_PROFILE_BUTTON.classList.remove('active');
 }
 
 function logOut(event) {
@@ -494,8 +531,13 @@ function logOut(event) {
     POPUP_PROFILE_FULLNAME.textContent = '';
     POPUP_PROFILE_INITIALS.textContent = '';
     POPUP_PROFILE_VISITS.textContent = '';
+    BOTTOM_PROFILE_VISITS.textContent = '';
     POPUP_PROFILE_BOOKS_NUMBER.textContent = '';
+    BOTTOM_PROFILE_BOOKS_NUMBER.textContent = '';
     isLoggedIn = false;
+
+    removeBottomProfileMenu();
+
     BOOKS.forEach((book) => {
       book.removeEventListener('click', openBuyLibraryCard);
     });
@@ -529,6 +571,9 @@ function addFirstUser() {
   clearFormAndClose();
   isLoggedIn = true;
   displayPersonalUserData();
+
+  displayBottomProfileMenu();
+
   BOOKS.forEach((book) => {
     book.addEventListener('click', openBuyLibraryCard);
   });
@@ -557,6 +602,9 @@ function addNextUser() {
     clearFormAndClose();
     isLoggedIn = true;
     displayPersonalUserData();
+
+    displayBottomProfileMenu();
+
     BOOKS.forEach((book) => {
       book.addEventListener('click', openBuyLibraryCard);
     });
@@ -701,6 +749,8 @@ function logInDataProcessing(event) {
   } else {
     userCanBuyBookOn();
   }
+
+  displayBottomProfileMenu();
 }
 
 LOGIN_FORM.addEventListener('submit', logInDataProcessing);
@@ -733,7 +783,10 @@ const POPUP_MY_PROFILE = document.querySelector('.popup-my-profile');
 const popupMyProfileOpenLink = document.querySelector('.popup-profile_link');
 
 function openMyProfilePopup(event) {
-  if (event.target.closest('.popup-profile_link')) {
+  if (
+    event.target.closest('.popup-profile_link') ||
+    event.target.closest('.profile-link-button')
+  ) {
     POPUP_MY_PROFILE.classList.add('open');
     POPUP_MY_PROFILE.addEventListener('click', function (event) {
       if (
@@ -801,6 +854,7 @@ function bookBuyHandler(event) {
     let numberOfBooks = Number(POPUP_PROFILE_BOOKS_NUMBER.textContent);
     numberOfBooks += 1;
     POPUP_PROFILE_BOOKS_NUMBER.textContent = numberOfBooks;
+    BOTTOM_PROFILE_BOOKS_NUMBER.textContent = numberOfBooks;
     this.children[4].classList.add('own');
     this.removeEventListener('click', bookBuyHandler);
     usersCollection[userPosition] = user;
