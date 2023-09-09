@@ -1012,7 +1012,6 @@ input:checked + label + label.favorites__label {
   height: 272px;
   background-color: var(--color-active);
   padding: 20px;
-  margin-bottom: 20px;
 }
 
 .card__paragraph {
@@ -1025,19 +1024,19 @@ input:checked + label + label.favorites__label {
   display: block;
   height: 66px;
   width: 100%;
+  margin-bottom: 25px;
   padding-left: 20px;
   border-radius: 10px;
-  margin-bottom: 25px;
   font: 400 30px/50px 'Forum', sans-serif;
   letter-spacing: 0.6px;
   color: var(--color-active);
 }
 
 .card__submit {
-  display: block;
+  display: none;
   box-sizing: border-box;
   width: 242px;
-  margin: 0 auto;
+  margin: 20px auto 0;
   padding: 9px 38px;
   text-align: center;
   font: 700 20px 'Inter', sans-serif;
@@ -1047,6 +1046,9 @@ input:checked + label + label.favorites__label {
   border-radius: 2px;
   border: 1px solid var(--color-secondary-dark);
   transition: all 0.5s;
+}
+.card__submit.card__submit_active {
+  display: block;
 }
 
 @media (hover: hover) {
@@ -1075,6 +1077,7 @@ input:checked + label + label.favorites__label {
 }
 
 .card__secondline {
+  max-width: 456px;
   font: 400 20px/40px 'Inter', sans-serif;
   letter-spacing: 0.4px;
   text-align: right;
@@ -1097,6 +1100,30 @@ input:checked + label + label.favorites__label {
 
 .card__button:first-child {
   margin-right: 15px;
+}
+
+.popup-register_link-button {
+  display: none;
+}
+
+.popup-register_link-button.active {
+  display: inline-block;
+}
+
+.popup-login_link-button {
+  display: none;
+}
+
+.popup-login_link-button.active {
+  display: inline-block;
+}
+
+.profile-link-button {
+  display: none;
+}
+
+.profile-link-button.active {
+  display: inline-block;
 }
 
 @media (hover: hover) {
@@ -1611,6 +1638,7 @@ input:checked + label + label.favorites__label {
   display: flex;
   justify-content: center;
 }
+
 .popup-my-profile__number {
   color: var(--color-dark);
   font: 400 10px/20px 'Inter', sans-serif;
@@ -1819,3 +1847,46 @@ li.popup-my-profile__book-item + li {
   color: var(--color-secondary-dark);
 }
 /* Popup Buy Library Card styles end */
+
+/* Bottom profile menu styles start */
+.bottom-profile-menu {
+  height: 63px;
+  width: 169px;
+  justify-content: space-between;
+  margin: 15px auto;
+  display: none;
+}
+
+.bottom-profile-menu.bottom-profile-menu_active {
+  display: flex;
+}
+
+.my-profile__card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-profile__item-name {
+  font: 400 10px/20px 'Inter', sans-serif;
+  letter-spacing: 0.2px;
+  text-transform: capitalize;
+}
+
+.my-profile__item-image {
+  display: block;
+  width: 20px;
+  height: 21px;
+}
+
+.my-profile__number-block {
+  display: flex;
+  justify-content: center;
+}
+.my-profile__number {
+  color: var(--color-dark);
+  font: 400 10px/20px 'Inter', sans-serif;
+  letter-spacing: 0.2px;
+}
+/* Bottom profile menu styles end */
