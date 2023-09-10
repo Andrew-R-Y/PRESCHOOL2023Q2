@@ -553,8 +553,8 @@ document.addEventListener('click', logOut);
 function addFirstUser() {
   users.push(user);
   usersCollection = users;
-  localStorage.setItem('users', JSON.stringify(usersCollection));
-  usersCollection = JSON.parse(localStorage.getItem('users'));
+  localStorage.setItem('superSquad', JSON.stringify(usersCollection));
+  usersCollection = JSON.parse(localStorage.getItem('superSquad'));
   clearFormAndClose();
   isLoggedIn = true;
   displayPersonalUserData();
@@ -575,7 +575,7 @@ function addNextUser() {
   });
   if (userIsUnique) {
     usersCollection.push(user);
-    localStorage.setItem('users', JSON.stringify(usersCollection));
+    localStorage.setItem('superSquad', JSON.stringify(usersCollection));
     clearFormAndClose();
     isLoggedIn = true;
     displayPersonalUserData();
@@ -600,7 +600,7 @@ function UserDataProcessing(event) {
     return;
   }
 
-  usersCollection = JSON.parse(localStorage.getItem('users'));
+  usersCollection = JSON.parse(localStorage.getItem('superSquad'));
 
   if (!usersCollection || usersCollection.length === 0) {
     addFirstUser();
@@ -630,7 +630,7 @@ function logInDataProcessing(event) {
     return;
   }
 
-  usersCollection = JSON.parse(localStorage.getItem('users'));
+  usersCollection = JSON.parse(localStorage.getItem('superSquad'));
 
   if (!usersCollection || usersCollection.length === 0) {
     alert(
@@ -700,7 +700,7 @@ function logInDataProcessing(event) {
   user.visits += 1;
   usersCollection[userPosition] = user;
 
-  localStorage.setItem('users', JSON.stringify(usersCollection));
+  localStorage.setItem('superSquad', JSON.stringify(usersCollection));
 
   if (user && user.books && user.books.length > 0) {
     user.books.forEach(function (book) {
@@ -831,7 +831,7 @@ function bookBuyHandler(event) {
     this.children[4].classList.add('own');
     this.removeEventListener('click', bookBuyHandler);
     usersCollection[userPosition] = user;
-    localStorage.setItem('users', JSON.stringify(usersCollection));
+    localStorage.setItem('superSquad', JSON.stringify(usersCollection));
   }
 }
 
@@ -922,6 +922,12 @@ function activateBuyButton() {
   ) {
     BUY_LIBRARY_CARD_BUTTON.removeAttribute('disabled');
     BUY_LIBRARY_CARD_BUTTON.classList.add('active');
+  } else if (
+    BUY_LIBRARY_CARD_BUTTON.classList.contains('active') &&
+    !BUY_LIBRARY_CARD_BUTTON.hasAttribute('disabled')
+  ) {
+    BUY_LIBRARY_CARD_BUTTON.setAttribute('disabled', true);
+    BUY_LIBRARY_CARD_BUTTON.classList.remove('active');
   }
 }
 
@@ -929,7 +935,7 @@ function getLibraryCard(event) {
   event.preventDefault();
   user.ownLibraryCard = true;
   usersCollection[userPosition] = user;
-  localStorage.setItem('users', JSON.stringify(usersCollection));
+  localStorage.setItem('superSquad', JSON.stringify(usersCollection));
   BOOKS.forEach((book) => {
     book.removeEventListener('click', openBuyLibraryCard);
   });
@@ -942,7 +948,7 @@ function getLibraryCard(event) {
 // Find Library Card start
 function findLibraryCard(event) {
   event.preventDefault();
-  usersCollection = JSON.parse(localStorage.getItem('users'));
+  usersCollection = JSON.parse(localStorage.getItem('superSquad'));
 
   if (!usersCollection || usersCollection.length === 0) {
     return;
