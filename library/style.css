@@ -321,6 +321,12 @@ html {
 }
 
 @media (max-width: 600px) {
+  .welcome {
+    height: auto;
+  }
+  .welcome__wrapper {
+    padding: 0;
+  }
   .welcome__content {
     width: 100%;
     font-size: 30px;
@@ -381,6 +387,16 @@ html {
   margin-top: 40px;
   text-align: center;
   font: 400 20px/40px 'Inter', sans-serif;
+}
+
+@media (max-width: 600px) {
+  .section-heading__underscore {
+    height: 10px;
+  }
+  .section-paragraph {
+    margin-top: 20px;
+    font: 400 14px/28px 'Inter', sans-serif;
+  }
 }
 
 .about__slider-block {
@@ -808,7 +824,8 @@ input:checked + label + label.favorites__label {
   }
 
   .favorites__books-container {
-    margin-left: 30px;
+    margin-left: 20px;
+    margin-right: 10px;
   }
 
   .favorites__book-card {
@@ -816,7 +833,7 @@ input:checked + label + label.favorites__label {
     box-sizing: border-box;
     margin-bottom: 30px;
     margin-right: 40px;
-    margin-left: 20px;
+    margin-left: 0;
     flex-basis: 500px;
     flex-shrink: 1;
     position: relative;
@@ -826,6 +843,10 @@ input:checked + label + label.favorites__label {
 
   .favorites__label {
     padding-left: 0;
+  }
+
+  .section-heading {
+    font: 400 30px/30px 'Forum', sans-serif;
   }
 }
 
@@ -954,6 +975,50 @@ input:checked + label + label.favorites__label {
     align-self: flex-end;
   }
 }
+
+@media (max-width: 600px) {
+  .shop__beverages {
+    max-width: 100%;
+  }
+
+  .shop__meals {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .shop__menu-heading {
+    font: 400 30px/30px 'Forum', sans-serif;
+  }
+  .shop__menu-heading.right-side {
+  }
+
+  .shop__drink,
+  .shop__food {
+    width: auto;
+    font: 400 14px/21px 'Inter', sans-serif;
+    margin-right: 0;
+  }
+
+  .shop__drink,
+  .shop__food {
+    flex-grow: 2;
+    text-align: start;
+  }
+
+  .shop__menu-item {
+    height: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  .shop__line {
+    width: 20px;
+    /* flex-grow: 10; */
+  }
+}
 /* Coffee Shop styles end */
 
 /* Contacts styles start */
@@ -1036,6 +1101,34 @@ input:checked + label + label.favorites__label {
   .contacts__data {
     flex: 1 1 auto;
     padding-right: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .contacts__p-main:first-child {
+    margin-bottom: 20px;
+  }
+
+  .contacts__p-secondary {
+    margin-bottom: 10px;
+  }
+
+  .contacts__p-secondary:nth-child(4) {
+    margin-bottom: 20px;
+  }
+
+  .contacts__p-main:nth-child(5) {
+    margin-bottom: 20px;
+  }
+
+  .contacts__p-secondary:last-child {
+    margin-bottom: 20px;
+  }
+
+  .contacts__data {
+    font: 400 14px/21px 'Inter', sans-serif;
+    letter-spacing: 2px;
+    text-transform: capitalize;
   }
 }
 /* Contacts styles end */
@@ -1223,6 +1316,23 @@ input:checked + label + label.favorites__label {
 }
 
 @media (max-width: 600px) {
+  .card__subheading {
+    margin-bottom: 10px;
+    text-align: center;
+    font: 400 20px 'Inter', sans-serif;
+    letter-spacing: 0.6px;
+  }
+
+  .card__secondline {
+    max-width: 456px;
+    font: 400 14px/20px 'Inter', sans-serif;
+    letter-spacing: 0.4px;
+  }
+
+  .card__get-card {
+    height: 150px;
+  }
+
   .card__card-body {
     width: 100%;
     min-width: 300px;
