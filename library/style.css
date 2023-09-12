@@ -264,6 +264,12 @@ html {
     font-size: 22px;
   }
 }
+
+@media (max-width: 375px) {
+  .header__main-text {
+    font-size: 16px;
+  }
+}
 /* Header styles end */
 
 /* Welcome styles start */
@@ -318,6 +324,20 @@ html {
   .welcome__content {
     width: 100%;
     font-size: 30px;
+    top: 50vw;
+  }
+
+  .welcome > img {
+    height: 110vw;
+  }
+}
+
+@media (max-width: 400px) {
+  .welcome__content {
+    font-size: 25px;
+    line-height: 30px;
+    top: 50vw;
+    padding: 10vw;
   }
 }
 /* Welcome styles end */
@@ -538,6 +558,7 @@ p.favorites__choose {
   margin-left: -8px;
   margin-bottom: 30px;
   display: flex;
+  flex-wrap: wrap;
   gap: calc(0px + (70 - 0) * ((100vw - 400px) / (1440 - 400)));
 }
 
@@ -769,25 +790,29 @@ input:checked + label + label.favorites__label {
 
 @media (max-width: 600px) {
   .favorites__book-image {
-    width: 150px;
-    height: 225px;
+    width: 25%;
+    height: auto;
     object-fit: cover;
+    bottom: -5px;
   }
 
   .favorites__book-image img {
-    width: 150px;
-    height: 225px;
+    width: 100%;
+    height: 100%;
   }
 
   .favorites__book-description {
     font: 400 14px/35px 'Inter', sans-serif;
+    width: 110%;
+    padding-bottom: 30px;
   }
 
   .favorites__books-container {
     margin-left: 30px;
   }
+
   .favorites__book-card {
-    height: 500px;
+    height: auto;
     box-sizing: border-box;
     margin-bottom: 30px;
     margin-right: 40px;
@@ -795,7 +820,12 @@ input:checked + label + label.favorites__label {
     flex-basis: 500px;
     flex-shrink: 1;
     position: relative;
-    padding: 13px 120px 40px 19px;
+    padding: 13px 20% 40px 19px;
+    max-width: 100%;
+  }
+
+  .favorites__label {
+    padding-left: 0;
   }
 }
 
@@ -819,9 +849,16 @@ input:checked + label + label.favorites__label {
   }
 }
 
-@media (max-width: 600px) {
-  .favorites__label {
-    padding-left: 0;
+@media (max-width: 400px) {
+  .favorites__book-description {
+    font: 400 14px/20px 'Inter', sans-serif;
+    width: 110%;
+    padding-bottom: 30px;
+  }
+
+  .favorites__book-card {
+    max-height: 600px;
+    flex-basis: 450px;
   }
 }
 /* Favorites styles end */
@@ -1024,6 +1061,7 @@ input:checked + label + label.favorites__label {
   flex-grow: 0;
   margin-bottom: 21px;
 }
+
 .card__subheading {
   margin-bottom: 30px;
   text-align: center;
@@ -1080,6 +1118,7 @@ input:checked + label + label.favorites__label {
   border: 1px solid var(--color-secondary-dark);
   transition: all 0.5s;
 }
+
 .card__submit.card__submit_active {
   display: block;
 }
@@ -1182,6 +1221,49 @@ input:checked + label + label.favorites__label {
     text-align: center;
   }
 }
+
+@media (max-width: 600px) {
+  .card__card-body {
+    width: 100%;
+    min-width: 300px;
+    height: auto;
+  }
+
+  .card__find-card {
+    flex-shrink: 1;
+  }
+
+  .card__paragraph {
+    font: 400 22px/35px 'Forum', sans-serif;
+    letter-spacing: 0.6px;
+    margin-bottom: 15px;
+  }
+
+  .card__input {
+    height: 50px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    font: 400 20px/35px 'Forum', sans-serif;
+  }
+
+  .card__background {
+    height: auto;
+  }
+
+  .card__submit {
+    width: 60%;
+    max-width: 200px;
+    margin: 20px auto 0;
+    padding: 9px;
+    font: 700 15px 'Inter', sans-serif;
+    letter-spacing: 1px;
+    color: var(--color-secondary-dark);
+    background: #ffffff;
+    border-radius: 2px;
+    border: 1px solid var(--color-secondary-dark);
+    transition: all 0.5s;
+  }
+}
 /* Library card styles end */
 
 /* Footer styles start */
@@ -1281,6 +1363,29 @@ input:checked + label + label.favorites__label {
 
 .footer__school {
   padding-left: calc(20px + (80 - 20) * ((100vw - 768px) / (1440 - 768)));
+}
+
+@media (max-width: 600px) {
+  .footer__bottom-section {
+    height: 40px;
+    font: 400 13px 'Inter', sans-serif;
+    align-items: center;
+  }
+
+  .footer__wrapper {
+    padding: 10px 10px 0;
+  }
+
+  .footer__first-line,
+  .footer__second-line {
+    font: 400 13px/20px 'Inter', sans-serif;
+  }
+
+  .footer__year,
+  .footer__school,
+  .footer__github {
+    text-align: center;
+  }
 }
 /* Footer styles end */
 
