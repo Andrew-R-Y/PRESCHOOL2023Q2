@@ -258,6 +258,12 @@ html {
     transform: rotate(-45deg);
   }
 }
+
+@media (max-width: 600px) {
+  .header__main-text {
+    font-size: 22px;
+  }
+}
 /* Header styles end */
 
 /* Welcome styles start */
@@ -306,6 +312,13 @@ html {
   position: absolute;
   top: 310px;
   z-index: 1;
+}
+
+@media (max-width: 600px) {
+  .welcome__content {
+    width: 100%;
+    font-size: 30px;
+  }
 }
 /* Welcome styles end */
 
@@ -524,6 +537,8 @@ p.favorites__choose {
   margin-top: 40px;
   margin-left: -8px;
   margin-bottom: 30px;
+  display: flex;
+  gap: calc(0px + (70 - 0) * ((100vw - 400px) / (1440 - 400)));
 }
 
 .favorites__navigation-panel_move {
@@ -534,18 +549,6 @@ p.favorites__choose {
   display: inline-flex;
   width: 120px;
   align-items: flex-start;
-}
-
-.favorites__selector:first-child {
-  margin-right: 70px;
-}
-
-.favorites__selector:nth-child(2) {
-  margin-right: 65px;
-}
-
-.favorites__selector:nth-child(3) {
-  margin-right: 82px;
 }
 
 input.favorites__input {
@@ -596,20 +599,6 @@ input:checked + label + label.favorites__label {
     top: 0;
     left: 0;
     z-index: 1;
-  }
-}
-
-@media (max-width: 767px) {
-  .favorites__selector:first-child {
-    margin-right: calc(20px + (70 - 20) * ((100vw - 600px) / (768 - 600)));
-  }
-
-  .favorites__selector:nth-child(2) {
-    margin-right: calc(20px + (65 - 20) * ((100vw - 600px) / (768 - 600)));
-  }
-
-  .favorites__selector:nth-child(3) {
-    margin-right: calc(20px + (82 - 20) * ((100vw - 600px) / (768 - 600)));
   }
 }
 
@@ -778,6 +767,38 @@ input:checked + label + label.favorites__label {
   object-fit: contain;
 }
 
+@media (max-width: 600px) {
+  .favorites__book-image {
+    width: 150px;
+    height: 225px;
+    object-fit: cover;
+  }
+
+  .favorites__book-image img {
+    width: 150px;
+    height: 225px;
+  }
+
+  .favorites__book-description {
+    font: 400 14px/35px 'Inter', sans-serif;
+  }
+
+  .favorites__books-container {
+    margin-left: 30px;
+  }
+  .favorites__book-card {
+    height: 500px;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    margin-right: 40px;
+    margin-left: 20px;
+    flex-basis: 500px;
+    flex-shrink: 1;
+    position: relative;
+    padding: 13px 120px 40px 19px;
+  }
+}
+
 @media (max-width: 1233px) {
   .favorites__books-container {
     flex-direction: column;
@@ -789,6 +810,18 @@ input:checked + label + label.favorites__label {
     flex-basis: 555px;
     width: 550px;
     margin: 0 0 40px -40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .favorites__label {
+    padding-left: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .favorites__label {
+    padding-left: 0;
   }
 }
 /* Favorites styles end */
