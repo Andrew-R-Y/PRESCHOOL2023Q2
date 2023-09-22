@@ -70,6 +70,56 @@ body {
   border-radius: 10px;
 }
 
+.song-name,
+.artist-name {
+  min-height: 30px;
+  margin-bottom: 5px;
+  padding: 5px;
+  color: #333333;
+  text-align: center;
+}
+
+.artist-name {
+  margin-bottom: 20px;
+}
+
+.track-line {
+  width: 100%;
+  height: 6px;
+  background-color: #cfcfcf;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.current-line {
+  width: 10%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #1f618d;
+  position: relative;
+}
+
+.current-line span {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #1f618d;
+  transform: translateY(-5px);
+  right: -8px;
+}
+
+.time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font: 400 14px 'Lato', sans-serif;
+  letter-spacing: 1px;
+  color: #414141;
+}
+
 .navigation-panel {
   display: flex;
   justify-content: space-between;
