@@ -17,13 +17,17 @@
       <span class="material-symbols-rounded">
         expand_more
       </span>
-      <span id="playing">Playing</span>
+      <div class="heading">
+        <span class="ready active">Ready</span>
+        <span class="playing">Playing</span>
+        <span class="paused">Paused</span>
+      </div>
       <span class="material-symbols-rounded">
         more_horiz
       </span>
     </div>
     <div class="image-container">
-      <img src="./assets/img/Neffex - Soldier.jpg" alt="Best of me song image">
+      <img src="./assets/img/Neffex - Soldier.jpg" alt="playing song image" id="image">
     </div>
     <p class="song-name">Soldier</p>
     <p class="artist-name">Neffex</p>
@@ -40,13 +44,13 @@
       <span class="material-symbols-rounded active-color" id="repeat">
         repeat
       </span>
-      <span class="material-symbols-rounded">
+      <span class="material-symbols-rounded" id="previous">
         skip_previous
       </span>
       <span class="material-symbols-rounded" id="play-button">
         play_arrow
       </span>
-      <span class="material-symbols-rounded">
+      <span class="material-symbols-rounded" id="next">
         skip_next
       </span>
       <span class="material-symbols-rounded" id="shuffle">
@@ -54,7 +58,7 @@
       </span>
     </div>
   </div>
-  <audio src="./assets/audio/NEFFEX_-_Best_of_Me.mp3" id="audio"></audio>
+  <audio src="./assets/audio/NEFFEX_-_Best_of_Me.mp3" id="audio" class="pause"></audio>
   <script src="./js/playlist.js"></script>
   <script src="./js/index.js"></script>
 </body>

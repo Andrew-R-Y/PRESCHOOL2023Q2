@@ -55,6 +55,50 @@ body {
   height: 30px;
 }
 
+.heading {
+  flex-basis: 70px;
+  flex-grow: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ready {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 1s;
+}
+
+.ready.active {
+  max-width: 100%;
+  opacity: 1;
+}
+
+.playing {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 2s;
+}
+
+.paused {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 2s;
+}
+
+.playing.active {
+  max-width: 100%;
+  opacity: 1;
+}
+
+.paused.active {
+  max-width: 100%;
+  opacity: 1;
+}
+
 .image-container {
   margin: 20px auto;
   height: 250px;
