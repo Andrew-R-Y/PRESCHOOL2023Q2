@@ -192,3 +192,8 @@ span.active-color {
   background-color: #88ee88;
   box-shadow: none;
 }
+
+#previous:active,
+#next:active {
+  background-color: #88ee88;
+}
