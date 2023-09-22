@@ -19,6 +19,7 @@ REPEAT_BUTTON.addEventListener('click', changeRepeat);
 PLAY_BUTTON.addEventListener('click', playPause);
 
 let repeatIsOn = true;
+let isPaused = true;
 let shuffleIsOn = false;
 
 function changeShuffle() {
@@ -49,6 +50,7 @@ function startPlaying() {
   READY_WORD.classList.remove('active');
   PAUSED_WORD.classList.remove('active');
   PLAYING_WORD.classList.add('active');
+  isPaused = false;
 }
 
 function pausePlaying() {
@@ -58,6 +60,7 @@ function pausePlaying() {
   PLAY_BUTTON.innerText = 'play_arrow';
   PLAYING_WORD.classList.remove('active');
   PAUSED_WORD.classList.add('active');
+  isPaused = true;
 }
 
 function playPause() {
@@ -92,26 +95,56 @@ window.addEventListener('load', () => {
 });
 
 NEXT_BUTTON.addEventListener('click', nextTrack);
+PREVIOUS_BUTTON.addEventListener('click', previousTrack);
 
 function nextTrack() {
   if (shuffleIsOn) {
     trackIndex = getRundomTrackNumber();
-    console.log(trackIndex);
     loadTrackData(trackIndex);
-    startPlaying();
+    if (!isPaused) {
+      startPlaying();
+    }
   } else {
     trackIndex++;
     if (trackIndex > songsNumber - 1) {
       if (repeatIsOn) {
         trackIndex = 0;
-        console.log(trackIndex);
         loadTrackData(trackIndex);
-        startPlaying();
+        if (!isPaused) {
+          startPlaying();
+        }
       } else trackIndex--;
     } else {
-      console.log(trackIndex);
       loadTrackData(trackIndex);
+      if (!isPaused) {
+        startPlaying();
+      }
+    }
+  }
+}
+
+function previousTrack() {
+  if (shuffleIsOn) {
+    trackIndex = getRundomTrackNumber();
+    loadTrackData(trackIndex);
+    if (!isPaused) {
       startPlaying();
+    }
+  } else {
+    trackIndex--;
+    if (trackIndex < 0) {
+      if (repeatIsOn) {
+        trackIndex = songsNumber - 1;
+        loadTrackData(trackIndex);
+        if (!isPaused) {
+          startPlaying();
+        }
+      } else trackIndex++;
+    } else {
+      loadTrackData(trackIndex);
+      if (!isPaused) {
+        startPlaying();
+      }
     }
   }
 }
