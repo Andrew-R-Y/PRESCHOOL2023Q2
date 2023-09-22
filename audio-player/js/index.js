@@ -101,7 +101,7 @@ function nextTrack() {
     startPlaying();
   } else {
     trackIndex++;
-    if (trackIndex > songsNumber) {
+    if (trackIndex > songsNumber - 1) {
       if (repeatIsOn) {
         trackIndex = 0;
         console.log(trackIndex);
