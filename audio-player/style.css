@@ -137,7 +137,7 @@ body {
 }
 
 .current-line {
-  width: 10%;
+  width: 0%;
   height: 100%;
   border-radius: 10px;
   background-color: #1f618d;
