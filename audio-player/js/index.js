@@ -14,11 +14,10 @@ const songName = document.querySelector('.song-name');
 const artistName = document.querySelector('.artist-name');
 const songImage = document.getElementById('image');
 
-const TRACK_LINE = document.querySelector('.track-line');
-const CURRENT_LINE = document.querySelector('.current-line');
-
 const CURRENT_TIME = document.getElementById('current-time');
 const TOTAL_TIME = document.getElementById('total-time');
+
+const PROGRESS_RANGE_INPUT = document.getElementById('track-progress');
 
 SHUFFLE_BUTTON.addEventListener('click', changeShuffle);
 REPEAT_BUTTON.addEventListener('click', changeRepeat);
@@ -107,7 +106,6 @@ function nextTrack() {
   if (shuffleIsOn) {
     trackIndex = getRundomTrackNumber();
     loadTrackData(trackIndex);
-    CURRENT_LINE.style.width = '';
     if (!isPaused) {
       startPlaying();
     }
@@ -117,14 +115,12 @@ function nextTrack() {
       if (repeatIsOn) {
         trackIndex = 0;
         loadTrackData(trackIndex);
-        CURRENT_LINE.style.width = '';
         if (!isPaused) {
           startPlaying();
         }
       } else trackIndex--;
     } else {
       loadTrackData(trackIndex);
-      CURRENT_LINE.style.width = '';
       if (!isPaused) {
         startPlaying();
       }
@@ -136,7 +132,6 @@ function previousTrack() {
   if (shuffleIsOn) {
     trackIndex = getRundomTrackNumber();
     loadTrackData(trackIndex);
-    CURRENT_LINE.style.width = '';
     if (!isPaused) {
       startPlaying();
     }
@@ -146,14 +141,12 @@ function previousTrack() {
       if (repeatIsOn) {
         trackIndex = songsNumber - 1;
         loadTrackData(trackIndex);
-        CURRENT_LINE.style.width = '';
         if (!isPaused) {
           startPlaying();
         }
       } else trackIndex++;
     } else {
       loadTrackData(trackIndex);
-      CURRENT_LINE.style.width = '';
       if (!isPaused) {
         startPlaying();
       }
@@ -161,11 +154,8 @@ function previousTrack() {
   }
 }
 
-function progressLineIndication(event) {
-  const trackDuration = event.target.duration;
-  let timePassed = event.target.currentTime;
-  CURRENT_LINE.style.width = `${(timePassed / trackDuration) * 100}%`;
-  timePassed = Math.round(timePassed);
+function trackTimeIndication(event) {
+  const timePassed = Math.round(event.target.currentTime);
   const minutes = Math.floor(timePassed / 60);
   const seconds = timePassed % 60;
   if (seconds < 10) {
@@ -175,11 +165,13 @@ function progressLineIndication(event) {
   }
 }
 
-function setTime(event) {
-  const choosedLength = event.offsetX;
-  const fullTrackLength = TRACK_LINE.clientWidth;
-  const fullTrackTime = AUDIO.duration;
-  AUDIO.currentTime = (choosedLength / fullTrackLength) * fullTrackTime;
+function progressLineIndication(event) {
+  PROGRESS_RANGE_INPUT.max = event.target.duration;
+  PROGRESS_RANGE_INPUT.value = event.target.currentTime;
+}
+
+function setProgress() {
+  AUDIO.currentTime = PROGRESS_RANGE_INPUT.value;
 }
 
 function fillTimeFields() {
@@ -193,6 +185,14 @@ function fillTimeFields() {
   }
 }
 
-AUDIO.addEventListener('timeupdate', progressLineIndication);
-TRACK_LINE.addEventListener('click', setTime);
+AUDIO.addEventListener('timeupdate', trackTimeIndication);
+AUDIO.addEventListener('loadeddata', progressLineIndication);
 AUDIO.addEventListener('loadeddata', fillTimeFields);
+PROGRESS_RANGE_INPUT.addEventListener('change', setProgress);
+AUDIO.addEventListener('ended', nextTrack);
+
+if (AUDIO.play()) {
+  setInterval(() => {
+    PROGRESS_RANGE_INPUT.value = AUDIO.currentTime;
+  }, 800);
+}

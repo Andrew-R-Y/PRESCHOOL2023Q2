@@ -127,31 +127,22 @@ body {
   margin-bottom: 20px;
 }
 
-.track-line {
+#track-progress {
   width: 100%;
+  appearance: none;
   height: 6px;
-  background-color: #cfcfcf;
+  background-color: #1f618d;
   margin-bottom: 8px;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.current-line {
-  width: 0%;
-  height: 100%;
-  border-radius: 10px;
+#track-progress::-webkit-slider-thumb {
+  appearance: none;
   background-color: #1f618d;
-  position: relative;
-}
-
-.current-line span {
-  position: absolute;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background-color: #1f618d;
-  transform: translateY(-5px);
-  right: -8px;
 }
 
 .time {

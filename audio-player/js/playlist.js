@@ -1,9 +1,21 @@
 const playlist = [
   {
+    artist: 'Rob_Bailey_and_the_Hustle_Standard',
+    title: 'Run_this',
+    track: 'rob_bailey_and_the_hustle_standard_-_run_this',
+    image: 'Rob Bailey - Run This',
+  },
+  {
+    artist: 'The_Siege',
+    title: 'The_Siege_-_Outside',
+    track: 'The_Siege_-_Outside',
+    image: 'The Seige - Outside',
+  },
+  {
     artist: 'Neffex',
-    title: 'NEFFEX_-_Best_of_Me',
-    track: 'NEFFEX_-_Best_of_Me',
-    image: 'Neffex - Best of me',
+    title: 'NEFFEX_-_Savage',
+    track: 'NEFFEX_-_Savage',
+    image: 'Neffex - Savage',
   },
   {
     artist: 'Neffex',
@@ -31,12 +43,6 @@ const playlist = [
   },
   {
     artist: 'Neffex',
-    title: 'NEFFEX_-_Savage',
-    track: 'NEFFEX_-_Savage',
-    image: 'Neffex - Savage',
-  },
-  {
-    artist: 'Neffex',
     title: 'NEFFEX_-_Soldier',
     track: 'NEFFEX_-_Soldier',
     image: 'Neffex - Soldier',
@@ -60,18 +66,6 @@ const playlist = [
     image: 'Neffex - Unstoppable',
   },
   {
-    artist: 'Rob_Bailey_and_the_Hustle_Standard',
-    title: 'Run_this',
-    track: 'rob_bailey_and_the_hustle_standard_-_run_this',
-    image: 'Rob Bailey - Run This',
-  },
-  {
-    artist: 'The_Siege',
-    title: 'The_Siege_-_Outside',
-    track: 'The_Siege_-_Outside',
-    image: 'The Seige - Outside',
-  },
-  {
     artist: 'Okean Elzi',
     title: 'Okean Elzi - Na nebi',
     track: 'Okean Elzi - Na nebi',
@@ -88,5 +82,11 @@ const playlist = [
     title: 'Skofka_-_Oy_Na_Oy',
     track: 'Skofka_-_Oy_Na_Oy',
     image: 'Skoffka - oy na oy',
+  },
+  {
+    artist: 'Neffex',
+    title: 'NEFFEX_-_Best_of_Me',
+    track: 'NEFFEX_-_Best_of_Me',
+    image: 'Neffex - Best of me',
   },
 ];
