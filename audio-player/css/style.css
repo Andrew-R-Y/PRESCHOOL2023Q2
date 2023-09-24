@@ -229,3 +229,8 @@ span.active-color {
 .link:active {
   background-color: #88ee88;
 }
+
+.year {
+  font: 700 14px 'Lato', sans-serif;
+  letter-spacing: 1px;
+}

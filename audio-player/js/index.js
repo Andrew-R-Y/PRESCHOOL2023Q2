@@ -26,6 +26,17 @@ PLAY_BUTTON.addEventListener('click', playPause);
 let repeatIsOn = true;
 let isPaused = true;
 let shuffleIsOn = false;
+let mouseDown = false;
+
+document.addEventListener('mousedown', (event) => {
+  if (event.target.closest('#track-progress')) {
+    mouseDown = true;
+  }
+});
+
+document.addEventListener('mouseup', () => {
+  mouseDown = false;
+});
 
 function changeShuffle() {
   if (shuffleIsOn) {
@@ -58,8 +69,10 @@ function startPlaying() {
   isPaused = false;
   if (!isPaused) {
     setInterval(() => {
-      PROGRESS_RANGE_INPUT.value = AUDIO.currentTime;
-    }, 1200);
+      if (!mouseDown) {
+        PROGRESS_RANGE_INPUT.value = AUDIO.currentTime;
+      }
+    }, 500);
   }
 }
 
