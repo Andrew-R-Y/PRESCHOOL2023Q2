@@ -56,6 +56,11 @@ function startPlaying() {
   PAUSED_WORD.classList.remove('active');
   PLAYING_WORD.classList.add('active');
   isPaused = false;
+  if (!isPaused) {
+    setInterval(() => {
+      PROGRESS_RANGE_INPUT.value = AUDIO.currentTime;
+    }, 1200);
+  }
 }
 
 function pausePlaying() {
@@ -190,9 +195,3 @@ AUDIO.addEventListener('loadeddata', progressLineIndication);
 AUDIO.addEventListener('loadeddata', fillTimeFields);
 PROGRESS_RANGE_INPUT.addEventListener('change', setProgress);
 AUDIO.addEventListener('ended', nextTrack);
-
-if (!isPaused) {
-  setInterval(() => {
-    PROGRESS_RANGE_INPUT.value = AUDIO.currentTime;
-  }, 800);
-}
