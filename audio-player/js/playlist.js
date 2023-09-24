@@ -49,12 +49,6 @@ const playlist = [
   },
   {
     artist: 'Neffex',
-    title: 'NEFFEX_-_Sometimes',
-    track: 'NEFFEX_-_Sometimes',
-    image: 'Neffex - Sometimes',
-  },
-  {
-    artist: 'Neffex',
     title: 'NEFFEX_-_Struggle',
     track: 'NEFFEX_-_Struggle',
     image: 'Neffex - Struggle',
