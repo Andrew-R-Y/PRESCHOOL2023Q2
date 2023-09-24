@@ -191,7 +191,7 @@ AUDIO.addEventListener('loadeddata', fillTimeFields);
 PROGRESS_RANGE_INPUT.addEventListener('change', setProgress);
 AUDIO.addEventListener('ended', nextTrack);
 
-if (AUDIO.play()) {
+if (!isPaused) {
   setInterval(() => {
     PROGRESS_RANGE_INPUT.value = AUDIO.currentTime;
   }, 800);
