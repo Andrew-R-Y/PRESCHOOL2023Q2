@@ -199,16 +199,12 @@ img.body-image {
 .navigation-panel span:active {
   scale: 0.9;
   box-shadow: none;
+  background-color: #88ee88;
 }
 
 span.active-color {
   background-color: #88ee88;
   box-shadow: none;
-}
-
-#previous:active,
-#next:active {
-  background-color: #88ee88;
 }
 
 .footer {
