@@ -190,6 +190,12 @@ img.body-image {
     -6px -6px 10px -1px #ffffff;
 }
 
+@media (hover: hover) {
+  .navigation-panel span:hover {
+    background-color: #bebebe;
+  }
+}
+
 .navigation-panel span:active {
   scale: 0.9;
   box-shadow: none;
