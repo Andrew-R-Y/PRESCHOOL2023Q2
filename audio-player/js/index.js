@@ -19,6 +19,8 @@ const TOTAL_TIME = document.getElementById('total-time');
 
 const PROGRESS_RANGE_INPUT = document.getElementById('track-progress');
 
+const BACKGROUND_IMAGE = document.querySelector('.body-image');
+
 SHUFFLE_BUTTON.addEventListener('click', changeShuffle);
 REPEAT_BUTTON.addEventListener('click', changeRepeat);
 PLAY_BUTTON.addEventListener('click', playPause);
@@ -110,6 +112,7 @@ function loadTrackData(index) {
   songName.innerText = `${index + 1}. ${trackData.title.replaceAll('_', ' ')}`;
   artistName.innerText = trackData.artist.replaceAll('_', ' ');
   songImage.src = `./assets/img/${trackData.image}.jpg`;
+  BACKGROUND_IMAGE.src = `./assets/img/${trackData.image}.jpg`;
   AUDIO.src = `./assets/audio/${trackData.track}.mp3`;
 }
 
