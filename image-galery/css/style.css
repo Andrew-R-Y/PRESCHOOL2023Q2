@@ -1,3 +1,20 @@
+/* lato-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/lato-v24-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lato-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../fonts/lato-v24-latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -15,28 +32,120 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
+  background-color: #3a3b3c;
+  color: #f2f2f2;
+  font: 400 20px 'Lato', sans-serif;
 }
 
 .header {
   flex: 0 0 80px;
   background-color: #0c0c0e;
-  padding: 10px;
+}
+
+.header-content {
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 25px 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.api {
+  display: inline-block;
+  font: 400 25px 'Lato', sans-serif;
+  margin-right: 20px;
+  min-width: 146px;
+}
+
+.form {
+  flex: 1 1 500px;
+}
+.input {
+  height: 30px;
+  border-radius: 15px;
+  padding-left: 15px;
+  font: 400 18px 'Lato', sans-serif;
+  min-width: 70%;
+}
+
+@media (max-width: 600px) {
+  .api {
+    font-size: 16px;
+    min-width: 100px;
+  }
+
+  .input {
+    height: 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    min-width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .input {
+    min-width: 90%;
+  }
 }
 
 .main {
+  max-width: 1440px;
   padding: 20px;
+  align-self: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: start;
-  background-color: #3a3b3c;
   gap: 2vw;
 }
 
 .footer {
-  flex: 0 0 80px;
+  flex: 0 0 120px;
   background-color: #0c0c0e;
-  padding: 10px;
+}
+
+.footer-content {
+  max-width: 1440px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rs-link {
+  flex: 0 0 140px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.rs-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.github-link {
+  flex: 0 0 140px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.github-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.logo:hover {
+}
+
+.github:hover {
 }
 
 @media (min-width: 924px) {
