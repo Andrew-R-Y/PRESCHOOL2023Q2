@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="svg" sizes="16x16" href="./img/camera.svg">
     <link rel="stylesheet" href="./css/style.css">
     <title>Image gallery</title>
 </head>
@@ -12,7 +13,10 @@
             <div class="header-content">
                 <p class="api">Unsplash API</p>
                 <form action="#!" class="form">
-                    <input type="text" class="input" placeholder="Search for images.." autofocus="true">
+                    <input type="search" class="input" placeholder="Search for images.." autofocus="true" maxlength="30"
+                        minlength="2" autocomplete="off">
+                    <button class="button" type="submit"><img src="./img/search-icon_32x32.png" alt=""
+                            class="search-image"></button>
                 </form>
             </div>
         </header>
