@@ -73,7 +73,7 @@ function createRequestUrl() {
 }
 
 FORM.addEventListener('submit', (event) => {
-  event.preventDefault;
+  event.preventDefault();
   requestProcessing();
 });
 
