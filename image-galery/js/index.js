@@ -1,3 +1,19 @@
+console.log(
+  ' Самооценка: 60 / 60: \n\n',
+  '[x] Вёрстка (10 / 10)\n',
+  '- на странице есть несколько фото и строка поиска +5 \n',
+  '- в футере приложения есть ссылка на гитхаб автора приложения, год создания приложения, логотип курса со ссылкой на курс +5 \n\n',
+  '[x] При загрузке приложения на странице отображаются полученные от API изображения (10 / 10) \n\n',
+  '[x] Если в поле поиска ввести слово и отправить поисковый запрос, на странице отобразятся изображения соответствующей тематики, если такие данные предоставляет API (10 / 10) \n\n',
+  '[x] Поиск (30 / 30) \n',
+  '- при открытии приложения курсор находится в поле ввода +5 \n',
+  '- есть placeholder +5 \n',
+  '- автозаполнение поля ввода отключено (нет выпадающего списка с предыдущими запросами) +5 \n',
+  '- поисковый запрос можно отправить нажатием клавиши Enter +5 \n',
+  '- после отправки поискового запроса и отображения результатов поиска, поисковый запрос продолжает отображаться в поле ввода +5 \n',
+  '- в поле ввода есть крестик при клике по которому поисковый запрос из поля ввода удаляется и отображается placeholder +5'
+);
+
 const IMAGE_CONTAINER = document.querySelector('.main');
 url =
   'https://api.unsplash.com/photos?client_id=kQtp2xCFDX59Fxz8WdVLkEiQ7ryBMrMLY2IQuZ6swRs&orientation=landscape&per_page=15&page=1';
@@ -28,14 +44,12 @@ function iterateImages(images) {
   const infoText = 'images recieved from Unsplash API';
   if (images.length > 0) {
     const length = images.length;
-    console.log(`${length} ${infoText}`);
     removeImages();
     for (const image of images) {
       const newImage = createImage(image.urls.small);
       IMAGE_CONTAINER.append(newImage);
     }
   } else {
-    console.log(`no ${infoText}`);
   }
 }
 
