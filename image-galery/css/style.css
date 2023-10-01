@@ -27,7 +27,7 @@
   box-sizing: border-box;
   width: 100%;
   min-height: 100vh;
-  min-width: 320px;
+  min-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -94,26 +94,6 @@
   min-width: 70%;
 }
 
-@media (max-width: 600px) {
-  .api {
-    font-size: 16px;
-    min-width: 100px;
-  }
-
-  .button {
-    height: 16px;
-    width: 16px;
-    top: 6px;
-  }
-  .input {
-    height: 20px;
-    padding-left: 25px;
-    border-radius: 10px;
-    font-size: 16px;
-    min-width: 90%;
-  }
-}
-
 @media (max-width: 900px) {
   .input {
     min-width: 90%;
@@ -129,12 +109,6 @@
   justify-content: space-between;
   align-items: start;
   gap: 2vw;
-}
-
-@media (max-width: 874px) {
-  .main {
-    justify-content: center;
-  }
 }
 
 .footer {
@@ -165,6 +139,11 @@
   object-position: center;
 }
 
+.year {
+  font-size: 28px;
+  letter-spacing: 1px;
+}
+
 .github-link {
   flex: 0 0 140px;
   height: 80px;
@@ -187,5 +166,76 @@
 @media (min-width: 924px) {
   .main {
     gap: 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex: 0 0 60px;
+  }
+
+  .header-content {
+    padding: 15px 20px;
+  }
+
+  .api {
+    font-size: 16px;
+    min-width: 100px;
+  }
+
+  .button {
+    height: 16px;
+    width: 16px;
+    top: 6px;
+  }
+
+  .input {
+    height: 20px;
+    padding-left: 25px;
+    border-radius: 10px;
+    font-size: 16px;
+    min-width: 90%;
+  }
+
+  .main {
+    padding: 5px;
+  }
+}
+
+@media (max-width: 440px) {
+  .main {
+    padding: 1px;
+  }
+}
+
+@media (max-width: 740px) {
+  .footer {
+    flex: 0 0 90px;
+  }
+
+  .rs-link {
+    flex-basis: 90px;
+    height: 50px;
+  }
+
+  .github-link {
+    flex-basis: 90px;
+    height: 50px;
+  }
+
+  .year {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1276px) {
+  .main {
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 874px) {
+  .main {
+    justify-content: center;
   }
 }
