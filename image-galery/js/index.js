@@ -27,7 +27,6 @@ let requestUrl = '';
 async function getPhotos() {
   const result = await fetch(url);
   const photoData = await result.json();
-  console.log(photoData);
   iterateImages(photoData);
 }
 
