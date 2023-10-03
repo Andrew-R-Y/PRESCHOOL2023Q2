@@ -96,6 +96,16 @@
   min-width: 70%;
 }
 
+.input::-webkit-search-cancel-button {
+  opacity: 0.5;
+  transition: all 0.5s;
+}
+
+.input::-webkit-search-cancel-button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
 @media (max-width: 900px) {
   .input {
     min-width: 90%;
