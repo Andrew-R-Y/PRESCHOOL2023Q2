@@ -11,6 +11,14 @@ body {
   box-sizing: border-box;
 }
 
+.all-wrapper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .board {
   width: 480px;
   display: flex;
@@ -78,4 +86,10 @@ span.target {
 .button-results:hover {
   cursor: pointer;
   background-color: limegreen;
+}
+
+.footer {
+  width: 100%;
+  flex: 0 0 100px;
+  background-color: #000000;
 }
