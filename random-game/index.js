@@ -71,6 +71,9 @@ function checkTarget(elementNumber) {
     body.push(lastElement);
     result++;
     RESULT.innerText = result;
+    if (resultCheck(result)) {
+      clearInterval(move);
+    }
     generateTarget();
   }
 }
@@ -102,6 +105,20 @@ function chooseDirection(event) {
   }
   if ((event.keyCode === 83 || event.keyCode === 40) && step !== -16) {
     step = 16;
+  }
+}
+
+function resultCheck(score) {
+  if (score === 50) {
+    if (
+      confirm(
+        `You win! Your result is: 50! This is the maximum possible result in my game! \nPress 'Ok' if you want to play again!`
+      )
+    ) {
+      window.location = './';
+    } else {
+      return true;
+    }
   }
 }
 
