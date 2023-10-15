@@ -16,29 +16,48 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: 20px auto;
+  background-color: beige;
 }
 
 .board span {
   display: inline-block;
   width: 30px;
   height: 30px;
-  background-color: beige;
 }
 
 span.body {
   background-color: #0300df;
+  border: 1px solid black;
 }
 
 span.target {
   background-color: #ffa500;
 }
 
-.button-wrapper {
+.button-wrapper,
+.score-wrapper {
   width: 480px;
   margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.score-text {
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Verdana', sans-serif;
+  border-radius: 5px;
+  background-color: beige;
+}
+
+.score {
+  display: inline-block;
+  margin-left: 15px;
+  min-width: 40px;
+  font-size: 20px;
+  font-family: 'Verdana', sans-serif;
+  text-align: center;
 }
 
 .button {
