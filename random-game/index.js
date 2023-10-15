@@ -1,16 +1,59 @@
-const BUTTON = document.querySelector('.button');
+const BUTTON_START = document.querySelector('.button-start');
+const BUTTON_RESULTS = document.querySelector('.button-results');
 const RESULT = document.querySelector('span.score');
+const MARIO_COIN = document.querySelector('.mario-coin');
+const SAD_TROMBONE = document.querySelector('.sad-trombone');
+const MARIO = document.querySelector('.mario');
+const HALLELUJAH = document.querySelector('.hallelujah');
 const size = 16;
 let allElements = document.querySelectorAll('.board > span');
 let body = [131, 130, 129];
 let result = 0;
+let results = [];
 let step = 1;
 let move;
 let lastElement;
 let targetNumber;
 displaySnake();
+MARIO.loop = true;
+let resultsInformation = '';
+
+function loadResults() {
+  results = JSON.parse(localStorage.getItem('superSquad'));
+  console.log(results);
+  if (!results) {
+    results = [];
+  }
+}
+
+loadResults();
+
+function showResults(data) {
+  if (data.length > 0) {
+    resultsInformation = data.join('\n');
+    alert(`Last results are:\n${resultsInformation}`);
+  } else {
+    alert(`At this moment no one can deal with this game!`);
+  }
+}
+
+function saveResult() {
+  if (result > 0) {
+    results.push(result);
+    if (results.length > 10) {
+      results.shift();
+    }
+    localStorage.setItem('superSquad', JSON.stringify(results));
+  } else {
+    return;
+  }
+}
 
 function runGame() {
+  HALLELUJAH.pause();
+  HALLELUJAH.currentTime = 0;
+  MARIO.currentTime = 0;
+  MARIO.play();
   clearInterval(move);
   result = 0;
   RESULT.innerText = result;
@@ -53,6 +96,10 @@ function checkFail() {
     allElements[body[0] + step].classList.contains('body')
   ) {
     clearInterval(move);
+    MARIO.pause();
+    SAD_TROMBONE.play();
+    saveResult();
+    loadResults();
     if (
       confirm(`Game over! Your result is: ${result}\nPress 'Ok' to restart!`)
     ) {
@@ -70,6 +117,7 @@ function checkTarget(elementNumber) {
     allElements[elementNumber].classList.remove('target');
     body.push(lastElement);
     result++;
+    MARIO_COIN.play();
     RESULT.innerText = result;
     if (resultCheck(result)) {
       clearInterval(move);
@@ -109,10 +157,14 @@ function chooseDirection(event) {
 }
 
 function resultCheck(score) {
-  if (score === 50) {
+  if (score === 12) {
+    MARIO.pause();
+    HALLELUJAH.play();
+    saveResult();
+    loadResults();
     if (
       confirm(
-        `You win! Your result is: 50! This is the maximum possible result in my game! \nPress 'Ok' if you want to play again!`
+        `You win!\nYour result is: 12! This is the maximum possible result in my game! \nPress 'Ok' if you want to play again!`
       )
     ) {
       window.location = './';
@@ -122,5 +174,8 @@ function resultCheck(score) {
   }
 }
 
-BUTTON.addEventListener('click', runGame);
+BUTTON_START.addEventListener('click', runGame);
+BUTTON_RESULTS.addEventListener('click', () => {
+  showResults(results);
+});
 document.addEventListener('keydown', chooseDirection);
