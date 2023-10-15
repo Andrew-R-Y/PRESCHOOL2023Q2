@@ -6,6 +6,8 @@ let result = 0;
 let step = 1;
 let move;
 let horizontalDirection = true;
+let lastElement;
+let targetNumber;
 
 function runGame() {
   clearInterval(move);
@@ -13,6 +15,10 @@ function runGame() {
   for (const element of allElements) {
     element.classList.remove('body');
   }
+  for (const element of allElements) {
+    element.classList.remove('target');
+  }
+  generateTarget();
   move = setInterval(moving, 250);
 }
 
@@ -25,12 +31,31 @@ function clearBoard() {
 function moving() {
   clearBoard();
   body.unshift(body[0] + step);
-  body.pop();
+  lastElement = body.pop();
+  checkTarget(body[0]);
   displaySnake();
   if (step === 1 || step === -1) {
     horizontalDirection = true;
   } else {
     horizontalDirection = false;
+  }
+}
+
+function checkTarget(elementNumber) {
+  if (allElements[elementNumber].classList.contains('target')) {
+    allElements[elementNumber].classList.remove('target');
+    body.push(lastElement);
+    generateTarget();
+  }
+}
+
+function generateTarget() {
+  targetNumber = Math.floor(Math.random() * size * size + 1);
+  console.log(targetNumber);
+  if (!body.includes(targetNumber)) {
+    allElements[targetNumber].classList.add('target');
+  } else {
+    generateTarget();
   }
 }
 
