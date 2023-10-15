@@ -6,7 +6,6 @@ let body = [131, 130, 129];
 let result = 0;
 let step = 1;
 let move;
-let horizontalDirection = true;
 let lastElement;
 let targetNumber;
 displaySnake();
@@ -14,6 +13,7 @@ displaySnake();
 function runGame() {
   clearInterval(move);
   result = 0;
+  RESULT.innerText = result;
   for (const element of allElements) {
     element.classList.remove('body');
   }
@@ -41,25 +41,25 @@ function moving() {
     lastElement = body.pop();
     checkTarget(body[0]);
     displaySnake();
-    if (step === 1 || step === -1) {
-      horizontalDirection = true;
-    } else {
-      horizontalDirection = false;
-    }
   }
 }
 
 function checkFail() {
   if (
     (body[0] > size * (size - 1) && step === size) ||
-    (body[0] <= size && step === -size) ||
+    (body[0] < size && step === -size) ||
     (body[0] % size === size - 1 && step === 1) ||
     (body[0] % size === 0 && step === -1) ||
     allElements[body[0] + step].classList.contains('body')
   ) {
     clearInterval(move);
-    alert(`Game over! Your result is: ${result}`);
-    return false;
+    if (
+      confirm(`Game over! Your result is: ${result}\nPress 'Ok' to restart!`)
+    ) {
+      window.location = './';
+    } else {
+      return false;
+    }
   } else {
     return true;
   }
@@ -91,32 +91,16 @@ function displaySnake() {
 }
 
 function chooseDirection(event) {
-  if (
-    (event.keyCode === 65 || event.keyCode === 37) &&
-    step !== 1 &&
-    !horizontalDirection
-  ) {
+  if ((event.keyCode === 65 || event.keyCode === 37) && step !== 1) {
     step = -1;
   }
-  if (
-    (event.keyCode === 87 || event.keyCode === 38) &&
-    step !== 16 &&
-    horizontalDirection
-  ) {
+  if ((event.keyCode === 87 || event.keyCode === 38) && step !== 16) {
     step = -16;
   }
-  if (
-    (event.keyCode === 68 || event.keyCode === 39) &&
-    step !== -1 &&
-    !horizontalDirection
-  ) {
+  if ((event.keyCode === 68 || event.keyCode === 39) && step !== -1) {
     step = 1;
   }
-  if (
-    (event.keyCode === 83 || event.keyCode === 40) &&
-    step !== -16 &&
-    horizontalDirection
-  ) {
+  if ((event.keyCode === 83 || event.keyCode === 40) && step !== -16) {
     step = 16;
   }
 }
