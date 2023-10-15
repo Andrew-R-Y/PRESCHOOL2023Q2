@@ -127,7 +127,7 @@ function checkTarget(elementNumber) {
 }
 
 function generateTarget() {
-  targetNumber = Math.floor(Math.random() * size * size + 1);
+  targetNumber = Math.floor(Math.random() * size * size);
   if (!body.includes(targetNumber)) {
     allElements[targetNumber].classList.add('target');
   } else {
@@ -164,7 +164,7 @@ function resultCheck(score) {
     loadResults();
     if (
       confirm(
-        `You win!\nYour result is: 12! This is the maximum possible result in my game! \nPress 'Ok' if you want to play again!`
+        `You win!\nYour result is: 12!\nThis is the maximum possible result in my game! \nPress 'Ok' if you want to play again, or 'Cancel' if you like winner song!`
       )
     ) {
       window.location = './';
