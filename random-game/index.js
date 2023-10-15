@@ -2,9 +2,10 @@ BUTTON = document.querySelector('.button');
 const size = 16;
 let allElements = document.querySelectorAll('.board > span');
 let body = [131, 130, 129];
-let result;
+let result = 0;
 let step = 1;
 let move;
+let horizontalDirection = true;
 
 function runGame() {
   clearInterval(move);
@@ -26,6 +27,11 @@ function moving() {
   body.unshift(body[0] + step);
   body.pop();
   displaySnake();
+  if (step === 1 || step === -1) {
+    horizontalDirection = true;
+  } else {
+    horizontalDirection = false;
+  }
 }
 
 function displaySnake() {
@@ -35,21 +41,35 @@ function displaySnake() {
 }
 
 function chooseDirection(event) {
-  if ((event.keyCode === 65 || event.keyCode === 37) && step !== 1) {
+  if (
+    (event.keyCode === 65 || event.keyCode === 37) &&
+    step !== 1 &&
+    !horizontalDirection
+  ) {
     step = -1;
   }
-  if ((event.keyCode === 87 || event.keyCode === 38) && step !== 16) {
+  if (
+    (event.keyCode === 87 || event.keyCode === 38) &&
+    step !== 16 &&
+    horizontalDirection
+  ) {
     step = -16;
   }
-  if ((event.keyCode === 68 || event.keyCode === 39) && step !== -1) {
+  if (
+    (event.keyCode === 68 || event.keyCode === 39) &&
+    step !== -1 &&
+    !horizontalDirection
+  ) {
     step = 1;
   }
-  if ((event.keyCode === 83 || event.keyCode === 40) && step !== -16) {
+  if (
+    (event.keyCode === 83 || event.keyCode === 40) &&
+    step !== -16 &&
+    horizontalDirection
+  ) {
     step = 16;
   }
-
-  console.log(event.keyCode);
 }
 
 BUTTON.addEventListener('click', runGame);
-document.addEventListener('keyup', chooseDirection);
+document.addEventListener('keydown', chooseDirection);
