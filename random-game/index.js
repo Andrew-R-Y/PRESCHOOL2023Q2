@@ -17,6 +17,9 @@ let targetNumber;
 displaySnake();
 MARIO.loop = true;
 let resultsInformation = '';
+alert(
+  `The maximum score in this game is 50\nControls are: keyboard arrows, or buttons "A" "W" "D" "S"\nAnd, please, don't be strict! ;-)`
+);
 
 function loadResults() {
   results = JSON.parse(localStorage.getItem('superSquad'));
@@ -157,14 +160,14 @@ function chooseDirection(event) {
 }
 
 function resultCheck(score) {
-  if (score === 12) {
+  if (score === 50) {
     MARIO.pause();
     HALLELUJAH.play();
     saveResult();
     loadResults();
     if (
       confirm(
-        `You win!\nYour result is: 12!\nThis is the maximum possible result in my game! \nPress 'Ok' if you want to play again, or 'Cancel' if you like winner song!`
+        `You win!\nYour result is: 50\nThis is the maximum possible result in my game. \nPress 'Ok' if you want to play again, or 'Cancel' if you like winner song.\nAnd I wish to you good luck in further training!`
       )
     ) {
       window.location = './';
