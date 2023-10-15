@@ -53,22 +53,29 @@ span.target {
 
 .score {
   display: inline-block;
-  margin-left: 15px;
-  min-width: 40px;
+  margin-left: 5px;
+  min-width: 30px;
   font-size: 20px;
   font-family: 'Verdana', sans-serif;
   text-align: center;
 }
 
-.button {
+.button-start,
+.button-results {
   padding: 10px;
   border-radius: 5px;
   font-size: 20px;
   font-family: 'Verdana', sans-serif;
+  background-color: beige;
   transition: all 0.8s;
 }
 
-.button:hover {
+.button-results {
+  margin-left: 50px;
+}
+
+.button-start:hover,
+.button-results:hover {
   cursor: pointer;
   background-color: limegreen;
 }
