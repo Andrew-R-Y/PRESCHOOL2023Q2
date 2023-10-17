@@ -129,6 +129,8 @@ function checkTarget(elementNumber) {
     allElements[elementNumber].classList.remove('target');
     body.push(lastElement);
     result++;
+    MARIO_COIN.pause();
+    MARIO_COIN.currentTime = 0;
     MARIO_COIN.play();
     RESULT.innerText = result;
     if (resultCheck(result)) {
