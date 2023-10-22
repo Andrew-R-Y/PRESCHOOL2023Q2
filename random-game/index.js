@@ -31,24 +31,26 @@ displaySnake();
 MARIO.loop = true;
 let resultsInformation = '';
 alert(
-  `The maximum score in this game is 50\nControls are: keyboard arrows, or buttons "A" "W" "D" "S"\nAnd, please, don't be strict! ;-)`
+  `The maximum score in this game is 50\nControls are: keyboard arrows, or buttons "A" "W" "D" "S", or mouse/touch of game board`
 );
 
 function getTouchedCellIndex(event) {
-  const touchIndex = Array.from(event.target.parentElement.children).indexOf(event.target);
+  const touchIndex = Array.from(event.target.parentElement.children).indexOf(
+    event.target
+  );
   headIndex = body[0];
   if (touchIndex === headIndex) {
     return;
   }
-  horizontal = touchIndex % size - headIndex % size;
+  horizontal = (touchIndex % size) - (headIndex % size);
   vertical = Math.floor(touchIndex / 16) - Math.floor(headIndex / 16);
   if (Math.abs(horizontal) === Math.abs(vertical)) {
     console.log('same horizontal and vertical touch distance');
     return;
   }
   if (Math.abs(horizontal) > Math.abs(vertical)) {
-    getHorizontalDir(horizontal)
-  } else getVerticalDir(vertical)
+    getHorizontalDir(horizontal);
+  } else getVerticalDir(vertical);
 }
 
 function getHorizontalDir(value) {
