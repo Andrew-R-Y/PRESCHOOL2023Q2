@@ -44,11 +44,7 @@ function getTouchedCellIndex(event) {
   }
   horizontal = (touchIndex % size) - (headIndex % size);
   vertical = Math.floor(touchIndex / 16) - Math.floor(headIndex / 16);
-  if (Math.abs(horizontal) === Math.abs(vertical)) {
-    console.log('same horizontal and vertical touch distance');
-    return;
-  }
-  if (Math.abs(horizontal) > Math.abs(vertical)) {
+  if (Math.abs(horizontal) >= Math.abs(vertical)) {
     getHorizontalDir(horizontal);
   } else getVerticalDir(vertical);
 }
