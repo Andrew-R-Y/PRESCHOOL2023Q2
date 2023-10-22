@@ -1,12 +1,12 @@
-console.log(`Self-check: 60/60\n
-1. Вёрстка (10/10)
-- реализован интерфейс игры +5
-- в футере приложения есть ссылка на гитхаб автора приложения, год создания приложения, логотип курса со ссылкой на курс +5
-2. Логика игры. Ходы, перемещения фигур, другие действия игрока подчиняются определённым свойственным игре правилам (10/10)
-3. Реализовано завершение игры при достижении игровой цели (10/10)
-4. По окончанию игры выводится её результат, например, количество ходов, время игры, набранные баллы, выигрыш или поражение и т.д (10/10)
-5. Есть таблица результатов, в которой сохраняются результаты 10 игр с наибольшим счетом (лучшим временем и т.п.) или просто 10 последних игр (хранится в local storage) (10/10)
-6. Анимации или звуки, или настройки игры. Баллы начисляются за любой из перечисленных пунктов (10/10)`);
+// console.log(`Self-check: 60/60\n
+// 1. Вёрстка (10/10)
+// - реализован интерфейс игры +5
+// - в футере приложения есть ссылка на гитхаб автора приложения, год создания приложения, логотип курса со ссылкой на курс +5
+// 2. Логика игры. Ходы, перемещения фигур, другие действия игрока подчиняются определённым свойственным игре правилам (10/10)
+// 3. Реализовано завершение игры при достижении игровой цели (10/10)
+// 4. По окончанию игры выводится её результат, например, количество ходов, время игры, набранные баллы, выигрыш или поражение и т.д (10/10)
+// 5. Есть таблица результатов, в которой сохраняются результаты 10 игр с наибольшим счетом (лучшим временем и т.п.) или просто 10 последних игр (хранится в local storage) (10/10)
+// 6. Анимации или звуки, или настройки игры. Баллы начисляются за любой из перечисленных пунктов (10/10)`);
 
 const BUTTON_START = document.querySelector('.button-start');
 const BUTTON_RESULTS = document.querySelector('.button-results');
@@ -15,12 +15,15 @@ const MARIO_COIN = document.querySelector('.mario-coin');
 const SAD_TROMBONE = document.querySelector('.sad-trombone');
 const MARIO = document.querySelector('.mario');
 const HALLELUJAH = document.querySelector('.hallelujah');
+const BOARD = document.querySelector('.board');
 const size = 16;
 let allElements = document.querySelectorAll('.board > span');
 let body = [131, 130, 129];
 let result = 0;
 let results = [];
 let step = 1;
+let horizontal = 0;
+let vertical = 0;
 let move;
 let lastElement;
 let targetNumber;
@@ -30,6 +33,49 @@ let resultsInformation = '';
 alert(
   `The maximum score in this game is 50\nControls are: keyboard arrows, or buttons "A" "W" "D" "S"\nAnd, please, don't be strict! ;-)`
 );
+
+function getTouchedCellIndex(event) {
+  const touchIndex = Array.from(event.target.parentElement.children).indexOf(event.target);
+  headIndex = body[0];
+  if (touchIndex === headIndex) {
+    return;
+  }
+  horizontal = touchIndex % size - headIndex % size;
+  vertical = Math.floor(touchIndex / 16) - Math.floor(headIndex / 16);
+  if (Math.abs(horizontal) === Math.abs(vertical)) {
+    console.log('same horizontal and vertical touch distance');
+    return;
+  }
+  if (Math.abs(horizontal) > Math.abs(vertical)) {
+    getHorizontalDir(horizontal)
+  } else getVerticalDir(vertical)
+}
+
+function getHorizontalDir(value) {
+  if (value < 0 && step !== 1) {
+    step = -1;
+  } else if (value < 0 && step === 1) {
+    getVerticalDir(vertical);
+  }
+  if (value > 0 && step !== -1) {
+    step = 1;
+  } else if (value > 0 && step === -1) {
+    getVerticalDir(vertical);
+  }
+}
+
+function getVerticalDir(value) {
+  if (value < 0 && step !== 16) {
+    step = -16;
+  } else if (value < 0 && step === 16) {
+    getHorizontalDir(horizontal);
+  }
+  if (value > 0 && step !== -16) {
+    step = 16;
+  } else if (value > 0 && step === -16) {
+    getHorizontalDir(horizontal);
+  }
+}
 
 function loadResults() {
   results = JSON.parse(localStorage.getItem('superSquad'));
@@ -193,3 +239,4 @@ BUTTON_RESULTS.addEventListener('click', () => {
   showResults(results);
 });
 document.addEventListener('keydown', chooseDirection);
+BOARD.addEventListener('mousedown', getTouchedCellIndex);
